@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct BikeStatApp: App {
+
+    @StateObject private var navigationManager = NavigationManager()
+    @StateObject private var networkManager = NetworkManager()
+    @StateObject private var coreDataManager = CoreDataManager()
+    @StateObject private var locationManager = LocationManager()
+
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            MainNavigationView()
         }
     }
 }
