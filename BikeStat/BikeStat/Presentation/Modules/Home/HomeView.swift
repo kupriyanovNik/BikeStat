@@ -1,13 +1,13 @@
 //
 //  HomeView.swift
-//  BikeStat
-//
-//  Created by Никита Куприянов on 26.12.2023.
 //
 
 import SwiftUI
 
 struct HomeView: View {
+
+    // MARK: - Body
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -18,6 +18,8 @@ struct HomeView: View {
         .padding()
     }
 }
+
+// MARK: - Preview 
 
 #Preview {
     HomeView()

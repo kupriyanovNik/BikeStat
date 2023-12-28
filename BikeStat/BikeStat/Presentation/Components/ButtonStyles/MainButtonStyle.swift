@@ -1,16 +1,17 @@
 //
 //  MainButtonStyle.swift
-//  BikeStat
-//
-//  Created by Никита Куприянов on 28.12.2023.
 //
 
 import SwiftUI
 
 struct HeaderButtonStyle: ButtonStyle {
 
+    // MARK: - Internal Properties
+
     var pressedScale: Double = 1.1
     var pressedOpacity: Double = 0.85
+
+    // MARK: - Body 
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

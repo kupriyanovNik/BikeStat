@@ -1,20 +1,28 @@
 //
 //  MainNavigationView.swift
-//  BikeStat
-//
-//  Created by Никита Куприянов on 28.12.2023.
 //
 
 import SwiftUI
 
 struct MainNavigationView: View {
+
+    // MARK: - Property Wrappers
+
+    @ObservedObject var navigationManager: NavigationManager
+
+    // MARK: - Body
+
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationManager.path) {
             HomeView()
         }
     }
 }
 
+// MARK: - Preview 
+
 #Preview {
-    MainNavigationView()
+    MainNavigationView(
+        navigationManager: .init()
+    )
 }

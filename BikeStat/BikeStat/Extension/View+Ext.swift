@@ -1,8 +1,5 @@
 //
 //  View+Ext.swift
-//  BikeStat
-//
-//  Created by Никита Куприянов on 28.12.2023.
 //
 
 import SwiftUI
@@ -20,7 +17,6 @@ extension View {
         frame(maxWidth: .infinity, alignment: .center)
     }
 
-    /// unused
     func getSafeArea() -> UIEdgeInsets {
         guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return .zero }
         guard let safeArea = screen.windows.first?.safeAreaInsets else { return .zero }
