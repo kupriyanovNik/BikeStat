@@ -23,6 +23,7 @@
 		B7FE79672B3DC0E300693CB2 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE79662B3DC0E300693CB2 /* NavigationManager.swift */; };
 		B7FE796B2B3DC15300693CB2 /* MainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE796A2B3DC15300693CB2 /* MainButtonStyle.swift */; };
 		B7FE796F2B3DC18900693CB2 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE796E2B3DC18900693CB2 /* MainNavigationView.swift */; };
+		B7FE79722B3DC3AC00693CB2 /* RepresentableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE79712B3DC3AC00693CB2 /* RepresentableMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		B7FE79662B3DC0E300693CB2 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		B7FE796A2B3DC15300693CB2 /* MainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonStyle.swift; sourceTree = "<group>"; };
 		B7FE796E2B3DC18900693CB2 /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
+		B7FE79712B3DC3AC00693CB2 /* RepresentableMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepresentableMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 		B7FE79682B3DC12600693CB2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B7FE79702B3DC3AC00693CB2 /* Representable */,
 				B7FE79692B3DC13300693CB2 /* ButtonStyles */,
 			);
 			path = Components;
@@ -221,6 +224,14 @@
 				B7FE796E2B3DC18900693CB2 /* MainNavigationView.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		B7FE79702B3DC3AC00693CB2 /* Representable */ = {
+			isa = PBXGroup;
+			children = (
+				B7FE79712B3DC3AC00693CB2 /* RepresentableMapView.swift */,
+			);
+			path = Representable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +317,7 @@
 				B7FE79582B3DC02300693CB2 /* Internal+Ext.swift in Sources */,
 				B7FE795B2B3DC06900693CB2 /* ImpactManager.swift in Sources */,
 				B7FE79612B3DC0A600693CB2 /* CoreDataManager.swift in Sources */,
+				B7FE79722B3DC3AC00693CB2 /* RepresentableMapView.swift in Sources */,
 				B7FE795E2B3DC09300693CB2 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
