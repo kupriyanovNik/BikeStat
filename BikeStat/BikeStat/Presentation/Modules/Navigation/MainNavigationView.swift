@@ -9,12 +9,16 @@ struct MainNavigationView: View {
     // MARK: - Property Wrappers
 
     @ObservedObject var navigationManager: NavigationManager
+    @ObservedObject var locationManager: LocationManager
 
     // MARK: - Body
 
     var body: some View {
         NavigationStack(path: $navigationManager.path) {
-            HomeView()
+            HomeView(
+                navigationManager: navigationManager,
+                locationManager: locationManager
+            )
         }
     }
 }
@@ -23,6 +27,7 @@ struct MainNavigationView: View {
 
 #Preview {
     MainNavigationView(
-        navigationManager: .init()
+        navigationManager: .init(),
+        locationManager: .init()
     )
 }

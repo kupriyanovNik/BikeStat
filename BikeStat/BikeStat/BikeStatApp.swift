@@ -19,7 +19,8 @@ struct BikeStatApp: App {
     var body: some Scene {
         WindowGroup {
             MainNavigationView(
-                navigationManager: navigationManager
+                navigationManager: navigationManager,
+                locationManager: locationManager
             )
         }
     }
