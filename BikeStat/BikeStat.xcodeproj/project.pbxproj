@@ -8,17 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		B7D714C52B3B441A007FD89F /* BikeStatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D714C42B3B441A007FD89F /* BikeStatApp.swift */; };
-		B7D714C72B3B441A007FD89F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D714C62B3B441A007FD89F /* ContentView.swift */; };
+		B7D714C72B3B441A007FD89F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D714C62B3B441A007FD89F /* HomeView.swift */; };
 		B7D714C92B3B441B007FD89F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D714C82B3B441B007FD89F /* Assets.xcassets */; };
 		B7D714CC2B3B441B007FD89F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D714CB2B3B441B007FD89F /* Preview Assets.xcassets */; };
+		B7FE794F2B3DBF8200693CB2 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE794E2B3DBF8200693CB2 /* Localizable.swift */; };
+		B7FE79512B3DBF8600693CB2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE79502B3DBF8600693CB2 /* Strings.swift */; };
+		B7FE79532B3DBF8B00693CB2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE79522B3DBF8B00693CB2 /* Images.swift */; };
+		B7FE79562B3DC00100693CB2 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE79552B3DC00100693CB2 /* View+Ext.swift */; };
+		B7FE79582B3DC02300693CB2 /* Internal+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE79572B3DC02300693CB2 /* Internal+Ext.swift */; };
+		B7FE795B2B3DC06900693CB2 /* ImpactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FE795A2B3DC06900693CB2 /* ImpactManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B7D714C12B3B441A007FD89F /* BikeStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D714C42B3B441A007FD89F /* BikeStatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStatApp.swift; sourceTree = "<group>"; };
-		B7D714C62B3B441A007FD89F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B7D714C62B3B441A007FD89F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B7D714C82B3B441B007FD89F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7D714CB2B3B441B007FD89F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B7FE794E2B3DBF8200693CB2 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		B7FE79502B3DBF8600693CB2 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		B7FE79522B3DBF8B00693CB2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		B7FE79552B3DC00100693CB2 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		B7FE79572B3DC02300693CB2 /* Internal+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Internal+Ext.swift"; sourceTree = "<group>"; };
+		B7FE795A2B3DC06900693CB2 /* ImpactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				B7D714C42B3B441A007FD89F /* BikeStatApp.swift */,
-				B7D714C62B3B441A007FD89F /* ContentView.swift */,
-				B7D714C82B3B441B007FD89F /* Assets.xcassets */,
-				B7D714CA2B3B441B007FD89F /* Preview Content */,
+				B7FE794C2B3DBF4700693CB2 /* Common */,
+				B7FE794B2B3DBF4300693CB2 /* Service */,
+				B7FE794A2B3DBF3E00693CB2 /* Extension */,
+				B7FE79492B3DBF3600693CB2 /* Presentation */,
 			);
 			path = BikeStat;
 			sourceTree = "<group>";
@@ -65,6 +78,67 @@
 				B7D714CB2B3B441B007FD89F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B7FE79492B3DBF3600693CB2 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B7FE79542B3DBFD200693CB2 /* Home */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B7FE794A2B3DBF3E00693CB2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B7FE79552B3DC00100693CB2 /* View+Ext.swift */,
+				B7FE79572B3DC02300693CB2 /* Internal+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B7FE794B2B3DBF4300693CB2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B7FE79592B3DC06100693CB2 /* Impact */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		B7FE794C2B3DBF4700693CB2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B7D714CA2B3B441B007FD89F /* Preview Content */,
+				B7FE794D2B3DBF5B00693CB2 /* Assets */,
+				B7FE794E2B3DBF8200693CB2 /* Localizable.swift */,
+				B7FE79502B3DBF8600693CB2 /* Strings.swift */,
+				B7FE79522B3DBF8B00693CB2 /* Images.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B7FE794D2B3DBF5B00693CB2 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B7D714C82B3B441B007FD89F /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B7FE79542B3DBFD200693CB2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B7D714C62B3B441A007FD89F /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B7FE79592B3DC06100693CB2 /* Impact */ = {
+			isa = PBXGroup;
+			children = (
+				B7FE795A2B3DC06900693CB2 /* ImpactManager.swift */,
+			);
+			path = Impact;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +211,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7D714C72B3B441A007FD89F /* ContentView.swift in Sources */,
+				B7D714C72B3B441A007FD89F /* HomeView.swift in Sources */,
+				B7FE794F2B3DBF8200693CB2 /* Localizable.swift in Sources */,
+				B7FE79562B3DC00100693CB2 /* View+Ext.swift in Sources */,
+				B7FE79532B3DBF8B00693CB2 /* Images.swift in Sources */,
+				B7FE79512B3DBF8600693CB2 /* Strings.swift in Sources */,
 				B7D714C52B3B441A007FD89F /* BikeStatApp.swift in Sources */,
+				B7FE79582B3DC02300693CB2 /* Internal+Ext.swift in Sources */,
+				B7FE795B2B3DC06900693CB2 /* ImpactManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +351,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"BikeStat/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BikeStat/Common/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HDF545ZQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -301,7 +381,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"BikeStat/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BikeStat/Common/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HDF545ZQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
