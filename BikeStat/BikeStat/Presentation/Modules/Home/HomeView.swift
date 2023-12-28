@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
-//  BikeStat
-//
-//  Created by Никита Куприянов on 26.12.2023.
+//  HomeView.swift
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
+
+    // MARK: - Body
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -19,6 +19,8 @@ struct ContentView: View {
     }
 }
 
+// MARK: - Preview 
+
 #Preview {
-    ContentView()
+    HomeView()
 }
