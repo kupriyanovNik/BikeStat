@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct HeaderButtonStyle: ButtonStyle {
+struct MainButtonStyle: ButtonStyle {
 
     // MARK: - Internal Properties
 
