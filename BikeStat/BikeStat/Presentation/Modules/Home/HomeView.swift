@@ -8,6 +8,7 @@ struct HomeView: View {
 
     // MARK: - Property Wrappers
 
+    @ObservedObject var rideViewModel: RideViewModel
     @ObservedObject var navigationManager: NavigationManager
     @ObservedObject var locationManager: LocationManager
 
@@ -15,10 +16,16 @@ struct HomeView: View {
 
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            NavigationLink {
+                RideView(
+                    rideViewModel: rideViewModel,
+                    navigationManager: navigationManager,
+                    locationManager: locationManager
+                )
+                .ignoresSafeArea(edges: .bottom)
+            } label: {
+                Text("New Ride")
+            }
         }
         .padding()
     }
@@ -28,6 +35,7 @@ struct HomeView: View {
 
 #Preview {
     HomeView(
+        rideViewModel: .init(),
         navigationManager: .init(),
         locationManager: .init()
     )

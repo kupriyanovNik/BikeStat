@@ -1,10 +1,10 @@
 //
-//  MainNavigationView.swift
+//  RideView.swift
 //
 
 import SwiftUI
 
-struct MainNavigationView: View {
+struct RideView: View {
 
     // MARK: - Property Wrappers
 
@@ -15,20 +15,20 @@ struct MainNavigationView: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationStack(path: $navigationManager.path) {
-            HomeView(
-                rideViewModel: rideViewModel,
-                navigationManager: navigationManager,
-                locationManager: locationManager
-            )
-        }
+        RepresentableMapView(
+            locationManager: locationManager,
+            isCycling: $rideViewModel.isCycling,
+            souldCenterMapOnLocation: $rideViewModel.souldCenterMapOnLocation,
+            cyclingStartTime: $rideViewModel.cyclingStartTime,
+            mapSpanDeltaValue: $rideViewModel.mapSpanDeltaValue
+        )
     }
 }
 
 // MARK: - Preview 
 
 #Preview {
-    MainNavigationView(
+    RideView(
         rideViewModel: .init(),
         navigationManager: .init(),
         locationManager: .init()
