@@ -57,47 +57,12 @@ struct RideView: View {
         .navigationBarBackButtonHidden()
     }
 
-    // MARK: - ViewBuilders
-
-    @ViewBuilder func headerView() -> some View {
-        let isRideStarted = rideViewModel.isRideStarted
-
-        HStack {
-            VStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title2)
-                }
-                .opacity(isRideStarted ? 0 : 1)
-            }
-
-            Text("Поездка" + cyclingTotalDistanceText)
-                .font(.title)
-                .bold()
-
-            Spacer()
-
-            Button {
-                withAnimation {
-                    shouldCenterMapOnLocation.toggle()
-                }
-            } label: {
-                Image(systemName: shouldCenterMapOnLocation ? "lock" : "lock.open")
-                    .foregroundColor(.black)
-                    .font(.title2)
-            }
-            .buttonStyle(MainButtonStyle())
-        }
-        .foregroundStyle(.black)
-        .padding(.horizontal)
-        .animation(.default, value: isRideStarted)
-    }
+    // MARK: - ViewBuilders 
 
     @ViewBuilder func toggleRideButton() -> some View {
         Button {
             if rideViewModel.isRideStarted {
+                persistRide()
                 rideViewModel.endRide()
                 locationManager.endRide()
             } else {
@@ -169,6 +134,41 @@ struct RideView: View {
         let seconds = Int(accumulatedTime) % 60
 
         return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+    }
+
+    private func persistRide() {
+        let cyclingSpeeds = locationManager.cyclingSpeeds.map { Int($0 ?? 0) }
+        let avgSpeed = cyclingSpeeds.reduce(0, +) / cyclingSpeeds.count
+        var maxSpeed = 0
+        for item in cyclingSpeeds {
+            if item > maxSpeed {
+                maxSpeed = item
+            }
+        }
+
+        networkManager.getWatchData()
+
+        delay(0.5) {
+            let pulse = networkManager.watchData?.data.pulse
+            
+            coreDataManager.addRide(
+                time: Int(rideViewModel.totalAccumulatedTime),
+                date: rideViewModel.cyclingStartTime,
+                distance: Int(locationManager.cyclingTotalDistance),
+                estimatedComplexity: "хз не играл",
+                realComplexity: "вообще хз не играл",
+                pulse: .init(
+                    min: pulse?.min ?? 0,
+                    avg: pulse?.avg ?? 0,
+                    max: pulse?.max ?? 0
+                ),
+                speed: .init(
+                    //TODO: - вылет если cyclingSpeeds.count = 0
+                    avg: avgSpeed,
+                    max: maxSpeed
+                )
+            )
+        }
     }
 }
 

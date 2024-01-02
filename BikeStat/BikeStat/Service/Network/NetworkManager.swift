@@ -4,7 +4,7 @@
 
 import Foundation
 
-class NetworkManager: ObservableObject {
+@MainActor class NetworkManager: ObservableObject {
 
     // MARK: - Property Wrappers
 
@@ -15,7 +15,7 @@ class NetworkManager: ObservableObject {
     private let decoder = JSONDecoder()
     private let networkConstants = Strings.Network.self
 
-    // MARK: - Internal Functions
+    // MARK: - Internal Functions 
 
     func getWatchData() {
         Task {

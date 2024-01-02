@@ -41,13 +41,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(
         _ manager: CLLocationManager,
-        didChangeAuthorization status: CLAuthorizationStatus
-    ) {
-        
-    }
-
-    func locationManager(
-        _ manager: CLLocationManager,
         didUpdateLocations locations: [CLLocation]
     ) {
         guard let location = locations.last else { return }
@@ -82,7 +75,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private func clearLocationArray() {
         cyclingLocations.removeAll()
         cyclingSpeeds.removeAll()
-
         cyclingTotalDistance = 0.0
     }
 }

@@ -8,9 +8,6 @@ class RideViewModel: ObservableObject {
 
     // MARK: - Property Wrappers
 
-    @Published var shouldCenterMapOnLocation: Bool = true
-    @Published var mapSpanDeltaValue: Double = 0.006
-
     @Published var isRideStarted: Bool = false
     @Published var totalAccumulatedTime: TimeInterval = 0
     @Published var cyclingStartTime: Date = .now
@@ -24,7 +21,7 @@ class RideViewModel: ObservableObject {
     // MARK: - Internal Functions
 
     func startRide() {
-        isRideStarted = true
+        isRideStarted = true 
 
         timer = Timer.scheduledTimer(
             timeInterval: 1,
