@@ -10,9 +10,10 @@ struct BikeStatApp: App {
     // MARK: - Property Wrappers
 
     @StateObject private var rideViewModel = RideViewModel()
-    @StateObject private var navigationManager = NavigationManager()
-    @StateObject private var networkManager = NetworkManager()
+
     @StateObject private var coreDataManager = CoreDataManager()
+    @StateObject private var networkManager = NetworkManager()
+    @StateObject private var navigationManager = NavigationManager()
     @StateObject private var locationManager = LocationManager()
 
     // MARK: - Body 
@@ -20,8 +21,10 @@ struct BikeStatApp: App {
     var body: some Scene {
         WindowGroup {
             MainNavigationView(
-                rideViewModel: rideViewModel,
                 navigationManager: navigationManager,
+                rideViewModel: rideViewModel,
+                coreDataManager: coreDataManager,
+                networkManager: networkManager,
                 locationManager: locationManager
             )
         }

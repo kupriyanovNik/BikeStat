@@ -9,6 +9,8 @@ struct HomeView: View {
     // MARK: - Property Wrappers
 
     @ObservedObject var rideViewModel: RideViewModel
+    @ObservedObject var coreDataManager: CoreDataManager
+    @ObservedObject var networkManager: NetworkManager
     @ObservedObject var navigationManager: NavigationManager
     @ObservedObject var locationManager: LocationManager
 
@@ -20,6 +22,8 @@ struct HomeView: View {
                 RideView(
                     rideViewModel: rideViewModel,
                     navigationManager: navigationManager,
+                    coreDataManager: coreDataManager,
+                    networkManager: networkManager,
                     locationManager: locationManager
                 )
                 .ignoresSafeArea(edges: .bottom)
@@ -36,6 +40,8 @@ struct HomeView: View {
 #Preview {
     HomeView(
         rideViewModel: .init(),
+        coreDataManager: .init(),
+        networkManager: .init(),
         navigationManager: .init(),
         locationManager: .init()
     )

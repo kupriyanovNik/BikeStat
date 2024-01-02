@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B75CB6262B44574000CDF026 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6252B44574000CDF026 /* RideView.swift */; };
 		B75CB6282B4457E700CDF026 /* RideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6272B4457E700CDF026 /* RideViewModel.swift */; };
+		B75CB62B2B445C3300CDF026 /* NetworkDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB62A2B445C3300CDF026 /* NetworkDataModels.swift */; };
 		B7D714C52B3B441A007FD89F /* BikeStatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D714C42B3B441A007FD89F /* BikeStatApp.swift */; };
 		B7D714C72B3B441A007FD89F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D714C62B3B441A007FD89F /* HomeView.swift */; };
 		B7D714C92B3B441B007FD89F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D714C82B3B441B007FD89F /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		B75CB6252B44574000CDF026 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
 		B75CB6272B4457E700CDF026 /* RideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewModel.swift; sourceTree = "<group>"; };
+		B75CB62A2B445C3300CDF026 /* NetworkDataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataModels.swift; sourceTree = "<group>"; };
 		B7D714C12B3B441A007FD89F /* BikeStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D714C42B3B441A007FD89F /* BikeStatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStatApp.swift; sourceTree = "<group>"; };
 		B7D714C62B3B441A007FD89F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 				B75CB6272B4457E700CDF026 /* RideViewModel.swift */,
 			);
 			path = Ride;
+			sourceTree = "<group>";
+		};
+		B75CB6292B445C3300CDF026 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B75CB62A2B445C3300CDF026 /* NetworkDataModels.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B7D714B82B3B441A007FD89F = {
@@ -193,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				B7FE79632B3DC0BC00693CB2 /* NetworkManager.swift */,
+				B75CB6292B445C3300CDF026 /* Model */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -324,6 +335,7 @@
 				B7FE796B2B3DC15300693CB2 /* MainButtonStyle.swift in Sources */,
 				B7FE79562B3DC00100693CB2 /* View+Ext.swift in Sources */,
 				B7FE79532B3DBF8B00693CB2 /* Images.swift in Sources */,
+				B75CB62B2B445C3300CDF026 /* NetworkDataModels.swift in Sources */,
 				B7FE79642B3DC0BC00693CB2 /* NetworkManager.swift in Sources */,
 				B7FE79672B3DC0E300693CB2 /* NavigationManager.swift in Sources */,
 				B7FE79512B3DBF8600693CB2 /* Strings.swift in Sources */,
@@ -471,6 +483,7 @@
 				DEVELOPMENT_TEAM = 7HDF545ZQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -501,6 +514,7 @@
 				DEVELOPMENT_TEAM = 7HDF545ZQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
