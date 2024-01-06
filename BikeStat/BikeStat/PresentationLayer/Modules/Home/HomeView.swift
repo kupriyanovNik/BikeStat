@@ -69,7 +69,7 @@ struct HomeView: View {
                         .background(.white)
                         .cornerRadius(40)
                 }
-                .buttonStyle(MainButtonStyle(anchor: .leading))
+                .buttonStyle(MainButtonStyle(scaleAnchor: .leading))
             }
 
             Spacer()

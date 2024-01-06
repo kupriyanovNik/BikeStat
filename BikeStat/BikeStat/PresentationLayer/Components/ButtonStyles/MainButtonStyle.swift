@@ -11,13 +11,13 @@ struct MainButtonStyle: ButtonStyle {
 
     var pressedScale: Double = 1.1
     var pressedOpacity: Double = 1
-    var anchor: UnitPoint = .center
+    var scaleAnchor: UnitPoint = .center
 
     // MARK: - Body
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? pressedScale : 1, anchor: anchor)
+            .scaleEffect(configuration.isPressed ? pressedScale : 1, anchor: scaleAnchor)
             .opacity(configuration.isPressed ? pressedOpacity : 1)
             .animation(.spring, value: configuration.isPressed)
     }
