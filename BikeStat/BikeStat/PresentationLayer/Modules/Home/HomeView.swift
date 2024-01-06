@@ -58,7 +58,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    //
+                    navigationManager.shouldShowRideScreen = true 
                 } label: {
                     Text("Начать")
                         .font(.title3)
