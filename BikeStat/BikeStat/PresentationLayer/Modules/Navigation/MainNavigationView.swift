@@ -11,6 +11,7 @@ struct MainNavigationView: View {
     @ObservedObject var navigationManager: NavigationManager
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var rideViewModel: RideViewModel
+    @ObservedObject var settingsViewModel: SettingsViewModel
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var locationManager: LocationManager
@@ -36,7 +37,9 @@ struct MainNavigationView: View {
                             locationManager: locationManager
                         )
                     } else if value == "SETTINGS" {
-                        SettingsView()
+                        SettingsView(
+                            settingsViewModel: settingsViewModel
+                        )
                     }
                 }
             }
@@ -51,6 +54,7 @@ struct MainNavigationView: View {
         navigationManager: .init(),
         homeViewModel: .init(),
         rideViewModel: .init(),
+        settingsViewModel :.init(),
         coreDataManager: .init(),
         networkManager: .init(),
         locationManager: .init()
