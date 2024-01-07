@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		B75555022B4AB2CE003B93E3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B75555052B4ABAB5003B93E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B75CB62F2B445EEB00CDF026 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B75CB6302B445EEB00CDF026 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B75CB6312B445EEB00CDF026 /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -88,6 +89,14 @@
 				B75CB6602B445EEC00CDF026 /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		B75555062B4ABAF3003B93E3 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				B75555052B4ABAB5003B93E3 /* Info.plist */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		B75CB62E2B445EEB00CDF026 /* Extension */ = {
@@ -257,6 +266,7 @@
 		B75CB65E2B445EEC00CDF026 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B75555062B4ABAF3003B93E3 /* Info */,
 				B75555042B4AB3C0003B93E3 /* Assets */,
 				B75CB6612B445EEC00CDF026 /* Preview Content */,
 				B75CB6662B445EEC00CDF026 /* Localizable */,
@@ -543,6 +553,7 @@
 				DEVELOPMENT_TEAM = 7HDF545ZQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BikeStat/Common/Info/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -574,6 +585,7 @@
 				DEVELOPMENT_TEAM = 7HDF545ZQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BikeStat/Common/Info/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
