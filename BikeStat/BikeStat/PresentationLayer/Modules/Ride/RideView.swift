@@ -60,14 +60,6 @@ struct RideView: View {
 
     @ViewBuilder func headerView() -> some View {
         HStack {
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: Images.back)
-                    .font(.title2)
-                    .bold()
-            }
-
             Spacer()
 
             Text("Новая поездка")
@@ -76,9 +68,25 @@ struct RideView: View {
 
             Spacer()
         }
+        .overlay {
+            VStack {
+                if !rideViewModel.isRideStarted {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: Images.back)
+                            .font(.title2)
+                            .bold()
+                    }
+                    .transition(.move(edge: .leading).combined(with: .opacity))
+                }
+            }
+            .hLeading()
+        }
         .foregroundStyle(.black)
         .padding([.horizontal, .top])
         .offset(y: -16)
+        .animation(.linear, value: rideViewModel.isRideStarted)
     }
 
     @ViewBuilder func toggleRideButton() -> some View {
