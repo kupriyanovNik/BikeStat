@@ -75,7 +75,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private func clearLocationArray() {
         cyclingLocations.removeAll()
         cyclingSpeeds.removeAll()
-
         cyclingTotalDistance = 0.0
     }
 }
