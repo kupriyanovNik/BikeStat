@@ -82,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B75555042B4AB3C0003B93E3 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B75CB6602B445EEC00CDF026 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		B75CB62E2B445EEB00CDF026 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,11 +257,11 @@
 		B75CB65E2B445EEC00CDF026 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				B75CB65F2B445EEC00CDF026 /* Strings.swift */,
-				B75CB6602B445EEC00CDF026 /* Assets.xcassets */,
+				B75555042B4AB3C0003B93E3 /* Assets */,
 				B75CB6612B445EEC00CDF026 /* Preview Content */,
-				B75CB6652B445EEC00CDF026 /* Images.swift */,
 				B75CB6662B445EEC00CDF026 /* Localizable */,
+				B75CB6652B445EEC00CDF026 /* Images.swift */,
+				B75CB65F2B445EEC00CDF026 /* Strings.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";

@@ -23,7 +23,7 @@ struct RideView: View {
     // MARK: - Private Properties
 
     private var toggleRideButtonText: String {
-        rideViewModel.isRideStarted ? "Закончить" : "Начать"
+        rideViewModel.isRideStarted ? "Финиш" : "Старт"
     }
 
     private var cyclingTotalDistanceText: String {
@@ -43,97 +43,140 @@ struct RideView: View {
                 cyclingStartTime: $rideViewModel.cyclingStartTime,
                 mapSpanDeltaValue: $mapSpanDeltaValue
             )
-            .ignoresSafeArea(edges: .bottom)
+            .ignoresSafeArea()
         }
+        .safeAreaInset(edge: .top, content: headerView)
         .overlay(alignment: .center) {
             if shouldCenterMapOnLocation {
                 mapSpanControls()
             }
         }
-        .overlay(alignment: .bottom) {
-            toggleRideButton()
-        }
+        .overlay(alignment: .bottom, content: toggleRideButton)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
     }
 
     // MARK: - ViewBuilders 
 
+    @ViewBuilder func headerView() -> some View {
+        HStack {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: Images.back)
+                    .font(.title2)
+                    .bold()
+            }
+
+            Spacer()
+
+            Text("Новая поездка")
+                .font(.largeTitle)
+                .bold()
+
+            Spacer()
+        }
+        .foregroundStyle(.black)
+        .padding([.horizontal, .top])
+        .offset(y: -16)
+    }
+
     @ViewBuilder func toggleRideButton() -> some View {
         Button {
-            if rideViewModel.isRideStarted {
-                persistRide()
-                rideViewModel.endRide()
-                locationManager.endRide()
-            } else {
-                rideViewModel.startRide()
-                locationManager.startRide()
-            }
+            toggleRideButtonAction()
         } label: {
-            HStack {
-                if rideViewModel.isRideStarted {
-                    Text(formatTimeString(accumulatedTime: rideViewModel.totalAccumulatedTime))
-                        .monospaced()
-                        .contentTransition(.numericText())
-                }
-
+            VStack {
                 Text(toggleRideButtonText)
-                    .font(.headline)
+
+                Text(
+                    formatTimeString(
+                        accumulatedTime: rideViewModel.totalAccumulatedTime
+                    )
+                )
             }
-            .padding()
-            .background(.ultraThinMaterial)
-            .cornerRadius(10)
+            .font(.title)
+            .bold()
+            .foregroundStyle(.white)
+            .padding(.vertical)
+            .padding(.horizontal, 36)
+            .background {
+                Color.init(hex: 0xB180C8, alpha: 0.54)
+                    .cornerRadius(20)
+            }
+            .overlay {
+                RoundedRectangle(cornerRadius: 20)
+                    .inset(by: -0.5)
+                    .stroke(.black, lineWidth: 1)
+            }
         }
-        .buttonStyle(MainButtonStyle())
-        .animation(.default, value: rideViewModel.totalAccumulatedTime)
-        .hTrailing()
-        .padding(.trailing)
+        .buttonStyle(
+            MainButtonStyle(
+                pressedScale: rideViewModel.isRideStarted ? 0.9 : 1.1
+            )
+        )
     }
 
     @ViewBuilder func mapSpanControls() -> some View {
         VStack {
-            Button {
+            mapSpanControlButton(imageName: "plus") {
                 withAnimation {
-                    mapSpanDeltaValue = max(mapSpanDeltaValue - 0.001, 0.001)
+                    mapSpanDeltaValue = max(mapSpanDeltaValue - 0.003, 0.003)
                 }
-            } label: {
-                Image(systemName: "plus")
-                    .bold()
-                    .foregroundStyle(.black)
-                    .padding()
-                    .frame(width: 50, height: 50)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(10)
             }
-            .buttonStyle(MainButtonStyle())
 
-            Button {
+            mapSpanControlButton(imageName: "minus") {
                 withAnimation {
-                    mapSpanDeltaValue += 0.001
+                    mapSpanDeltaValue += 0.003
                 }
-            } label: {
-                Image(systemName: "minus")
-                    .bold()
-                    .foregroundStyle(.black)
-                    .padding()
-                    .frame(width: 50, height: 50)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(10)
             }
-            .buttonStyle(MainButtonStyle())
         }
-        .hLeading()
-        .padding(.leading)
+        .hTrailing()
+        .padding(.trailing)
+    }
+
+    @ViewBuilder func mapSpanControlButton(
+        imageName: String,
+        action: @escaping () -> ()
+    ) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: imageName)
+                .bold()
+                .foregroundStyle(.white)
+                .padding()
+                .frame(width: 40, height: 40)
+                .background(
+                    Color.init(hex: 0xB180C8)
+                )
+                .cornerRadius(5)
+        }
+        .buttonStyle(MainButtonStyle())
     }
 
     // MARK: - Private Funcations
+
+    private func toggleRideButtonAction() {
+        if rideViewModel.isRideStarted {
+            persistRide()
+            rideViewModel.endRide()
+            locationManager.endRide()
+        } else {
+            rideViewModel.startRide()
+            locationManager.startRide()
+        }
+    }
 
     private func formatTimeString(accumulatedTime: TimeInterval) -> String {
         let hours = Int(accumulatedTime) / 3600
         let minutes = Int(accumulatedTime) / 60 % 60
         let seconds = Int(accumulatedTime) % 60
 
-        return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+        if hours != 0 {
+            return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+        }
+
+        return String(format: "%02i:%02i", minutes, seconds)
     }
 
     private func persistRide() {
