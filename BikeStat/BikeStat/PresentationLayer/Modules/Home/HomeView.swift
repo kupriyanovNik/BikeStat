@@ -81,7 +81,9 @@ struct HomeView: View {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 25)
-                .fill(.purple)
+                .fill(
+                    Color.init(hex: 0xB180C8)
+                )
         }
     }
 }
