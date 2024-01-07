@@ -17,7 +17,7 @@ struct RepresentableMapView: UIViewRepresentable {
         ) -> MKOverlayRenderer {
             if let polyline = overlay as? MKPolyline {
                 let polylineRenderer = MKPolylineRenderer(overlay: polyline)
-                polylineRenderer.strokeColor = .red
+                polylineRenderer.strokeColor = .init(Color(hex: 0xB180C8))
                 polylineRenderer.lineWidth = 8
 
                 return polylineRenderer

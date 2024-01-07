@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B75555032B4AB2CE003B93E3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555022B4AB2CE003B93E3 /* Color.swift */; };
 		B75CB6682B445EEC00CDF026 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB62F2B445EEB00CDF026 /* Date.swift */; };
 		B75CB6692B445EEC00CDF026 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6302B445EEB00CDF026 /* View.swift */; };
 		B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6312B445EEB00CDF026 /* Int.swift */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B75555022B4AB2CE003B93E3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B75555052B4ABAB5003B93E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B75CB62F2B445EEB00CDF026 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B75CB6302B445EEB00CDF026 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B75CB6312B445EEB00CDF026 /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -80,6 +83,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B75555042B4AB3C0003B93E3 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B75CB6602B445EEC00CDF026 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B75555062B4ABAF3003B93E3 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				B75555052B4ABAB5003B93E3 /* Info.plist */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		B75CB62E2B445EEB00CDF026 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +107,7 @@
 				B75CB6312B445EEB00CDF026 /* Int.swift */,
 				B75CB6322B445EEB00CDF026 /* Internal.swift */,
 				B75CB6332B445EEB00CDF026 /* UINavigationController.swift */,
+				B75555022B4AB2CE003B93E3 /* Color.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -246,11 +266,12 @@
 		B75CB65E2B445EEC00CDF026 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				B75CB65F2B445EEC00CDF026 /* Strings.swift */,
-				B75CB6602B445EEC00CDF026 /* Assets.xcassets */,
+				B75555062B4ABAF3003B93E3 /* Info */,
+				B75555042B4AB3C0003B93E3 /* Assets */,
 				B75CB6612B445EEC00CDF026 /* Preview Content */,
-				B75CB6652B445EEC00CDF026 /* Images.swift */,
 				B75CB6662B445EEC00CDF026 /* Localizable */,
+				B75CB6652B445EEC00CDF026 /* Images.swift */,
+				B75CB65F2B445EEC00CDF026 /* Strings.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -386,6 +407,7 @@
 				B75CB67C2B445EEC00CDF026 /* Persistence.swift in Sources */,
 				B75CB66C2B445EEC00CDF026 /* UINavigationController.swift in Sources */,
 				B75CB67B2B445EEC00CDF026 /* CoreDataManager.swift in Sources */,
+				B75555032B4AB2CE003B93E3 /* Color.swift in Sources */,
 				B75CB6732B445EEC00CDF026 /* RideView.swift in Sources */,
 				B75CB66B2B445EEC00CDF026 /* Internal.swift in Sources */,
 				B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */,
@@ -531,6 +553,7 @@
 				DEVELOPMENT_TEAM = 7HDF545ZQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BikeStat/Common/Info/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -562,6 +585,7 @@
 				DEVELOPMENT_TEAM = 7HDF545ZQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BikeStat/Common/Info/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
