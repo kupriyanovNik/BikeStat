@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B75555032B4AB2CE003B93E3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555022B4AB2CE003B93E3 /* Color.swift */; };
+		B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555082B4AFC3D003B93E3 /* SettingsView.swift */; };
+		B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755550A2B4AFC5E003B93E3 /* SettingsViewModel.swift */; };
 		B75CB6682B445EEC00CDF026 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB62F2B445EEB00CDF026 /* Date.swift */; };
 		B75CB6692B445EEC00CDF026 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6302B445EEB00CDF026 /* View.swift */; };
 		B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6312B445EEB00CDF026 /* Int.swift */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		B75555022B4AB2CE003B93E3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B75555052B4ABAB5003B93E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B75555082B4AFC3D003B93E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B755550A2B4AFC5E003B93E3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		B75CB62F2B445EEB00CDF026 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B75CB6302B445EEB00CDF026 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B75CB6312B445EEB00CDF026 /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -99,6 +103,15 @@
 			path = Info;
 			sourceTree = "<group>";
 		};
+		B75555072B4AFC1A003B93E3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B75555082B4AFC3D003B93E3 /* SettingsView.swift */,
+				B755550A2B4AFC5E003B93E3 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		B75CB62E2B445EEB00CDF026 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +165,7 @@
 				B75CB6472B445EEC00CDF026 /* Navigation */,
 				B75CB63F2B445EEC00CDF026 /* Home */,
 				B75CB6422B445EEC00CDF026 /* Ride */,
+				B75555072B4AFC1A003B93E3 /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -406,11 +420,13 @@
 				B75CB67D2B445EEC00CDF026 /* Rides.xcdatamodeld in Sources */,
 				B75CB67C2B445EEC00CDF026 /* Persistence.swift in Sources */,
 				B75CB66C2B445EEC00CDF026 /* UINavigationController.swift in Sources */,
+				B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */,
 				B75CB67B2B445EEC00CDF026 /* CoreDataManager.swift in Sources */,
 				B75555032B4AB2CE003B93E3 /* Color.swift in Sources */,
 				B75CB6732B445EEC00CDF026 /* RideView.swift in Sources */,
 				B75CB66B2B445EEC00CDF026 /* Internal.swift in Sources */,
 				B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */,
+				B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */,
 				B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */,
 				B75CB6742B445EEC00CDF026 /* RideViewModel.swift in Sources */,
 				B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */,

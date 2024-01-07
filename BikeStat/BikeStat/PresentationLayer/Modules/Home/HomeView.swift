@@ -38,7 +38,12 @@ struct HomeView: View {
 
             Spacer()
 
-            Image(systemName: Images.gearshape)
+            Button {
+                navigationManager.path.append("SETTINGS")
+            } label: {
+                Image(systemName: Images.gearshape)
+            }
+            .foregroundStyle(.black)
         }
         .font(.largeTitle)
         .padding(.horizontal)
@@ -58,7 +63,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    navigationManager.shouldShowRideScreen = true 
+                    navigationManager.path.append("NEW RIDE")
                 } label: {
                     Text("Начать")
                         .font(.title3)

@@ -18,25 +18,27 @@ struct MainNavigationView: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $navigationManager.path) {
             HomeView(
                 homeViewModel: homeViewModel,
                 coreDataManager: coreDataManager,
                 networkManager: networkManager,
                 navigationManager: navigationManager
             )
-            .overlay {
-                NavigationLink(
-                    isActive: $navigationManager.shouldShowRideScreen
-                ) {
-                    RideView(
-                        rideViewModel: rideViewModel,
-                        navigationManager: navigationManager,
-                        coreDataManager: coreDataManager,
-                        networkManager: networkManager,
-                        locationManager: locationManager
-                    )
-                } label: { }
+            .navigationDestination(for: String.self) { value in
+                Group {
+                    if value == "NEW RIDE" {
+                        RideView(
+                            rideViewModel: rideViewModel,
+                            navigationManager: navigationManager,
+                            coreDataManager: coreDataManager,
+                            networkManager: networkManager,
+                            locationManager: locationManager
+                        )
+                    } else if value == "SETTINGS" {
+                        SettingsView()
+                    }
+                }
             }
         }
     }
