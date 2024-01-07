@@ -108,7 +108,7 @@ struct RideView: View {
             .padding(.vertical)
             .padding(.horizontal, 36)
             .background {
-                Color.init(hex: 0xB180C8, alpha: 0.54)
+                Color(hex: 0xB180C8, alpha: 0.54)
                     .cornerRadius(20)
             }
             .overlay {
@@ -155,7 +155,7 @@ struct RideView: View {
                 .padding()
                 .frame(width: 40, height: 40)
                 .background(
-                    Color.init(hex: 0xB180C8)
+                    Color(hex: 0xB180C8)
                 )
                 .cornerRadius(5)
         }

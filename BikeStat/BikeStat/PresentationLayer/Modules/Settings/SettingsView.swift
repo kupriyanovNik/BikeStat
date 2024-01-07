@@ -76,7 +76,7 @@ struct SettingsView: View {
                 .overlay {
                     if isSelected {
                         Circle()
-                            .fill(Color.init(hex: 0xB180C8))
+                            .fill(Color(hex: 0xB180C8))
                             .padding(2)
                             .matchedGeometryEffect(id: "selectedUnits", in: animation)
                     }
