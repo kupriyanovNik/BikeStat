@@ -167,8 +167,6 @@ struct RideView: View {
     private func toggleRideButtonAction() {
         if rideViewModel.isRideStarted {
             persistRide()
-            rideViewModel.endRide()
-            locationManager.endRide()
         } else {
             rideViewModel.startRide()
             locationManager.startRide()
@@ -201,7 +199,6 @@ struct RideView: View {
 
         delay(0.5) {
             let pulse = networkManager.watchData?.data.pulse
-            
             coreDataManager.addRide(
                 time: Int(rideViewModel.totalAccumulatedTime),
                 date: rideViewModel.cyclingStartTime,
@@ -219,6 +216,9 @@ struct RideView: View {
                     max: maxSpeed
                 )
             )
+            
+            rideViewModel.endRide()
+            locationManager.endRide()
         }
     }
 }

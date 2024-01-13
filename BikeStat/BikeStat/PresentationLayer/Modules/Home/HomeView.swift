@@ -13,12 +13,28 @@ struct HomeView: View {
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var navigationManager: NavigationManager
 
+    @State private var selectedRide: RideInfoModel?
+    @State private var isNewRideCardVisible: Bool = true
+
     // MARK: - Body
 
     var body: some View {
         ScrollView {
-            VStack {
+            LazyVStack {
                 newRideCard()
+
+                Text("История поездок")
+                    .font(.title2)
+                    .bold()
+                    .hLeading()
+
+                ForEach(coreDataManager.allRides.reversed(), id: \.objectID)  { ride in
+                    rideInfoCard(ride: ride)
+                        .id(ride.objectID)
+                        .onTapGesture {
+                            selectedRide = ride
+                        }
+                }
             }
             .padding(.horizontal)
         }
@@ -26,6 +42,11 @@ struct HomeView: View {
         .safeAreaInset(edge: .top, content: headerView)
         .onAppear {
             coreDataManager.fetchAllRides()
+        }
+        .sheet(item: $selectedRide) { ride in
+            Text((ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted))
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
         }
     }
 
@@ -44,14 +65,33 @@ struct HomeView: View {
                 Image(systemName: Images.gearshape)
             }
             .foregroundStyle(.black)
+
+            if !isNewRideCardVisible {
+                Button {
+                    navigationManager.path.append("NEW RIDE")
+                } label: {
+                    Image(systemName: Images.plus)
+                        .foregroundStyle(.white)
+                }
+                .buttonStyle(MainButtonStyle())
+                .foregroundStyle(.black)
+                .padding(3)
+                .background {
+                    Color(hex: 0xB180C8)
+                        .clipShape(Circle())
+                }
+                .transition(.move(edge: .trailing).combined(with: .opacity))
+            }
         }
+        .buttonStyle(MainButtonStyle())
         .font(.largeTitle)
         .padding(.horizontal)
-        .padding(.bottom)
+        .padding(.bottom, 4)
         .background {
             Color.white
                 .ignoresSafeArea()
         }
+        .animation(.linear, value: isNewRideCardVisible)
     }
 
     @ViewBuilder func newRideCard() -> some View {
@@ -89,6 +129,39 @@ struct HomeView: View {
                 .fill(
                     Color(hex: 0xB180C8)
                 )
+        }
+        .onDisappear {
+            if navigationManager.path.isEmpty {
+                isNewRideCardVisible = false
+            }
+        }
+        .onAppear {
+            isNewRideCardVisible = true
+        }
+    }
+
+    @ViewBuilder func rideInfoCard(ride: RideInfoModel) -> some View {
+        let rideDate = ride.rideDate ?? .now
+
+        HStack {
+            VStack {
+                Text("Поездка")
+
+                Text(rideDate.formatted(date: .abbreviated, time: .omitted))
+            }
+            .font(.title2)
+            .bold()
+
+            Spacer()
+
+            Text(String(format: "%.2f", Double(ride.distance) / 1000.0)+" км")
+                .font(.largeTitle)
+                .bold()
+        }
+        .padding()
+        .background {
+            Color(hex: 0xFF7979)
+                .cornerRadius(25)
         }
     }
 }
