@@ -4,7 +4,6 @@
 
 import UIKit
 
-
 extension UINavigationController {
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -12,4 +11,3 @@ extension UINavigationController {
         interactivePopGestureRecognizer?.delegate = nil
     }
 }
-

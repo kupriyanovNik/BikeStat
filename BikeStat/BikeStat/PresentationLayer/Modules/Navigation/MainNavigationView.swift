@@ -11,6 +11,7 @@ struct MainNavigationView: View {
     @ObservedObject var navigationManager: NavigationManager
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var rideViewModel: RideViewModel
+    @ObservedObject var settingsViewModel: SettingsViewModel
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var locationManager: LocationManager
@@ -18,25 +19,29 @@ struct MainNavigationView: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $navigationManager.path) {
             HomeView(
                 homeViewModel: homeViewModel,
                 coreDataManager: coreDataManager,
                 networkManager: networkManager,
                 navigationManager: navigationManager
             )
-            .overlay {
-                NavigationLink(
-                    isActive: $navigationManager.shouldShowRideScreen
-                ) {
-                    RideView(
-                        rideViewModel: rideViewModel,
-                        navigationManager: navigationManager,
-                        coreDataManager: coreDataManager,
-                        networkManager: networkManager,
-                        locationManager: locationManager
-                    )
-                } label: { }
+            .navigationDestination(for: String.self) { value in
+                Group {
+                    if value == "NEW RIDE" {
+                        RideView(
+                            rideViewModel: rideViewModel,
+                            navigationManager: navigationManager,
+                            coreDataManager: coreDataManager,
+                            networkManager: networkManager,
+                            locationManager: locationManager
+                        )
+                    } else if value == "SETTINGS" {
+                        SettingsView(
+                            settingsViewModel: settingsViewModel
+                        )
+                    }
+                }
             }
         }
     }
@@ -49,6 +54,7 @@ struct MainNavigationView: View {
         navigationManager: .init(),
         homeViewModel: .init(),
         rideViewModel: .init(),
+        settingsViewModel :.init(),
         coreDataManager: .init(),
         networkManager: .init(),
         locationManager: .init()
