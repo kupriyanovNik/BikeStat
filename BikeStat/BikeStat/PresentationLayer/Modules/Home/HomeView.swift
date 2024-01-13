@@ -44,9 +44,8 @@ struct HomeView: View {
             coreDataManager.fetchAllRides()
         }
         .sheet(item: $selectedRide) { ride in
-            Text((ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted))
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
+            RideInfoView(ride: ride)
+                .presentationDetents([.fraction(0.4)])
         }
     }
 
