@@ -13,12 +13,26 @@ struct HomeView: View {
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var navigationManager: NavigationManager
 
+    @State private var selectedRide: RideInfoModel?
+
     // MARK: - Body
 
     var body: some View {
         ScrollView {
             VStack {
                 newRideCard()
+
+                Text("История поездок")
+                    .font(.title2)
+                    .bold()
+                    .hLeading()
+
+                ForEach(coreDataManager.allRides.reversed(), id: \.objectID)  { ride in
+                    rideInfoCard(ride: ride)
+                        .onTapGesture {
+                            selectedRide = ride
+                        }
+                }
             }
             .padding(.horizontal)
         }
@@ -26,6 +40,11 @@ struct HomeView: View {
         .safeAreaInset(edge: .top, content: headerView)
         .onAppear {
             coreDataManager.fetchAllRides()
+        }
+        .sheet(item: $selectedRide) { ride in
+            Text((ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted))
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
         }
     }
 
@@ -89,6 +108,31 @@ struct HomeView: View {
                 .fill(
                     Color(hex: 0xB180C8)
                 )
+        }
+    }
+
+    @ViewBuilder func rideInfoCard(ride: RideInfoModel) -> some View {
+        let rideDate = ride.rideDate ?? .now
+
+        HStack {
+            VStack {
+                Text("Поездка")
+
+                Text(rideDate.formatted(date: .abbreviated, time: .omitted))
+            }
+            .font(.title2)
+            .bold()
+
+            Spacer()
+
+            Text("\(ride.distance) км")
+                .font(.largeTitle)
+                .bold()
+        }
+        .padding()
+        .background {
+            Color(hex: 0xFF7979)
+                .cornerRadius(25)
         }
     }
 }
