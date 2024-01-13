@@ -44,7 +44,7 @@ struct HomeView: View {
             coreDataManager.fetchAllRides()
         }
         .sheet(item: $selectedRide) { ride in
-            RideInfoView()
+            RideInfoView(ride: ride)
                 .presentationDetents([.fraction(0.4)])
         }
     }

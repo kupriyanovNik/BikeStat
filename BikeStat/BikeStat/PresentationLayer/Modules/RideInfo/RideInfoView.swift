@@ -14,7 +14,7 @@ struct RideInfoView: View {
 
     // MARK: - Internal Properties
 
-//    var ride: RideInfoModel
+    var ride: RideInfoModel
 
     // MARK: - Body
 
@@ -24,7 +24,22 @@ struct RideInfoView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 25) {
-                Text("Поездка (дата)")
+                let rideDate = ride.rideDate ?? .now
+                let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
+                let rideDistance = String(format: "%.2f", Double(ride.distance) / 1000.0) + " км"
+                let speedInfo = RideSpeedInfoModel(
+                    avg: Int(ride.avgSpeed),
+                    max: Int(ride.maxSpeed)
+                )
+                let pulseInfo = RidePulseInfoModel(
+                    min: Int(ride.minPulse),
+                    avg: Int(ride.avgPulse),
+                    max: Int(ride.maxPulse)
+                )
+                let rideEstimatedComplexity = ride.estimatedComplexity ?? "no info"
+                let rideRealComplexity = ride.realComplexity ?? "no info"
+
+                Text("Поездка \(rideDateString)")
                     .font(.title)
                     .bold()
                     .hCenter()
@@ -45,8 +60,7 @@ struct RideInfoView: View {
                         title: "Основная информация",
                         tag: 1,
                         texts: [
-                            "Пройденное расстояние: 2км",
-                            "Время в пути: 5 минут"
+                            "Пройденное расстояние: \(rideDistance)"
                         ]
                     )
 
@@ -54,8 +68,8 @@ struct RideInfoView: View {
                         title: "Информация о скорости",
                         tag: 2,
                         texts: [
-                            "Средняя Скорость: 20 км/ч",
-                            "Максимальная скорость: 33 км/ч"
+                            "Средняя Скорость: \(speedInfo.avg) км/ч",
+                            "Максимальная скорость: \(speedInfo.max) км/ч"
                         ]
                     )
 
@@ -63,9 +77,9 @@ struct RideInfoView: View {
                         title: "Информация о пульсе",
                         tag: 3,
                         texts: [
-                            "Минимальный пульс: 125 уд/мин",
-                            "Средний пульс: 150 уд/мин",
-                            "Маскимальный пульс: 200 уд/мин"
+                            "Минимальный пульс: \(pulseInfo.min) уд/мин",
+                            "Средний пульс: \(pulseInfo.avg) уд/мин",
+                            "Маскимальный пульс: \(pulseInfo.max) уд/мин"
                         ]
                     )
 
@@ -73,8 +87,8 @@ struct RideInfoView: View {
                         title: "Сложность",
                         tag: 4,
                         texts: [
-                            "Расчетная сложность: сложный",
-                            "Реальная сложность: средний"
+                            "Расчетная сложность: \(rideEstimatedComplexity)",
+                            "Реальная сложность: \(rideRealComplexity)"
                         ]
                     )
                 }
@@ -107,10 +121,4 @@ struct RideInfoView: View {
         .font(.title2)
         .tag(tag)
     }
-}
-
-// MARK: - Preview
-
-#Preview {
-    RideInfoView()
 }
