@@ -154,7 +154,7 @@ struct HomeView: View {
 
             Spacer()
 
-            Text("\(ride.distance) км")
+            Text(String(format: "%.3f", Double(ride.distance) / 1000.0)+" км")
                 .font(.largeTitle)
                 .bold()
         }
