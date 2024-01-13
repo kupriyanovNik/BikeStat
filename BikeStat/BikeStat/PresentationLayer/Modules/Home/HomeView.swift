@@ -14,12 +14,13 @@ struct HomeView: View {
     @ObservedObject var navigationManager: NavigationManager
 
     @State private var selectedRide: RideInfoModel?
+    @State private var isNewRideCardVisible: Bool = true
 
     // MARK: - Body
 
     var body: some View {
         ScrollView {
-            VStack {
+            LazyVStack {
                 newRideCard()
 
                 Text("История поездок")
@@ -29,6 +30,7 @@ struct HomeView: View {
 
                 ForEach(coreDataManager.allRides.reversed(), id: \.objectID)  { ride in
                     rideInfoCard(ride: ride)
+                        .id(ride.objectID)
                         .onTapGesture {
                             selectedRide = ride
                         }
@@ -63,14 +65,33 @@ struct HomeView: View {
                 Image(systemName: Images.gearshape)
             }
             .foregroundStyle(.black)
+
+            if !isNewRideCardVisible {
+                Button {
+                    navigationManager.path.append("NEW RIDE")
+                } label: {
+                    Image(systemName: Images.plus)
+                        .foregroundStyle(.white)
+                }
+                .buttonStyle(MainButtonStyle())
+                .foregroundStyle(.black)
+                .padding(3)
+                .background {
+                    Color(hex: 0xB180C8)
+                        .clipShape(Circle())
+                }
+                .transition(.move(edge: .trailing).combined(with: .opacity))
+            }
         }
+        .buttonStyle(MainButtonStyle())
         .font(.largeTitle)
         .padding(.horizontal)
-        .padding(.bottom)
+        .padding(.bottom, 4)
         .background {
             Color.white
                 .ignoresSafeArea()
         }
+        .animation(.linear, value: isNewRideCardVisible)
     }
 
     @ViewBuilder func newRideCard() -> some View {
@@ -108,6 +129,14 @@ struct HomeView: View {
                 .fill(
                     Color(hex: 0xB180C8)
                 )
+        }
+        .onDisappear {
+            if navigationManager.path.isEmpty {
+                isNewRideCardVisible = false
+            }
+        }
+        .onAppear {
+            isNewRideCardVisible = true
         }
     }
 
