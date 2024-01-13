@@ -45,8 +45,7 @@ struct HomeView: View {
         }
         .sheet(item: $selectedRide) { ride in
             RideInfoView()
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
+                .presentationDetents([.fraction(0.4)])
         }
     }
 

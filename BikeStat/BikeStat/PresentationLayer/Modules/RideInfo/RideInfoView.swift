@@ -10,6 +10,8 @@ struct RideInfoView: View {
 
     @Environment(\.dismiss) var dismiss
 
+    @State private var currentIndex: Int = 0
+
     // MARK: - Internal Properties
 
 //    var ride: RideInfoModel
@@ -36,32 +38,74 @@ struct RideInfoView: View {
                         .hLeading()
                         .padding(.horizontal)
                     }
+                    .padding(.top)
 
-                VStack {
-                    Text("Пройденное расстояние: 2км")
+                TabView(selection: $currentIndex) {
+                    tabItemInfoView(
+                        title: "Основная информация",
+                        tag: 1,
+                        texts: [
+                            "Пройденное расстояние: 2км",
+                            "Время в пути: 5 минут"
+                        ]
+                    )
 
-                    Text("Время в пути: 5 минут")
+                    tabItemInfoView(
+                        title: "Информация о скорости",
+                        tag: 2,
+                        texts: [
+                            "Средняя Скорость: 20 км/ч",
+                            "Максимальная скорость: 33 км/ч"
+                        ]
+                    )
 
-                    Text("Средняя Скорость: 20 км/ч")
+                    tabItemInfoView(
+                        title: "Информация о пульсе",
+                        tag: 3,
+                        texts: [
+                            "Минимальный пульс: 125 уд/мин",
+                            "Средний пульс: 150 уд/мин",
+                            "Маскимальный пульс: 200 уд/мин"
+                        ]
+                    )
 
-                    Text("Максимальная скорость: 33 км/ч")
-
-                    Text("Минимальный пульс: 125 уд/мин")
-
-                    Text("Средний пульс: 150 уд/мин")
-
-                    Text("Маскимальный пульс: 200 уд/мин")
-
-                    Text("Расчетная сложность: сложный")
-
-                    Text("Реальная сложность: средний")
+                    tabItemInfoView(
+                        title: "Сложность",
+                        tag: 4,
+                        texts: [
+                            "Расчетная сложность: сложный",
+                            "Реальная сложность: средний"
+                        ]
+                    )
                 }
+                .tabViewStyle(.page(indexDisplayMode: .always))
             }
             .font(.title3)
             .fontWeight(.semibold)
             .multilineTextAlignment(.center)
-        .foregroundStyle(.white)
+            .foregroundStyle(.white)
         }
+    }
+
+    // MARK: - ViewBuilders
+
+    @ViewBuilder func tabItemInfoView(
+        title: String,
+        tag: Int,
+        texts: [String]
+    ) -> some View {
+        VStack {
+            Text(title)
+                .font(.title)
+                .bold()
+                .padding(.bottom)
+
+            ForEach(texts, id: \.self) {
+                Text($0)
+            }
+        }
+        .font(.title2)
+        .tag(tag)
     }
 }
 
