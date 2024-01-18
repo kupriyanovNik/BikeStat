@@ -39,6 +39,7 @@
 		B75CB6862B445EEC00CDF026 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6652B445EEC00CDF026 /* Images.swift */; };
 		B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6672B445EEC00CDF026 /* Localizable.swift */; };
 		B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA14022B52F7E5009616CD /* RideInfoView.swift */; };
+		B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E726392B598F7D00127692 /* PlanningView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		B75CB6672B445EEC00CDF026 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		B7AA14022B52F7E5009616CD /* RideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInfoView.swift; sourceTree = "<group>"; };
 		B7D714C12B3B441A007FD89F /* BikeStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7E726392B598F7D00127692 /* PlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 			children = (
 				B75CB6472B445EEC00CDF026 /* Navigation */,
 				B75CB63F2B445EEC00CDF026 /* Home */,
+				B7E726382B598F6F00127692 /* Planning */,
 				B75CB6422B445EEC00CDF026 /* Ride */,
 				B7AA14012B52F7D8009616CD /* RideInfo */,
 				B75555072B4AFC1A003B93E3 /* Settings */,
@@ -345,6 +348,14 @@
 			path = BikeStat;
 			sourceTree = "<group>";
 		};
+		B7E726382B598F6F00127692 /* Planning */ = {
+			isa = PBXGroup;
+			children = (
+				B7E726392B598F7D00127692 /* PlanningView.swift */,
+			);
+			path = Planning;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -442,6 +453,7 @@
 				B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */,
 				B75CB6742B445EEC00CDF026 /* RideViewModel.swift in Sources */,
 				B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */,
+				B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */,
 				B75CB6722B445EEC00CDF026 /* HomeView.swift in Sources */,
 				B75CB6702B445EEC00CDF026 /* RepresentableMapView.swift in Sources */,
 				B75CB66D2B445EEC00CDF026 /* MainButtonStyle.swift in Sources */,
