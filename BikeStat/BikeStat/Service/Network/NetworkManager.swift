@@ -34,6 +34,8 @@ import Foundation
         }
     }
 
+    // MARK: - Private Functions
+
     private func loadNetworkWatchData(request: URLRequest) async throws -> NetworkWatchDataModel? {
         let (data, _) = try await URLSession.shared.data(for: request)
         return try decoder.decode(NetworkWatchDataModel.self, from: data)
