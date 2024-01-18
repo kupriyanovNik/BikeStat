@@ -18,7 +18,7 @@ struct RideView: View {
     @ObservedObject var locationManager: LocationManager
 
     @State private var shouldCenterMapOnLocation: Bool = true
-    @State private var mapSpanDeltaValue: Double = 0.006
+    @State private var mapSpanDeltaValue: Double = 0.008
 
     // MARK: - Private Properties
 
@@ -77,6 +77,7 @@ struct RideView: View {
                         Image(systemName: Images.back)
                             .font(.title2)
                             .bold()
+                            .padding()
                     }
                     .transition(.move(edge: .leading).combined(with: .opacity))
                 }
@@ -128,13 +129,13 @@ struct RideView: View {
         VStack {
             mapSpanControlButton(imageName: "plus") {
                 withAnimation {
-                    mapSpanDeltaValue = max(mapSpanDeltaValue - 0.003, 0.003)
+                    mapSpanDeltaValue = max(mapSpanDeltaValue - 0.008, 0.008)
                 }
             }
 
             mapSpanControlButton(imageName: "minus") {
                 withAnimation {
-                    mapSpanDeltaValue += 0.003
+                    mapSpanDeltaValue += 0.008
                 }
             }
         }
