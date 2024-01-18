@@ -40,6 +40,30 @@ struct HomeView: View {
         }
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
+        .safeAreaInset(edge: .bottom) {
+            Group {
+                if !isNewRideCardVisible {
+                    Button {
+                        navigationManager.path.append("NEW RIDE")
+                    } label: {
+                        Image(systemName: Images.plus)
+                            .foregroundStyle(.white)
+                            .font(.title)
+                            .bold()
+                    }
+                    .buttonStyle(MainButtonStyle())
+                    .foregroundStyle(.black)
+                    .padding(10)
+                    .frame(width: 70, height: 70)
+                    .background {
+                        Color(hex: 0x72A5D5)
+                            .clipShape(Circle())
+                    }
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
+            }
+            .animation(.easeIn, value: isNewRideCardVisible)
+        }
         .onAppear {
             coreDataManager.fetchAllRides()
         }
@@ -64,23 +88,6 @@ struct HomeView: View {
                 Image(systemName: Images.gearshape)
             }
             .foregroundStyle(.black)
-
-            if !isNewRideCardVisible {
-                Button {
-                    navigationManager.path.append("NEW RIDE")
-                } label: {
-                    Image(systemName: Images.plus)
-                        .foregroundStyle(.white)
-                }
-                .buttonStyle(MainButtonStyle())
-                .foregroundStyle(.black)
-                .padding(3)
-                .background {
-                    Color(hex: 0xB180C8)
-                        .clipShape(Circle())
-                }
-                .transition(.move(edge: .trailing).combined(with: .opacity))
-            }
         }
         .buttonStyle(MainButtonStyle())
         .font(.largeTitle)
