@@ -71,20 +71,22 @@ struct RideView: View {
                     .bold()
                     .hCenter()
                     .overlay(alignment: .leading) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: Images.back)
-                                .font(.title2)
-                                .bold()
-                                .padding()
+                        if !isRideStarted {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: Images.back)
+                                    .font(.title2)
+                                    .bold()
+                                    .padding()
+                            }
                         }
                     }
 
                 if isRideStarted {
                     Group {
                         Text("Скорость: \(Int(currentSpeed)) км/ч")
-                        Text("Путь: \(String(format: "%.2f", currentDistance))км")
+                        Text("Путь: \(String(format: "%.2f", currentDistance)) км")
                     }
                     .font(.title2)
                     .bold()
