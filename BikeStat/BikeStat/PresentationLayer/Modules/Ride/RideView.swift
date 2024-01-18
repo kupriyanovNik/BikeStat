@@ -47,9 +47,33 @@ struct RideView: View {
         }
         .safeAreaInset(edge: .top, content: headerView)
         .overlay(alignment: .center) {
-            if shouldCenterMapOnLocation {
-                mapSpanControls()
+            VStack {
+                if shouldCenterMapOnLocation {
+                    mapSpanControls()
+                        .transition(.move(edge: .trailing).combined(with: .opacity))
+                        .scaleEffect(shouldCenterMapOnLocation ? 1 : 0.2)
+                }
+
+                Button {
+                    shouldCenterMapOnLocation.toggle()
+                } label: {
+                    Image(systemName: shouldCenterMapOnLocation ? "lock" : "lock.open")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.white)
+                        .padding(3)
+                        .frame(width: 40, height: 40)
+                        .background(
+                            Color(hex: 0xB180C8)
+                        )
+                        .cornerRadius(5)
+                        .animation(.none, value: shouldCenterMapOnLocation)
+                }
+                .buttonStyle(MainButtonStyle())
+                .hTrailing()
             }
+            .padding(.trailing)
+            .animation(.default, value: shouldCenterMapOnLocation)
         }
         .overlay(alignment: .bottom, content: toggleRideButton)
         .navigationBarTitleDisplayMode(.inline)
@@ -140,7 +164,6 @@ struct RideView: View {
             }
         }
         .hTrailing()
-        .padding(.trailing)
     }
 
     @ViewBuilder func mapSpanControlButton(
