@@ -46,35 +46,7 @@ struct RideView: View {
             .ignoresSafeArea()
         }
         .safeAreaInset(edge: .top, content: headerView)
-        .overlay(alignment: .center) {
-            VStack {
-                if shouldCenterMapOnLocation {
-                    mapSpanControls()
-                        .transition(.move(edge: .trailing).combined(with: .opacity))
-                        .scaleEffect(shouldCenterMapOnLocation ? 1 : 0.2)
-                }
-
-                Button {
-                    shouldCenterMapOnLocation.toggle()
-                } label: {
-                    Image(systemName: shouldCenterMapOnLocation ? "lock" : "lock.open")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.white)
-                        .padding(3)
-                        .frame(width: 40, height: 40)
-                        .background(
-                            Color(hex: 0xB180C8)
-                        )
-                        .cornerRadius(5)
-                        .animation(.none, value: shouldCenterMapOnLocation)
-                }
-                .buttonStyle(MainButtonStyle())
-                .hTrailing()
-            }
-            .padding(.trailing)
-            .animation(.default, value: shouldCenterMapOnLocation)
-        }
+        .overlay(alignment: .center, content: mapControls)
         .overlay(alignment: .bottom, content: toggleRideButton)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
@@ -83,35 +55,74 @@ struct RideView: View {
     // MARK: - ViewBuilders 
 
     @ViewBuilder func headerView() -> some View {
-        HStack {
-            Spacer()
+        let isRideStarted = rideViewModel.isRideStarted
+        let currentSpeed = round(100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))) / 100
+        let currentDistance = round(100 * locationManager.cyclingTotalDistance / 1000) / 100
 
-            Text("Новая поездка")
-                .font(.largeTitle)
-                .bold()
+        ZStack(alignment: .top) {
+            Color(hex: 0xB180C8)
+                .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight], radius: 20))
+                .ignoresSafeArea()
+                .frame(height: isRideStarted ? 120 : 75)
 
-            Spacer()
-        }
-        .overlay {
             VStack {
-                if !rideViewModel.isRideStarted {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: Images.back)
-                            .font(.title2)
-                            .bold()
-                            .padding()
+                Text("Новая поездка")
+                    .font(.largeTitle)
+                    .bold()
+                    .hCenter()
+                    .overlay(alignment: .leading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: Images.back)
+                                .font(.title2)
+                                .bold()
+                                .padding()
+                        }
                     }
-                    .transition(.move(edge: .leading).combined(with: .opacity))
+
+                if isRideStarted {
+                    Group {
+                        Text("Скорость: \(Int(currentSpeed)) км/ч")
+                        Text("Путь: \(String(format: "%.2f", currentDistance))км")
+                    }
+                    .font(.title2)
+                    .bold()
                 }
             }
-            .hLeading()
+            .foregroundStyle(.white)
         }
-        .foregroundStyle(.black)
-        .padding([.horizontal, .top])
-        .offset(y: -16)
-        .animation(.linear, value: rideViewModel.isRideStarted)
+        .animation(.easeIn, value: isRideStarted)
+    }
+
+    @ViewBuilder func mapControls() -> some View {
+        VStack {
+            if shouldCenterMapOnLocation {
+                mapSpanControls()
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
+                    .scaleEffect(shouldCenterMapOnLocation ? 1 : 0.2)
+            }
+
+            Button {
+                shouldCenterMapOnLocation.toggle()
+            } label: {
+                Image(systemName: shouldCenterMapOnLocation ? "lock" : "lock.open")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(.white)
+                    .padding(3)
+                    .frame(width: 40, height: 40)
+                    .background(
+                        Color(hex: 0xB180C8)
+                    )
+                    .cornerRadius(5)
+                    .animation(.none, value: shouldCenterMapOnLocation)
+            }
+            .buttonStyle(MainButtonStyle())
+            .hTrailing()
+        }
+        .padding(.trailing)
+        .animation(.default, value: shouldCenterMapOnLocation)
     }
 
     @ViewBuilder func toggleRideButton() -> some View {
