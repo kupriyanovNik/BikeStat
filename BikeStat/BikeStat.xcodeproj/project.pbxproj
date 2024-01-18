@@ -41,6 +41,7 @@
 		B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA14022B52F7E5009616CD /* RideInfoView.swift */; };
 		B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E726392B598F7D00127692 /* PlanningView.swift */; };
 		B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263C2B59A4D800127692 /* RoundedShape.swift */; };
+		B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263E2B59AFA500127692 /* Pallete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		B7D714C12B3B441A007FD89F /* BikeStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E726392B598F7D00127692 /* PlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningView.swift; sourceTree = "<group>"; };
 		B7E7263C2B59A4D800127692 /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
+		B7E7263E2B59AFA500127692 /* Pallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pallete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 				B75CB6612B445EEC00CDF026 /* Preview Content */,
 				B75CB6662B445EEC00CDF026 /* Localizable */,
 				B75CB6652B445EEC00CDF026 /* Images.swift */,
+				B7E7263E2B59AFA500127692 /* Pallete.swift */,
 				B75CB65F2B445EEC00CDF026 /* Strings.swift */,
 			);
 			path = Common;
@@ -444,6 +447,7 @@
 				B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */,
 				B75CB6822B445EEC00CDF026 /* Strings.swift in Sources */,
 				B75CB6682B445EEC00CDF026 /* Date.swift in Sources */,
+				B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */,
 				B75CB6762B445EEC00CDF026 /* MainNavigationView.swift in Sources */,
 				B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */,
 				B75CB6692B445EEC00CDF026 /* View.swift in Sources */,

@@ -56,7 +56,7 @@ struct HomeView: View {
                     .padding(10)
                     .frame(width: 70, height: 70)
                     .background {
-                        Color(hex: 0x72A5D5)
+                        Pallete.accentColor
                             .clipShape(Circle())
                     }
                     .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -133,7 +133,7 @@ struct HomeView: View {
         .background {
             RoundedRectangle(cornerRadius: 25)
                 .fill(
-                    Color(hex: 0xB180C8)
+                    Pallete.accentColor
                 )
         }
         .onDisappear {
@@ -166,7 +166,7 @@ struct HomeView: View {
         }
         .padding()
         .background {
-            Color(hex: 0xFF7979)
+            Pallete.Complexity.getRandomColor()
                 .cornerRadius(25)
         }
     }

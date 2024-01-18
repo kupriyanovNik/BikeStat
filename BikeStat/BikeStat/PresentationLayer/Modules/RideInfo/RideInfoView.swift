@@ -20,7 +20,7 @@ struct RideInfoView: View {
 
     var body: some View {
         ZStack {
-            Color(hex: 0xB180C8)
+            Pallete.accentColor
                 .ignoresSafeArea()
 
             VStack(spacing: 25) {

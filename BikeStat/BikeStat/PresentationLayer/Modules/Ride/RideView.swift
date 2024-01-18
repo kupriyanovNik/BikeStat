@@ -60,7 +60,7 @@ struct RideView: View {
         let currentDistance = round(100 * locationManager.cyclingTotalDistance / 1000) / 100
 
         ZStack(alignment: .top) {
-            Color(hex: 0xB180C8)
+            Pallete.accentColor
                 .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight], radius: 20))
                 .ignoresSafeArea()
                 .frame(height: isRideStarted ? 120 : 75)
@@ -113,7 +113,7 @@ struct RideView: View {
                     .padding(3)
                     .frame(width: 40, height: 40)
                     .background(
-                        Color(hex: 0xB180C8)
+                        Pallete.accentColor
                     )
                     .cornerRadius(5)
                     .animation(.none, value: shouldCenterMapOnLocation)
@@ -144,7 +144,8 @@ struct RideView: View {
             .padding(.vertical)
             .padding(.horizontal, 36)
             .background {
-                Color(hex: 0xB180C8, alpha: 0.54)
+                Pallete.accentColor
+                    .opacity(0.54)
                     .cornerRadius(20)
             }
             .overlay {
@@ -190,7 +191,7 @@ struct RideView: View {
                 .padding()
                 .frame(width: 40, height: 40)
                 .background(
-                    Color(hex: 0xB180C8)
+                    Pallete.accentColor
                 )
                 .cornerRadius(5)
         }
