@@ -68,7 +68,11 @@ struct HomeView: View {
             coreDataManager.fetchAllRides()
         }
         .sheet(item: $selectedRide) { ride in
-            RideInfoView(ride: ride)
+            RideInfoView(ride: ride) {
+                withAnimation {
+                    coreDataManager.removeRide(ride: ride)
+                }
+            }
                 .presentationDetents([.fraction(0.4)])
         }
     }
