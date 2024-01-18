@@ -73,7 +73,7 @@ struct HomeView: View {
                     coreDataManager.removeRide(ride: ride)
                 }
             }
-                .presentationDetents([.fraction(0.4)])
+            .presentationDetents([.fraction(0.4)])
         }
     }
 
