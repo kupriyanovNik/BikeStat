@@ -16,11 +16,13 @@ struct RideInfoView: View {
 
     var ride: RideInfoModel
 
+    var deleteAction: (() -> ())? = nil
+
     // MARK: - Body
 
     var body: some View {
         ZStack {
-            Color(hex: 0xB180C8)
+            Pallete.accentColor
                 .ignoresSafeArea()
 
             VStack(spacing: 25) {
@@ -44,13 +46,26 @@ struct RideInfoView: View {
                     .bold()
                     .hCenter()
                     .overlay {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: Images.back)
-                                .rotationEffect(.degrees(-90))
+                        HStack {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: Images.back)
+                                    .rotationEffect(.degrees(-90))
+                            }
+
+                            Spacer()
+
+                            Button {
+                                dismiss()
+
+                                delay(0.5) {
+                                    deleteAction?()
+                                }
+                            } label: {
+                                Image(systemName: Images.trash)
+                            }
                         }
-                        .hLeading()
                         .padding(.horizontal)
                     }
                     .padding(.top)

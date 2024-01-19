@@ -40,12 +40,40 @@ struct HomeView: View {
         }
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
+        .safeAreaInset(edge: .bottom) {
+            Group {
+                if !isNewRideCardVisible {
+                    Button {
+                        navigationManager.path.append("NEW RIDE")
+                    } label: {
+                        Image(systemName: Images.plus)
+                            .foregroundStyle(.white)
+                            .font(.title)
+                            .bold()
+                    }
+                    .buttonStyle(MainButtonStyle())
+                    .foregroundStyle(.black)
+                    .padding(10)
+                    .frame(width: 70, height: 70)
+                    .background {
+                        Pallete.accentColor
+                            .clipShape(Circle())
+                    }
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
+            }
+            .animation(.easeIn, value: isNewRideCardVisible)
+        }
         .onAppear {
             coreDataManager.fetchAllRides()
         }
         .sheet(item: $selectedRide) { ride in
-            RideInfoView(ride: ride)
-                .presentationDetents([.fraction(0.4)])
+            RideInfoView(ride: ride) {
+                withAnimation {
+                    coreDataManager.removeRide(ride: ride)
+                }
+            }
+            .presentationDetents([.fraction(0.4)])
         }
     }
 
@@ -64,23 +92,6 @@ struct HomeView: View {
                 Image(systemName: Images.gearshape)
             }
             .foregroundStyle(.black)
-
-            if !isNewRideCardVisible {
-                Button {
-                    navigationManager.path.append("NEW RIDE")
-                } label: {
-                    Image(systemName: Images.plus)
-                        .foregroundStyle(.white)
-                }
-                .buttonStyle(MainButtonStyle())
-                .foregroundStyle(.black)
-                .padding(3)
-                .background {
-                    Color(hex: 0xB180C8)
-                        .clipShape(Circle())
-                }
-                .transition(.move(edge: .trailing).combined(with: .opacity))
-            }
         }
         .buttonStyle(MainButtonStyle())
         .font(.largeTitle)
@@ -126,7 +137,7 @@ struct HomeView: View {
         .background {
             RoundedRectangle(cornerRadius: 25)
                 .fill(
-                    Color(hex: 0xB180C8)
+                    Pallete.accentColor
                 )
         }
         .onDisappear {
@@ -159,7 +170,7 @@ struct HomeView: View {
         }
         .padding()
         .background {
-            Color(hex: 0xFF7979)
+            Pallete.Complexity.getRandomColor()
                 .cornerRadius(25)
         }
     }

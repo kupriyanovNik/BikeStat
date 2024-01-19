@@ -39,6 +39,9 @@
 		B75CB6862B445EEC00CDF026 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6652B445EEC00CDF026 /* Images.swift */; };
 		B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6672B445EEC00CDF026 /* Localizable.swift */; };
 		B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA14022B52F7E5009616CD /* RideInfoView.swift */; };
+		B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E726392B598F7D00127692 /* PlanningView.swift */; };
+		B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263C2B59A4D800127692 /* RoundedShape.swift */; };
+		B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263E2B59AFA500127692 /* Pallete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		B75CB6672B445EEC00CDF026 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		B7AA14022B52F7E5009616CD /* RideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInfoView.swift; sourceTree = "<group>"; };
 		B7D714C12B3B441A007FD89F /* BikeStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7E726392B598F7D00127692 /* PlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningView.swift; sourceTree = "<group>"; };
+		B7E7263C2B59A4D800127692 /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
+		B7E7263E2B59AFA500127692 /* Pallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pallete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 		B75CB6352B445EEC00CDF026 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B7E7263B2B59A4D400127692 /* Internal */,
 				B75CB6362B445EEC00CDF026 /* ButtonStyles */,
 				B75CB63C2B445EEC00CDF026 /* Representable */,
 			);
@@ -166,6 +173,7 @@
 			children = (
 				B75CB6472B445EEC00CDF026 /* Navigation */,
 				B75CB63F2B445EEC00CDF026 /* Home */,
+				B7E726382B598F6F00127692 /* Planning */,
 				B75CB6422B445EEC00CDF026 /* Ride */,
 				B7AA14012B52F7D8009616CD /* RideInfo */,
 				B75555072B4AFC1A003B93E3 /* Settings */,
@@ -288,6 +296,7 @@
 				B75CB6612B445EEC00CDF026 /* Preview Content */,
 				B75CB6662B445EEC00CDF026 /* Localizable */,
 				B75CB6652B445EEC00CDF026 /* Images.swift */,
+				B7E7263E2B59AFA500127692 /* Pallete.swift */,
 				B75CB65F2B445EEC00CDF026 /* Strings.swift */,
 			);
 			path = Common;
@@ -343,6 +352,22 @@
 				B75CB6342B445EEC00CDF026 /* PresentationLayer */,
 			);
 			path = BikeStat;
+			sourceTree = "<group>";
+		};
+		B7E726382B598F6F00127692 /* Planning */ = {
+			isa = PBXGroup;
+			children = (
+				B7E726392B598F7D00127692 /* PlanningView.swift */,
+			);
+			path = Planning;
+			sourceTree = "<group>";
+		};
+		B7E7263B2B59A4D400127692 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				B7E7263C2B59A4D800127692 /* RoundedShape.swift */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,6 +447,7 @@
 				B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */,
 				B75CB6822B445EEC00CDF026 /* Strings.swift in Sources */,
 				B75CB6682B445EEC00CDF026 /* Date.swift in Sources */,
+				B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */,
 				B75CB6762B445EEC00CDF026 /* MainNavigationView.swift in Sources */,
 				B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */,
 				B75CB6692B445EEC00CDF026 /* View.swift in Sources */,
@@ -430,6 +456,7 @@
 				B75CB67A2B445EEC00CDF026 /* NavigationManager.swift in Sources */,
 				B75CB6802B445EEC00CDF026 /* Impact.swift in Sources */,
 				B75CB67D2B445EEC00CDF026 /* Rides.xcdatamodeld in Sources */,
+				B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */,
 				B75CB67C2B445EEC00CDF026 /* Persistence.swift in Sources */,
 				B75CB66C2B445EEC00CDF026 /* UINavigationController.swift in Sources */,
 				B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */,
@@ -442,6 +469,7 @@
 				B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */,
 				B75CB6742B445EEC00CDF026 /* RideViewModel.swift in Sources */,
 				B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */,
+				B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */,
 				B75CB6722B445EEC00CDF026 /* HomeView.swift in Sources */,
 				B75CB6702B445EEC00CDF026 /* RepresentableMapView.swift in Sources */,
 				B75CB66D2B445EEC00CDF026 /* MainButtonStyle.swift in Sources */,
@@ -593,7 +621,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kupriyanov.BikeStat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -625,7 +653,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kupriyanov.BikeStat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

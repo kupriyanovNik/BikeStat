@@ -18,7 +18,9 @@ struct RideView: View {
     @ObservedObject var locationManager: LocationManager
 
     @State private var shouldCenterMapOnLocation: Bool = true
-    @State private var mapSpanDeltaValue: Double = 0.006
+    @State private var mapSpanDeltaValue: Double = 0.008
+
+    @State private var vOffset: CGFloat = .zero
 
     // MARK: - Private Properties
 
@@ -46,11 +48,7 @@ struct RideView: View {
             .ignoresSafeArea()
         }
         .safeAreaInset(edge: .top, content: headerView)
-        .overlay(alignment: .center) {
-            if shouldCenterMapOnLocation {
-                mapSpanControls()
-            }
-        }
+        .overlay(alignment: .center, content: mapControls)
         .overlay(alignment: .bottom, content: toggleRideButton)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
@@ -59,34 +57,102 @@ struct RideView: View {
     // MARK: - ViewBuilders 
 
     @ViewBuilder func headerView() -> some View {
-        HStack {
-            Spacer()
+        let isRideStarted = rideViewModel.isRideStarted
+        let currentSpeed = round(100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))) / 100
+        let currentDistance = round(100 * locationManager.cyclingTotalDistance / 1000) / 100
 
-            Text("Новая поездка")
-                .font(.largeTitle)
-                .bold()
+        ZStack(alignment: .top) {
+            Pallete.accentColor
+                .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight], radius: 20))
+                .ignoresSafeArea()
+                .frame(height: (isRideStarted ? 120 : 75) - vOffset)
 
-            Spacer()
-        }
-        .overlay {
             VStack {
-                if !rideViewModel.isRideStarted {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: Images.back)
-                            .font(.title2)
-                            .bold()
+                Text("Новая поездка")
+                    .font(.largeTitle)
+                    .bold()
+                    .hCenter()
+                    .overlay(alignment: .leading) {
+                        if !isRideStarted {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: Images.back)
+                                    .font(.title2)
+                                    .bold()
+                                    .padding()
+                            }
+                        }
                     }
-                    .transition(.move(edge: .leading).combined(with: .opacity))
+
+                if isRideStarted, vOffset == .zero {
+                    Group {
+                        Text("Скорость: \(Int(currentSpeed)) км/ч")
+                        Text("Путь: \(String(format: "%.2f", currentDistance)) км")
+                    }
+                    .font(.title2)
+                    .bold()
                 }
             }
-            .hLeading()
+            .foregroundStyle(.white)
         }
-        .foregroundStyle(.black)
-        .padding([.horizontal, .top])
-        .offset(y: -16)
-        .animation(.linear, value: rideViewModel.isRideStarted)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    if isRideStarted {
+                        withAnimation {
+                            vOffset = -value.translation.height / 5
+                        }
+                    }
+                }
+                .onEnded { value in
+                    if isRideStarted {
+                        withAnimation {
+                            if abs(vOffset) > 20 {
+                                vOffset = 45
+                            } else {
+                                vOffset = .zero
+                            }
+                        }
+                    }
+                }
+        )
+        .onChange(of: isRideStarted) { _ in
+            withAnimation {
+                vOffset = .zero
+            }
+        }
+        .animation(.easeIn, value: isRideStarted)
+    }
+
+    @ViewBuilder func mapControls() -> some View {
+        VStack {
+            if shouldCenterMapOnLocation {
+                mapSpanControls()
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
+                    .scaleEffect(shouldCenterMapOnLocation ? 1 : 0.2)
+            }
+
+            Button {
+                shouldCenterMapOnLocation.toggle()
+            } label: {
+                Image(systemName: shouldCenterMapOnLocation ? "lock" : "lock.open")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(.white)
+                    .padding(3)
+                    .frame(width: 40, height: 40)
+                    .background(
+                        Pallete.accentColor
+                    )
+                    .cornerRadius(5)
+                    .animation(.none, value: shouldCenterMapOnLocation)
+            }
+            .buttonStyle(MainButtonStyle())
+            .hTrailing()
+        }
+        .padding(.trailing)
+        .animation(.default, value: shouldCenterMapOnLocation)
     }
 
     @ViewBuilder func toggleRideButton() -> some View {
@@ -108,7 +174,8 @@ struct RideView: View {
             .padding(.vertical)
             .padding(.horizontal, 36)
             .background {
-                Color(hex: 0xB180C8, alpha: 0.54)
+                Pallete.accentColor
+                    .opacity(0.54)
                     .cornerRadius(20)
             }
             .overlay {
@@ -128,18 +195,17 @@ struct RideView: View {
         VStack {
             mapSpanControlButton(imageName: "plus") {
                 withAnimation {
-                    mapSpanDeltaValue = max(mapSpanDeltaValue - 0.003, 0.003)
+                    mapSpanDeltaValue = max(mapSpanDeltaValue - 0.008, 0.008)
                 }
             }
 
             mapSpanControlButton(imageName: "minus") {
                 withAnimation {
-                    mapSpanDeltaValue += 0.003
+                    mapSpanDeltaValue += 0.008
                 }
             }
         }
         .hTrailing()
-        .padding(.trailing)
     }
 
     @ViewBuilder func mapSpanControlButton(
@@ -155,7 +221,7 @@ struct RideView: View {
                 .padding()
                 .frame(width: 40, height: 40)
                 .background(
-                    Color(hex: 0xB180C8)
+                    Pallete.accentColor
                 )
                 .cornerRadius(5)
         }
