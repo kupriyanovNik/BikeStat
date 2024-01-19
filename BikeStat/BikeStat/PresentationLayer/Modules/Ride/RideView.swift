@@ -20,6 +20,8 @@ struct RideView: View {
     @State private var shouldCenterMapOnLocation: Bool = true
     @State private var mapSpanDeltaValue: Double = 0.008
 
+    @State private var vOffset: CGFloat = .zero
+
     // MARK: - Private Properties
 
     private var toggleRideButtonText: String {
@@ -63,7 +65,7 @@ struct RideView: View {
             Pallete.accentColor
                 .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight], radius: 20))
                 .ignoresSafeArea()
-                .frame(height: isRideStarted ? 120 : 75)
+                .frame(height: (isRideStarted ? 120 : 75) - vOffset)
 
             VStack {
                 Text("Новая поездка")
@@ -83,7 +85,7 @@ struct RideView: View {
                         }
                     }
 
-                if isRideStarted {
+                if isRideStarted, vOffset == .zero {
                     Group {
                         Text("Скорость: \(Int(currentSpeed)) км/ч")
                         Text("Путь: \(String(format: "%.2f", currentDistance)) км")
@@ -93,6 +95,32 @@ struct RideView: View {
                 }
             }
             .foregroundStyle(.white)
+        }
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    if isRideStarted {
+                        withAnimation {
+                            vOffset = -value.translation.height / 5
+                        }
+                    }
+                }
+                .onEnded { value in
+                    if isRideStarted {
+                        withAnimation {
+                            if abs(vOffset) > 20 {
+                                vOffset = 45
+                            } else {
+                                vOffset = .zero
+                            }
+                        }
+                    }
+                }
+        )
+        .onChange(of: isRideStarted) { _ in
+            withAnimation {
+                vOffset = .zero
+            }
         }
         .animation(.easeIn, value: isRideStarted)
     }
