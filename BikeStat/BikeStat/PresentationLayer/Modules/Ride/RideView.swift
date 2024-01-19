@@ -148,17 +148,19 @@ struct RideView: View {
             Button {
                 shouldCenterMapOnLocation.toggle()
             } label: {
-                Image(systemName: shouldCenterMapOnLocation ? "lock" : "lock.open")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(.white)
-                    .padding(3)
-                    .frame(width: 40, height: 40)
-                    .background(
-                        Pallete.accentColor
-                    )
-                    .cornerRadius(5)
-                    .animation(.none, value: shouldCenterMapOnLocation)
+                Image(
+                    systemName: shouldCenterMapOnLocation ? Images.lock : Images.opendedLock
+                )
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(.white)
+                .padding(3)
+                .frame(width: 40, height: 40)
+                .background(
+                    Pallete.accentColor
+                )
+                .cornerRadius(5)
+                .animation(.none, value: shouldCenterMapOnLocation)
             }
             .buttonStyle(MainButtonStyle())
             .hTrailing()
@@ -205,13 +207,13 @@ struct RideView: View {
 
     @ViewBuilder func mapSpanControls() -> some View {
         VStack {
-            mapSpanControlButton(imageName: "plus") {
+            mapSpanControlButton(imageName: Images.plus) {
                 withAnimation {
                     mapSpanDeltaValue = max(mapSpanDeltaValue - 0.008, 0.008)
                 }
             }
 
-            mapSpanControlButton(imageName: "minus") {
+            mapSpanControlButton(imageName: Images.minus) {
                 withAnimation {
                     mapSpanDeltaValue += 0.008
                 }
