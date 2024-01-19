@@ -20,7 +20,6 @@ import Foundation
     func getWatchData() {
         Task {
             let url = URL(string: networkConstants.apiUrl)!
-//            let url = URL(string: "MOCK URL")!
             var request = URLRequest(url: url)
             request.allHTTPHeaderFields = networkConstants.headerFields
 
@@ -36,7 +35,9 @@ import Foundation
 
     // MARK: - Private Functions
 
-    private func loadNetworkWatchData(request: URLRequest) async throws -> NetworkWatchDataModel? {
+    private func loadNetworkWatchData(
+        request: URLRequest
+    ) async throws -> NetworkWatchDataModel? {
         let (data, _) = try await URLSession.shared.data(for: request)
         return try decoder.decode(NetworkWatchDataModel.self, from: data)
     }
