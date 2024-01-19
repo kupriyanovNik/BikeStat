@@ -44,6 +44,8 @@ struct HomeView: View {
         .onAppear {
             coreDataManager.fetchAllRides()
         }
+        .scaleEffect(selectedRide == nil ? 1 : 0.95)
+        .animation(.easeInOut, value: selectedRide == nil)
         .sheet(item: $selectedRide) { ride in
             RideInfoView(ride: ride) {
                 withAnimation {
