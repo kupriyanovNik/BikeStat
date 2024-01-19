@@ -58,12 +58,22 @@ struct RideView: View {
 
     @ViewBuilder func headerView() -> some View {
         let isRideStarted = rideViewModel.isRideStarted
-        let currentSpeed = round(100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))) / 100
-        let currentDistance = round(100 * locationManager.cyclingTotalDistance / 1000) / 100
+
+        let currentSpeed = round(
+            100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))
+        ) / 100
+        let currentDistance = round(
+            100 * locationManager.cyclingTotalDistance / 1000
+        ) / 100
 
         ZStack(alignment: .top) {
             Pallete.accentColor
-                .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight], radius: 20))
+                .clipShape(
+                    RoundedShape(
+                        corners: [.bottomLeft, .bottomRight], 
+                        radius: 20
+                    )
+                )
                 .ignoresSafeArea()
                 .frame(height: (isRideStarted ? 120 : 75) - vOffset)
 

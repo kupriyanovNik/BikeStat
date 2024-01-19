@@ -40,30 +40,7 @@ struct HomeView: View {
         }
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
-        .safeAreaInset(edge: .bottom) {
-            Group {
-                if !isNewRideCardVisible {
-                    Button {
-                        navigationManager.path.append("NEW RIDE")
-                    } label: {
-                        Image(systemName: Images.plus)
-                            .foregroundStyle(.white)
-                            .font(.title)
-                            .bold()
-                    }
-                    .buttonStyle(MainButtonStyle())
-                    .foregroundStyle(.black)
-                    .padding(10)
-                    .frame(width: 70, height: 70)
-                    .background {
-                        Pallete.accentColor
-                            .clipShape(Circle())
-                    }
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                }
-            }
-            .animation(.easeIn, value: isNewRideCardVisible)
-        }
+        .safeAreaInset(edge: .bottom, content: newRideButton)
         .onAppear {
             coreDataManager.fetchAllRides()
         }
@@ -91,9 +68,9 @@ struct HomeView: View {
             } label: {
                 Image(systemName: Images.gearshape)
             }
-            .foregroundStyle(.black)
+            .buttonStyle(MainButtonStyle())
         }
-        .buttonStyle(MainButtonStyle())
+        .foregroundStyle(.black)
         .font(.largeTitle)
         .padding(.horizontal)
         .padding(.bottom, 4)
@@ -136,9 +113,7 @@ struct HomeView: View {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 25)
-                .fill(
-                    Pallete.accentColor
-                )
+                .fill(Pallete.accentColor)
         }
         .onDisappear {
             if navigationManager.path.isEmpty {
@@ -148,6 +123,31 @@ struct HomeView: View {
         .onAppear {
             isNewRideCardVisible = true
         }
+    }
+
+    @ViewBuilder func newRideButton() -> some View {
+        Group {
+            if !isNewRideCardVisible {
+                Button {
+                    navigationManager.path.append("NEW RIDE")
+                } label: {
+                    Image(systemName: Images.plus)
+                        .foregroundStyle(.white)
+                        .font(.title)
+                        .bold()
+                }
+                .buttonStyle(MainButtonStyle())
+                .foregroundStyle(.black)
+                .padding(10)
+                .frame(width: 70, height: 70)
+                .background {
+                    Pallete.accentColor
+                        .clipShape(Circle())
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .animation(.easeIn, value: isNewRideCardVisible)
     }
 
     @ViewBuilder func rideInfoCard(ride: RideInfoModel) -> some View {
@@ -170,7 +170,8 @@ struct HomeView: View {
         }
         .padding()
         .background {
-            Pallete.Complexity.getRandomColor()
+            Pallete.Complexity
+                .getRandomColor()
                 .cornerRadius(25)
         }
     }

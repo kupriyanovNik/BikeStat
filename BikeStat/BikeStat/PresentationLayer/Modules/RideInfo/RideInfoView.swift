@@ -28,7 +28,10 @@ struct RideInfoView: View {
             VStack(spacing: 25) {
                 let rideDate = ride.rideDate ?? .now
                 let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
-                let rideDistance = String(format: "%.2f", Double(ride.distance) / 1000.0) + " км"
+                let rideDistance = String(
+                    format: "%.2f",
+                    Double(ride.distance) / 1000.0
+                ) + " км"
                 let speedInfo = RideSpeedInfoModel(
                     avg: Int(ride.avgSpeed),
                     max: Int(ride.maxSpeed)
