@@ -48,6 +48,13 @@ struct RideInfoView: View {
                 let rideEstimatedComplexity = ride.estimatedComplexity ?? "no info"
                 let rideRealComplexity = ride.realComplexity ?? "no info"
 
+                let avgSpeedKMPH = round(
+                    100 * (3.6 * Double(speedInfo.avg))
+                ) / 100
+                let maxSpeedKMPH = round(
+                    100 * (3.6 * Double(speedInfo.max))
+                ) / 100
+
                 Text("\(localizable.ride) \(rideDateString)")
                     .font(.title)
                     .bold()
@@ -90,8 +97,8 @@ struct RideInfoView: View {
                         title: localizable.speedInfo,
                         tag: 2,
                         texts: [
-                            "\(localizable.avgSpeed): \(speedInfo.avg) км/ч",
-                            "\(localizable.maxSpeed): \(speedInfo.max) км/ч"
+                            "\(localizable.avgSpeed): \(avgSpeedKMPH) км/ч",
+                            "\(localizable.maxSpeed): \(maxSpeedKMPH) км/ч"
                         ]
                     )
 
@@ -106,7 +113,7 @@ struct RideInfoView: View {
                     )
 
                     tabItemInfoView(
-                        title: "Сложность",
+                        title: localizable.complexity,
                         tag: 4,
                         texts: [
                             "\(localizable.estimatedComplexity): \(rideEstimatedComplexity)",
