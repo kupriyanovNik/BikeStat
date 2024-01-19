@@ -45,7 +45,6 @@ struct HomeView: View {
             coreDataManager.fetchAllRides()
         }
         .scaleEffect(selectedRide == nil ? 1 : 0.95)
-        .animation(.easeInOut, value: selectedRide == nil)
         .sheet(item: $selectedRide) { ride in
             RideInfoView(ride: ride) {
                 withAnimation {
@@ -54,6 +53,7 @@ struct HomeView: View {
             }
             .presentationDetents([.fraction(0.4)])
         }
+        .animation(.easeIn, value: selectedRide)
     }
 
     // MARK: - ViewBuilders
