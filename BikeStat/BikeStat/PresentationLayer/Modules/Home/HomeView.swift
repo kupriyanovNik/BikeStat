@@ -23,7 +23,7 @@ struct HomeView: View {
             LazyVStack {
                 newRideCard()
 
-                Text("История поездок")
+                Text(Localizable.HomeView.rideHistory)
                     .font(.title2)
                     .bold()
                     .hLeading()
@@ -60,7 +60,7 @@ struct HomeView: View {
 
     @ViewBuilder func headerView() -> some View {
         HStack {
-            Text("BikeStat")
+            Text(Localizable.HomeView.pageTitle)
                 .bold()
 
             Spacer()
@@ -86,7 +86,7 @@ struct HomeView: View {
     @ViewBuilder func newRideCard() -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Новая поездка")
+                Text(Localizable.HomeView.newRide)
                     .font(.title2)
                     .bold()
                     .foregroundColor(.white)
@@ -94,7 +94,7 @@ struct HomeView: View {
                 Button {
                     navigationManager.path.append("NEW RIDE")
                 } label: {
-                    Text("Начать")
+                    Text(Localizable.HomeView.start)
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundStyle(.black)
@@ -157,7 +157,7 @@ struct HomeView: View {
 
         HStack {
             VStack {
-                Text("Поездка")
+                Text(Localizable.HomeView.ride)
 
                 Text(rideDate.formatted(date: .abbreviated, time: .omitted))
             }

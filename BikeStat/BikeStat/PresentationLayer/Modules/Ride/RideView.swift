@@ -24,8 +24,10 @@ struct RideView: View {
 
     // MARK: - Private Properties
 
+    private let localizable = Localizable.RideView.self
+
     private var toggleRideButtonText: String {
-        rideViewModel.isRideStarted ? "Финиш" : "Старт"
+        rideViewModel.isRideStarted ? localizable.finish : localizable.start
     }
 
     private var cyclingTotalDistanceText: String {
@@ -78,7 +80,7 @@ struct RideView: View {
                 .frame(height: (isRideStarted ? 120 : 75) - vOffset)
 
             VStack {
-                Text("Новая поездка")
+                Text(localizable.pageTitle)
                     .font(.largeTitle)
                     .bold()
                     .hCenter()
@@ -97,8 +99,8 @@ struct RideView: View {
 
                 if isRideStarted, vOffset == .zero {
                     Group {
-                        Text("Скорость: \(Int(currentSpeed)) км/ч")
-                        Text("Путь: \(String(format: "%.2f", currentDistance)) км")
+                        Text("\(localizable.speed): \(Int(currentSpeed)) км/ч")
+                        Text("\(localizable.distance): \(String(format: "%.2f", currentDistance)) км")
                     }
                     .font(.title2)
                     .bold()
@@ -275,6 +277,7 @@ struct RideView: View {
 
         delay(0.5) {
             let pulse = networkManager.watchData?.data.pulse
+            
             coreDataManager.addRide(
                 time: Int(rideViewModel.totalAccumulatedTime),
                 date: rideViewModel.cyclingStartTime,

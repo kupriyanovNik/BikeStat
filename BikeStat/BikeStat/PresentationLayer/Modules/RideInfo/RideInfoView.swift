@@ -18,6 +18,10 @@ struct RideInfoView: View {
 
     var deleteAction: (() -> ())? = nil
 
+    // MARK: - Private Properties
+
+    private let localizable = Localizable.RideInfoView.self
+
     // MARK: - Body
 
     var body: some View {
@@ -44,7 +48,7 @@ struct RideInfoView: View {
                 let rideEstimatedComplexity = ride.estimatedComplexity ?? "no info"
                 let rideRealComplexity = ride.realComplexity ?? "no info"
 
-                Text("Поездка \(rideDateString)")
+                Text("\(localizable.ride) \(rideDateString)")
                     .font(.title)
                     .bold()
                     .hCenter()
@@ -75,29 +79,29 @@ struct RideInfoView: View {
 
                 TabView(selection: $currentIndex) {
                     tabItemInfoView(
-                        title: "Основная информация",
+                        title: localizable.mainInformation,
                         tag: 1,
                         texts: [
-                            "Пройденное расстояние: \(rideDistance)"
+                            "\(localizable.distance): \(rideDistance)"
                         ]
                     )
 
                     tabItemInfoView(
-                        title: "Информация о скорости",
+                        title: localizable.speedInfo,
                         tag: 2,
                         texts: [
-                            "Средняя Скорость: \(speedInfo.avg) км/ч",
-                            "Максимальная скорость: \(speedInfo.max) км/ч"
+                            "\(localizable.avgSpeed): \(speedInfo.avg) км/ч",
+                            "\(localizable.maxSpeed): \(speedInfo.max) км/ч"
                         ]
                     )
 
                     tabItemInfoView(
-                        title: "Информация о пульсе",
+                        title: localizable.pulseInfo,
                         tag: 3,
                         texts: [
-                            "Минимальный пульс: \(pulseInfo.min) уд/мин",
-                            "Средний пульс: \(pulseInfo.avg) уд/мин",
-                            "Маскимальный пульс: \(pulseInfo.max) уд/мин"
+                            "\(localizable.minPulse): \(pulseInfo.min) уд/мин",
+                            "\(localizable.avgPulse): \(pulseInfo.avg) уд/мин",
+                            "\(localizable.maxPulse): \(pulseInfo.max) уд/мин"
                         ]
                     )
 
@@ -105,8 +109,8 @@ struct RideInfoView: View {
                         title: "Сложность",
                         tag: 4,
                         texts: [
-                            "Расчетная сложность: \(rideEstimatedComplexity)",
-                            "Реальная сложность: \(rideRealComplexity)"
+                            "\(localizable.estimatedComplexity): \(rideEstimatedComplexity)",
+                            "\(localizable.realComplexity): \(rideRealComplexity)"
                         ]
                     )
                 }
