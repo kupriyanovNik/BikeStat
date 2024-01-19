@@ -10,7 +10,18 @@ enum Strings {
         static let headerFields = ["x-access-tokens": "az4fvf7nzi1XPIsYiMEu"]
     }
 
+    enum Time {
+        static let withHours = "%02i:%02i:%02i"
+        static let withoutHours = "%02i:%02i"
+    }
+
     enum NumberFormats {
         static let forTime = "%02d"
+        static let forDistance = "%.2f"
+    }
+
+    enum Navigation {
+        static let newRide = "NEW Ride"
+        static let settings = "SETTINGS"
     }
 }

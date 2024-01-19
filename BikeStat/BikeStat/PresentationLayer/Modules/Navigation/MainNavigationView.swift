@@ -27,24 +27,31 @@ struct MainNavigationView: View {
                 navigationManager: navigationManager
             )
             .navigationDestination(for: String.self) { value in
-                Group {
-                    if value == "NEW RIDE" {
-                        RideView(
-                            rideViewModel: rideViewModel,
-                            navigationManager: navigationManager,
-                            coreDataManager: coreDataManager,
-                            networkManager: networkManager,
-                            locationManager: locationManager
-                        )
-                    } else if value == "SETTINGS" {
-                        SettingsView(
-                            settingsViewModel: settingsViewModel
-                        )
-                    }
-                }
+                destinationView(value: value)
             }
         }
     }
+
+    // MARK: - View Builder
+
+    @ViewBuilder func destinationView(value: String) -> some View {
+        Group {
+            if value == Strings.Navigation.newRide {
+                RideView(
+                    rideViewModel: rideViewModel,
+                    navigationManager: navigationManager,
+                    coreDataManager: coreDataManager,
+                    networkManager: networkManager,
+                    locationManager: locationManager
+                )
+            } else if value == Strings.Navigation.settings {
+                SettingsView(
+                    settingsViewModel: settingsViewModel
+                )
+            }
+        }
+    }
+
 }
 
 // MARK: - Preview

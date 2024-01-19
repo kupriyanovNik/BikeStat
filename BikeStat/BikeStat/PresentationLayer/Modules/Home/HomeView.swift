@@ -23,7 +23,7 @@ struct HomeView: View {
             LazyVStack {
                 newRideCard()
 
-                Text("История поездок")
+                Text(Localizable.HomeView.rideHistory)
                     .font(.title2)
                     .bold()
                     .hLeading()
@@ -40,33 +40,11 @@ struct HomeView: View {
         }
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
-        .safeAreaInset(edge: .bottom) {
-            Group {
-                if !isNewRideCardVisible {
-                    Button {
-                        navigationManager.path.append("NEW RIDE")
-                    } label: {
-                        Image(systemName: Images.plus)
-                            .foregroundStyle(.white)
-                            .font(.title)
-                            .bold()
-                    }
-                    .buttonStyle(MainButtonStyle())
-                    .foregroundStyle(.black)
-                    .padding(10)
-                    .frame(width: 70, height: 70)
-                    .background {
-                        Pallete.accentColor
-                            .clipShape(Circle())
-                    }
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                }
-            }
-            .animation(.easeIn, value: isNewRideCardVisible)
-        }
+        .safeAreaInset(edge: .bottom, content: newRideButton)
         .onAppear {
             coreDataManager.fetchAllRides()
         }
+        .scaleEffect(selectedRide == nil ? 1 : 0.95)
         .sheet(item: $selectedRide) { ride in
             RideInfoView(ride: ride) {
                 withAnimation {
@@ -75,25 +53,26 @@ struct HomeView: View {
             }
             .presentationDetents([.fraction(0.4)])
         }
+        .animation(.easeIn, value: selectedRide)
     }
 
     // MARK: - ViewBuilders
 
     @ViewBuilder func headerView() -> some View {
         HStack {
-            Text("BikeStat")
+            Text(Localizable.HomeView.pageTitle)
                 .bold()
 
             Spacer()
 
             Button {
-                navigationManager.path.append("SETTINGS")
+                navigationManager.path.append(Strings.Navigation.settings)
             } label: {
                 Image(systemName: Images.gearshape)
             }
-            .foregroundStyle(.black)
+            .buttonStyle(MainButtonStyle())
         }
-        .buttonStyle(MainButtonStyle())
+        .foregroundStyle(.black)
         .font(.largeTitle)
         .padding(.horizontal)
         .padding(.bottom, 4)
@@ -107,15 +86,15 @@ struct HomeView: View {
     @ViewBuilder func newRideCard() -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Новая поездка")
+                Text(Localizable.HomeView.newRide)
                     .font(.title2)
                     .bold()
                     .foregroundColor(.white)
 
                 Button {
-                    navigationManager.path.append("NEW RIDE")
+                    navigationManager.path.append(Strings.Navigation.newRide)
                 } label: {
-                    Text("Начать")
+                    Text(Localizable.HomeView.start)
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundStyle(.black)
@@ -136,9 +115,7 @@ struct HomeView: View {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 25)
-                .fill(
-                    Pallete.accentColor
-                )
+                .fill(Pallete.accentColor)
         }
         .onDisappear {
             if navigationManager.path.isEmpty {
@@ -150,12 +127,37 @@ struct HomeView: View {
         }
     }
 
+    @ViewBuilder func newRideButton() -> some View {
+        Group {
+            if !isNewRideCardVisible {
+                Button {
+                    navigationManager.path.append(Strings.Navigation.newRide)
+                } label: {
+                    Image(systemName: Images.plus)
+                        .foregroundStyle(.white)
+                        .font(.title)
+                        .bold()
+                }
+                .buttonStyle(MainButtonStyle())
+                .foregroundStyle(.black)
+                .padding(10)
+                .frame(width: 70, height: 70)
+                .background {
+                    Pallete.accentColor
+                        .clipShape(Circle())
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .animation(.easeIn, value: isNewRideCardVisible)
+    }
+
     @ViewBuilder func rideInfoCard(ride: RideInfoModel) -> some View {
         let rideDate = ride.rideDate ?? .now
 
         HStack {
             VStack {
-                Text("Поездка")
+                Text(Localizable.HomeView.ride)
 
                 Text(rideDate.formatted(date: .abbreviated, time: .omitted))
             }
@@ -164,13 +166,19 @@ struct HomeView: View {
 
             Spacer()
 
-            Text(String(format: "%.2f", Double(ride.distance) / 1000.0)+" км")
-                .font(.largeTitle)
-                .bold()
+            Text(
+                String(
+                    format: Strings.NumberFormats.forDistance,
+                    Double(ride.distance) / 1000.0
+                ) + " км"
+            )
+            .font(.largeTitle)
+            .bold()
         }
         .padding()
         .background {
-            Pallete.Complexity.getRandomColor()
+            Pallete.Complexity
+                .getRandomColor()
                 .cornerRadius(25)
         }
     }

@@ -16,9 +16,11 @@ struct MainButtonStyle: ButtonStyle {
     // MARK: - Body
 
     func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed
+        
         configuration.label
-            .scaleEffect(configuration.isPressed ? pressedScale : 1, anchor: scaleAnchor)
-            .opacity(configuration.isPressed ? pressedOpacity : 1)
-            .animation(.spring, value: configuration.isPressed)
+            .scaleEffect(isPressed ? pressedScale : 1, anchor: scaleAnchor)
+            .opacity(isPressed ? pressedOpacity : 1)
+            .animation(.spring, value: isPressed)
     }
 }

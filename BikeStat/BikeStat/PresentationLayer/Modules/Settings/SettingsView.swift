@@ -14,6 +14,10 @@ struct SettingsView: View {
 
     @ObservedObject var settingsViewModel: SettingsViewModel
 
+    // MARK: - Private Properties
+
+    private let localizable = Localizable.SettingsView.self
+
     // MARK: - Body
 
     var body: some View {
@@ -41,7 +45,7 @@ struct SettingsView: View {
 
             Spacer()
 
-            Text("Настройки")
+            Text(localizable.pageTitle)
                 .font(.largeTitle)
                 .bold()
 
@@ -54,7 +58,7 @@ struct SettingsView: View {
 
     @ViewBuilder func metricPickerView() -> some View {
         VStack(alignment: .leading) {
-            Text("Единицы измерения:")
+            Text(localizable.units)
                 .bold()
                 .font(.title2)
                 .padding(.leading, 2)

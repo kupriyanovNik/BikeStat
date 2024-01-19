@@ -24,8 +24,10 @@ struct RideView: View {
 
     // MARK: - Private Properties
 
+    private let localizable = Localizable.RideView.self
+
     private var toggleRideButtonText: String {
-        rideViewModel.isRideStarted ? "Финиш" : "Старт"
+        rideViewModel.isRideStarted ? localizable.finish : localizable.start
     }
 
     private var cyclingTotalDistanceText: String {
@@ -58,17 +60,29 @@ struct RideView: View {
 
     @ViewBuilder func headerView() -> some View {
         let isRideStarted = rideViewModel.isRideStarted
-        let currentSpeed = round(100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))) / 100
-        let currentDistance = round(100 * locationManager.cyclingTotalDistance / 1000) / 100
+
+        let currentSpeed = round(
+            100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))
+        ) / 100
+        let currentDistance = round(
+            100 * locationManager.cyclingTotalDistance / 1000
+        ) / 100
+
+        let currentDistanceString = String(format: Strings.NumberFormats.forDistance, currentDistance)
 
         ZStack(alignment: .top) {
             Pallete.accentColor
-                .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight], radius: 20))
+                .clipShape(
+                    RoundedShape(
+                        corners: [.bottomLeft, .bottomRight], 
+                        radius: 20
+                    )
+                )
                 .ignoresSafeArea()
                 .frame(height: (isRideStarted ? 120 : 75) - vOffset)
 
             VStack {
-                Text("Новая поездка")
+                Text(localizable.pageTitle)
                     .font(.largeTitle)
                     .bold()
                     .hCenter()
@@ -87,8 +101,8 @@ struct RideView: View {
 
                 if isRideStarted, vOffset == .zero {
                     Group {
-                        Text("Скорость: \(Int(currentSpeed)) км/ч")
-                        Text("Путь: \(String(format: "%.2f", currentDistance)) км")
+                        Text("\(localizable.speed): \(Int(currentSpeed)) км/ч")
+                        Text("\(localizable.distance): \(currentDistanceString) км")
                     }
                     .font(.title2)
                     .bold()
@@ -136,17 +150,19 @@ struct RideView: View {
             Button {
                 shouldCenterMapOnLocation.toggle()
             } label: {
-                Image(systemName: shouldCenterMapOnLocation ? "lock" : "lock.open")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(.white)
-                    .padding(3)
-                    .frame(width: 40, height: 40)
-                    .background(
-                        Pallete.accentColor
-                    )
-                    .cornerRadius(5)
-                    .animation(.none, value: shouldCenterMapOnLocation)
+                Image(
+                    systemName: shouldCenterMapOnLocation ? Images.lock : Images.opendedLock
+                )
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(.white)
+                .padding(3)
+                .frame(width: 40, height: 40)
+                .background(
+                    Pallete.accentColor
+                )
+                .cornerRadius(5)
+                .animation(.none, value: shouldCenterMapOnLocation)
             }
             .buttonStyle(MainButtonStyle())
             .hTrailing()
@@ -193,13 +209,13 @@ struct RideView: View {
 
     @ViewBuilder func mapSpanControls() -> some View {
         VStack {
-            mapSpanControlButton(imageName: "plus") {
+            mapSpanControlButton(imageName: Images.plus) {
                 withAnimation {
                     mapSpanDeltaValue = max(mapSpanDeltaValue - 0.008, 0.008)
                 }
             }
 
-            mapSpanControlButton(imageName: "minus") {
+            mapSpanControlButton(imageName: Images.minus) {
                 withAnimation {
                     mapSpanDeltaValue += 0.008
                 }
@@ -245,10 +261,13 @@ struct RideView: View {
         let seconds = Int(accumulatedTime) % 60
 
         if hours != 0 {
-            return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+            return String(
+                format: Strings.Time.withHours,
+                hours, minutes, seconds
+            )
         }
 
-        return String(format: "%02i:%02i", minutes, seconds)
+        return String(format: Strings.Time.withoutHours, minutes, seconds)
     }
 
     private func persistRide() {
@@ -265,6 +284,7 @@ struct RideView: View {
 
         delay(0.5) {
             let pulse = networkManager.watchData?.data.pulse
+            
             coreDataManager.addRide(
                 time: Int(rideViewModel.totalAccumulatedTime),
                 date: rideViewModel.cyclingStartTime,

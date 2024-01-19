@@ -18,6 +18,10 @@ struct RideInfoView: View {
 
     var deleteAction: (() -> ())? = nil
 
+    // MARK: - Private Properties
+
+    private let localizable = Localizable.RideInfoView.self
+
     // MARK: - Body
 
     var body: some View {
@@ -28,7 +32,10 @@ struct RideInfoView: View {
             VStack(spacing: 25) {
                 let rideDate = ride.rideDate ?? .now
                 let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
-                let rideDistance = String(format: "%.2f", Double(ride.distance) / 1000.0) + " км"
+                let rideDistance = String(
+                    format: Strings.NumberFormats.forDistance,
+                    Double(ride.distance) / 1000.0
+                ) + " км"
                 let speedInfo = RideSpeedInfoModel(
                     avg: Int(ride.avgSpeed),
                     max: Int(ride.maxSpeed)
@@ -41,7 +48,14 @@ struct RideInfoView: View {
                 let rideEstimatedComplexity = ride.estimatedComplexity ?? "no info"
                 let rideRealComplexity = ride.realComplexity ?? "no info"
 
-                Text("Поездка \(rideDateString)")
+                let avgSpeedKMPH = round(
+                    100 * (3.6 * Double(speedInfo.avg))
+                ) / 100
+                let maxSpeedKMPH = round(
+                    100 * (3.6 * Double(speedInfo.max))
+                ) / 100
+
+                Text("\(localizable.ride) \(rideDateString)")
                     .font(.title)
                     .bold()
                     .hCenter()
@@ -72,38 +86,38 @@ struct RideInfoView: View {
 
                 TabView(selection: $currentIndex) {
                     tabItemInfoView(
-                        title: "Основная информация",
+                        title: localizable.mainInformation,
                         tag: 1,
                         texts: [
-                            "Пройденное расстояние: \(rideDistance)"
+                            "\(localizable.distance): \(rideDistance)"
                         ]
                     )
 
                     tabItemInfoView(
-                        title: "Информация о скорости",
+                        title: localizable.speedInfo,
                         tag: 2,
                         texts: [
-                            "Средняя Скорость: \(speedInfo.avg) км/ч",
-                            "Максимальная скорость: \(speedInfo.max) км/ч"
+                            "\(localizable.avgSpeed): \(avgSpeedKMPH) км/ч",
+                            "\(localizable.maxSpeed): \(maxSpeedKMPH) км/ч"
                         ]
                     )
 
                     tabItemInfoView(
-                        title: "Информация о пульсе",
+                        title: localizable.pulseInfo,
                         tag: 3,
                         texts: [
-                            "Минимальный пульс: \(pulseInfo.min) уд/мин",
-                            "Средний пульс: \(pulseInfo.avg) уд/мин",
-                            "Маскимальный пульс: \(pulseInfo.max) уд/мин"
+                            "\(localizable.minPulse): \(pulseInfo.min) уд/мин",
+                            "\(localizable.avgPulse): \(pulseInfo.avg) уд/мин",
+                            "\(localizable.maxPulse): \(pulseInfo.max) уд/мин"
                         ]
                     )
 
                     tabItemInfoView(
-                        title: "Сложность",
+                        title: localizable.complexity,
                         tag: 4,
                         texts: [
-                            "Расчетная сложность: \(rideEstimatedComplexity)",
-                            "Реальная сложность: \(rideRealComplexity)"
+                            "\(localizable.estimatedComplexity): \(rideEstimatedComplexity)",
+                            "\(localizable.realComplexity): \(rideRealComplexity)"
                         ]
                     )
                 }

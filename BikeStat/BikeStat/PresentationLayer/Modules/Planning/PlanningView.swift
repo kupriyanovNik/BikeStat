@@ -5,6 +5,9 @@
 import SwiftUI
 
 struct PlanningView: View {
+
+    // MARK: - Body
+
     var body: some View {
         Text("Hello, World!")
     }
