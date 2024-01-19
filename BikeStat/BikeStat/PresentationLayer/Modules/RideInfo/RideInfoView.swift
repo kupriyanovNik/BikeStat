@@ -33,7 +33,7 @@ struct RideInfoView: View {
                 let rideDate = ride.rideDate ?? .now
                 let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
                 let rideDistance = String(
-                    format: "%.2f",
+                    format: Strings.NumberFormats.forDistance,
                     Double(ride.distance) / 1000.0
                 ) + " км"
                 let speedInfo = RideSpeedInfoModel(

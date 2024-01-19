@@ -66,7 +66,7 @@ struct HomeView: View {
             Spacer()
 
             Button {
-                navigationManager.path.append("SETTINGS")
+                navigationManager.path.append(Strings.Navigation.settings)
             } label: {
                 Image(systemName: Images.gearshape)
             }
@@ -92,7 +92,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    navigationManager.path.append("NEW RIDE")
+                    navigationManager.path.append(Strings.Navigation.newRide)
                 } label: {
                     Text(Localizable.HomeView.start)
                         .font(.title3)
@@ -131,7 +131,7 @@ struct HomeView: View {
         Group {
             if !isNewRideCardVisible {
                 Button {
-                    navigationManager.path.append("NEW RIDE")
+                    navigationManager.path.append(Strings.Navigation.newRide)
                 } label: {
                     Image(systemName: Images.plus)
                         .foregroundStyle(.white)
@@ -166,9 +166,14 @@ struct HomeView: View {
 
             Spacer()
 
-            Text(String(format: "%.2f", Double(ride.distance) / 1000.0)+" км")
-                .font(.largeTitle)
-                .bold()
+            Text(
+                String(
+                    format: Strings.NumberFormats.forDistance,
+                    Double(ride.distance) / 1000.0
+                ) + " км"
+            )
+            .font(.largeTitle)
+            .bold()
         }
         .padding()
         .background {

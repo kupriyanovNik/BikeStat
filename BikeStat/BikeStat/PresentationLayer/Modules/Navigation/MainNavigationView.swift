@@ -36,7 +36,7 @@ struct MainNavigationView: View {
 
     @ViewBuilder func destinationView(value: String) -> some View {
         Group {
-            if value == "NEW RIDE" {
+            if value == Strings.Navigation.newRide {
                 RideView(
                     rideViewModel: rideViewModel,
                     navigationManager: navigationManager,
@@ -44,7 +44,7 @@ struct MainNavigationView: View {
                     networkManager: networkManager,
                     locationManager: locationManager
                 )
-            } else if value == "SETTINGS" {
+            } else if value == Strings.Navigation.settings {
                 SettingsView(
                     settingsViewModel: settingsViewModel
                 )

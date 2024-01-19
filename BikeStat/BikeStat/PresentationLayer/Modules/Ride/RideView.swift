@@ -68,6 +68,8 @@ struct RideView: View {
             100 * locationManager.cyclingTotalDistance / 1000
         ) / 100
 
+        let currentDistanceString = String(format: Strings.NumberFormats.forDistance, currentDistance)
+
         ZStack(alignment: .top) {
             Pallete.accentColor
                 .clipShape(
@@ -100,7 +102,7 @@ struct RideView: View {
                 if isRideStarted, vOffset == .zero {
                     Group {
                         Text("\(localizable.speed): \(Int(currentSpeed)) км/ч")
-                        Text("\(localizable.distance): \(String(format: "%.2f", currentDistance)) км")
+                        Text("\(localizable.distance): \(currentDistanceString) км")
                     }
                     .font(.title2)
                     .bold()
@@ -259,10 +261,13 @@ struct RideView: View {
         let seconds = Int(accumulatedTime) % 60
 
         if hours != 0 {
-            return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+            return String(
+                format: Strings.Time.withHours,
+                hours, minutes, seconds
+            )
         }
 
-        return String(format: "%02i:%02i", minutes, seconds)
+        return String(format: Strings.Time.withoutHours, minutes, seconds)
     }
 
     private func persistRide() {
