@@ -9,6 +9,7 @@ struct HomeView: View {
     // MARK: - Property Wrappers
 
     @ObservedObject var homeViewModel: HomeViewModel
+    @ObservedObject var planningViewModel: PlanningViewModel
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var navigationManager: NavigationManager
@@ -43,7 +44,7 @@ struct HomeView: View {
         .safeAreaInset(edge: .top, content: headerView)
         .safeAreaInset(edge: .bottom, content: planRideButton)
         .onAppear {
-            // TODO: - fetch planned rides
+            coreDataManager.fetchPlannedRides()
         }
         .scaleEffect(selectedRide == nil ? 1 : 0.95)
         .sheet(item: $selectedRide) { ride in
@@ -93,7 +94,9 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    // TODO: - show planning view
+                    withAnimation {
+                        homeViewModel.shouldShowRidePlanningView = true
+                    }
                 } label: {
                     Text(Localizable.HomeView.start)
                         .font(.title3)
@@ -219,6 +222,17 @@ struct HomeView: View {
                 .cornerRadius(25)
         }
     }
+
+    @ViewBuilder func planningViewPopup() -> some View {
+        ZStack {
+            Color.black
+                .ignoresSafeArea()
+
+            PlanningView(
+                planningViewModel: planningViewModel
+            )
+        }
+    }
 }
 
 // MARK: - Preview
@@ -226,6 +240,7 @@ struct HomeView: View {
 #Preview {
     HomeView(
         homeViewModel: .init(),
+        planningViewModel: .init(),
         coreDataManager: .init(),
         networkManager: .init(),
         navigationManager: .init()

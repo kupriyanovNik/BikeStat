@@ -11,6 +11,7 @@ struct MainNavigationView: View {
     @ObservedObject var navigationManager: NavigationManager
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var rideViewModel: RideViewModel
+    @ObservedObject var planningViewModel: PlanningViewModel
     @ObservedObject var settingsViewModel: SettingsViewModel
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
@@ -22,6 +23,7 @@ struct MainNavigationView: View {
         NavigationStack(path: $navigationManager.path) {
             HomeView(
                 homeViewModel: homeViewModel,
+                planningViewModel: planningViewModel,
                 coreDataManager: coreDataManager,
                 networkManager: networkManager,
                 navigationManager: navigationManager
@@ -61,6 +63,7 @@ struct MainNavigationView: View {
         navigationManager: .init(),
         homeViewModel: .init(),
         rideViewModel: .init(),
+        planningViewModel: .init(),
         settingsViewModel :.init(),
         coreDataManager: .init(),
         networkManager: .init(),

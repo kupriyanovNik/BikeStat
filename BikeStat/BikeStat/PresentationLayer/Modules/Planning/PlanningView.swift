@@ -6,6 +6,10 @@ import SwiftUI
 
 struct PlanningView: View {
 
+    // MARK: - Property Wrappers
+
+    @ObservedObject var planningViewModel: PlanningViewModel
+
     // MARK: - Body
 
     var body: some View {
@@ -16,5 +20,7 @@ struct PlanningView: View {
 // MARK: - Preview
 
 #Preview {
-    PlanningView()
+    PlanningView(
+        planningViewModel: .init()
+    )
 }
