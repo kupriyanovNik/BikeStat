@@ -23,7 +23,10 @@ struct HomeView: View {
         ScrollView {
             LazyVStack {
                 planRideCard()
-                showHistoryCard()
+
+                if !coreDataManager.endedRides.isEmpty {
+                    showHistoryCard()
+                }
 
                 Text(Localizable.HomeView.plannedRides)
                     .font(.title2)
