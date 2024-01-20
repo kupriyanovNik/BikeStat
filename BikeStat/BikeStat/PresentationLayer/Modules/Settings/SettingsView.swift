@@ -52,8 +52,13 @@ struct SettingsView: View {
             Spacer()
         }
         .foregroundStyle(.black)
-        .padding([.horizontal, .top])
-        .offset(y: -16)
+        .font(.largeTitle)
+        .padding(.horizontal)
+        .padding(.bottom, 4)
+        .background {
+            Color.white
+                .ignoresSafeArea()
+        }
     }
 
     @ViewBuilder func metricPickerView() -> some View {

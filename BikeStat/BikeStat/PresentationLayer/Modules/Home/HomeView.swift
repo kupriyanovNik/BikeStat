@@ -29,7 +29,7 @@ struct HomeView: View {
                     .bold()
                     .hLeading()
 
-                ForEach(coreDataManager.endedRides.reversed(), id: \.objectID)  { ride in
+                ForEach(coreDataManager.plannedRides.reversed(), id: \.objectID)  { ride in
                     plannedRideInfoCard(ride: ride)
                         .id(ride.objectID)
                         .onTapGesture {
@@ -201,25 +201,17 @@ struct HomeView: View {
         let rideDate = ride.rideDate ?? .now
 
         HStack {
-            VStack {
-                Text(Localizable.HomeView.ride)
-
-                Text(rideDate.formatted(date: .abbreviated, time: .omitted))
-            }
-            .font(.title2)
-            .bold()
+            Text(ride.title ?? "Default Name")
 
             Spacer()
 
-            Text(
-                String(
-                    format: Strings.NumberFormats.forDistance,
-                    Double(ride.estimatedDistance) / 1000.0
-                ) + " км"
-            )
-            .font(.largeTitle)
-            .bold()
+            VStack {
+                Text(rideDate.formatted(date: .abbreviated, time: .omitted))
+                Text(rideDate.formatted(date: .omitted, time: .shortened))
+            }
         }
+        .font(.title2)
+        .fontWeight(.semibold)
         .padding()
         .background {
             Pallete.Complexity
