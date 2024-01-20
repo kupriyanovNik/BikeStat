@@ -60,6 +60,7 @@ class CoreDataManager: ObservableObject {
     ) {
         let ride = RideInfoModel(context: viewContext)
         ride.title = title
+        ride.isEnded = false
         ride.rideDate = rideDate
         ride.estimatedTime = Int64(estimatedTime)
         ride.estimatedDistance = Int64(estimatedDistance)
@@ -67,6 +68,29 @@ class CoreDataManager: ObservableObject {
 
         saveContext()
         fetchPlannedRides()
+    }
+
+    func endRide(
+        ride: RideInfoModel,
+        pulseData: RidePulseInfoModel,
+        speedData: RideSpeedInfoModel,
+        realComplexity: String,
+        realDistance: Int,
+        realTime: Int
+    ) {
+        ride.isEnded = true
+        ride.minPulse = Int64(pulseData.min)
+        ride.avgPulse = Int64(pulseData.avg)
+        ride.maxPulse = Int64(pulseData.max)
+        ride.avgSpeed = Int64(speedData.avg)
+        ride.maxSpeed = Int64(speedData.max)
+        ride.realComplexity = realComplexity
+        ride.realDistance = Int64(realDistance)
+        ride.realTime = Int64(realTime)
+
+        saveContext()
+        fetchPlannedRides()
+        fetchEndedRides()
     }
 
     func removeRide(
