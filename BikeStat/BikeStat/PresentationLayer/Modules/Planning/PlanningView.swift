@@ -16,12 +16,11 @@ struct PlanningView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            headerView()
-
             TextField(
                 "Введите название поездки:",
-                text: $planningViewModel.rideName
+                text: $planningViewModel.rideTitle
             )
+            .onTapContinueEditing()
 
             HStack {
                 Text("Выберите время поездки:")
@@ -30,7 +29,7 @@ struct PlanningView: View {
 
                 DatePicker(
                     "",
-                    selection: $planningViewModel.rideTime,
+                    selection: $planningViewModel.rideDate,
                     displayedComponents: .hourAndMinute
                 )
                 .labelsHidden()
@@ -43,7 +42,7 @@ struct PlanningView: View {
 
                 DatePicker(
                     "",
-                    selection: $planningViewModel.rideTime,
+                    selection: $planningViewModel.rideDate,
                     displayedComponents: .date
                 )
                 .labelsHidden()
@@ -97,14 +96,37 @@ struct PlanningView: View {
                 .tint(.black)
                 .labelsHidden()
             }
+
+            Button {
+                planRide()
+            } label: {
+                Text("Сохранить")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.black)
+                    .padding(.vertical, 7)
+                    .padding(.horizontal, 23)
+                    .background(.white)
+                    .cornerRadius(40)
+            }
+            .buttonStyle(MainButtonStyle())
+            .hCenter()
         }
         .padding()
+        .safeAreaInset(edge: .top, content: headerView)
         .foregroundStyle(.black)
         .font(.title2)
         .background {
             Pallete.accentColor
+                .clipShape(
+                    RoundedShape(
+                        corners: [.bottomLeft, .bottomRight],
+                        radius: 15
+                    )
+                )
                 .ignoresSafeArea()
         }
+        .onTapEndEditing()
     }
 
     // MARK: - View Builders
@@ -117,9 +139,7 @@ struct PlanningView: View {
             .hCenter()
             .overlay(alignment: .leading) {
                 Button {
-                    withAnimation {
-                        homeViewModel.shouldShowRidePlanningView = false
-                    }
+                    dismiss()
                 } label: {
                     Image(systemName: Images.back)
                         .font(.title2)
@@ -127,6 +147,28 @@ struct PlanningView: View {
                         .padding()
                 }
             }
+    }
+
+    // MARK: - Private Functions
+
+    private func dismiss() {
+        withAnimation {
+            homeViewModel.shouldShowRidePlanningView = false
+        }
+    }
+
+    private func planRide() {
+        withAnimation {
+            coreDataManager.planRide(
+                title: planningViewModel.rideTitle,
+                rideDate: planningViewModel.rideDate,
+                estimatedTime: planningViewModel.estimatedTime,
+                estimatedDistance: planningViewModel.estimatedDistance,
+                estimatedComplexity: "хз не играл"
+            )
+        }
+
+        dismiss()
     }
 }
 

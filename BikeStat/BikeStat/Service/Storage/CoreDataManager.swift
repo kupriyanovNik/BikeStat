@@ -10,7 +10,11 @@ class CoreDataManager: ObservableObject {
     // MARK: - Property Wrappers
 
     @Published var endedRides: [RideInfoModel] = []
-    @Published var plannedRides: [RideInfoModel] = []
+    @Published var plannedRides: [RideInfoModel] = [] {
+        didSet {
+            print(plannedRides.count)
+        }
+    }
 
     // MARK: - Private Properties 
 
@@ -28,7 +32,7 @@ class CoreDataManager: ObservableObject {
     func fetchEndedRides() {
         let request = NSFetchRequest<RideInfoModel>(entityName: self.rideEntityName)
         request.sortDescriptors = [.init(keyPath: \RideInfoModel.rideDate, ascending: true)]
-        let predicate = NSPredicate(format: "isEnded = %@", true)
+        let predicate = NSPredicate(format: "isEnded == %i", true)
         request.predicate = predicate
 
         do {
@@ -41,8 +45,7 @@ class CoreDataManager: ObservableObject {
     func fetchPlannedRides() {
         let request = NSFetchRequest<RideInfoModel>(entityName: self.rideEntityName)
         request.sortDescriptors = [.init(keyPath: \RideInfoModel.rideDate, ascending: true)]
-        let predicate = NSPredicate(format: "isEnded = %@", false)
-        request.predicate = predicate
+        request.predicate = NSPredicate(format: "isEnded == %i", false)
 
         do {
             self.plannedRides = try viewContext.fetch(request)

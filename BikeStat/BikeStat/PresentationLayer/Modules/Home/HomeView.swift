@@ -30,12 +30,12 @@ struct HomeView: View {
                     .bold()
                     .hLeading()
 
-                ForEach(coreDataManager.plannedRides.reversed(), id: \.objectID)  { ride in
+                ForEach(
+                    coreDataManager.plannedRides.reversed(),
+                    id: \.objectID
+                )  { ride in
                     plannedRideInfoCard(ride: ride)
                         .id(ride.objectID)
-                        .onTapGesture {
-                            selectedRide = ride
-                        }
                 }
             }
             .padding(.horizontal)
@@ -68,7 +68,7 @@ struct HomeView: View {
                     }
 
                 planningViewPopup()
-                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .transition(.move(edge: .top))
             }
         }
     }
