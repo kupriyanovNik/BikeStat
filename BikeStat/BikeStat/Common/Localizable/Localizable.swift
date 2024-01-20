@@ -8,8 +8,10 @@ enum Localizable {
     enum HomeView {
         static let pageTitle = "BikeStat"
         static let rideHistory = "История поездок"
-        static let newRide = "Новая поездка"
+        static let plannedRides = "Запланированные поездки:"
+        static let planRide = "Планирование поездок"
         static let start = "Начать"
+        static let goto = "Перейти"
         static let ride = "Поездка"
     }
 

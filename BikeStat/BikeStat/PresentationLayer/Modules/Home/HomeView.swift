@@ -14,22 +14,23 @@ struct HomeView: View {
     @ObservedObject var navigationManager: NavigationManager
 
     @State private var selectedRide: RideInfoModel?
-    @State private var isNewRideCardVisible: Bool = true
+    @State private var isPlanRideCardVisible: Bool = true
 
     // MARK: - Body
 
     var body: some View {
         ScrollView {
             LazyVStack {
-                newRideCard()
+                planRideCard()
+                showHistoryCard()
 
-                Text(Localizable.HomeView.rideHistory)
+                Text(Localizable.HomeView.plannedRides)
                     .font(.title2)
                     .bold()
                     .hLeading()
 
                 ForEach(coreDataManager.endedRides.reversed(), id: \.objectID)  { ride in
-                    rideInfoCard(ride: ride)
+                    plannedRideInfoCard(ride: ride)
                         .id(ride.objectID)
                         .onTapGesture {
                             selectedRide = ride
@@ -40,9 +41,9 @@ struct HomeView: View {
         }
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
-        .safeAreaInset(edge: .bottom, content: newRideButton)
+        .safeAreaInset(edge: .bottom, content: planRideButton)
         .onAppear {
-            coreDataManager.fetchEndedRides()
+            // TODO: - fetch planned rides
         }
         .scaleEffect(selectedRide == nil ? 1 : 0.95)
         .sheet(item: $selectedRide) { ride in
@@ -80,19 +81,19 @@ struct HomeView: View {
             Color.white
                 .ignoresSafeArea()
         }
-        .animation(.linear, value: isNewRideCardVisible)
+        .animation(.linear, value: isPlanRideCardVisible)
     }
 
-    @ViewBuilder func newRideCard() -> some View {
+    @ViewBuilder func planRideCard() -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 12) {
-                Text(Localizable.HomeView.newRide)
+                Text(Localizable.HomeView.planRide)
                     .font(.title2)
                     .bold()
                     .foregroundColor(.white)
 
                 Button {
-                    navigationManager.path.append(Strings.Navigation.newRide)
+                    // TODO: - show planning view
                 } label: {
                     Text(Localizable.HomeView.start)
                         .font(.title3)
@@ -108,9 +109,9 @@ struct HomeView: View {
 
             Spacer()
 
-            Image(systemName: Images.bike)
+            Image(systemName: Images.mountain)
                 .resizable()
-                .frame(width: 130, height: 82)
+                .frame(width: 133, height: 60)
         }
         .padding()
         .background {
@@ -119,19 +120,63 @@ struct HomeView: View {
         }
         .onDisappear {
             if navigationManager.path.isEmpty {
-                isNewRideCardVisible = false
+                isPlanRideCardVisible = false
             }
         }
         .onAppear {
-            isNewRideCardVisible = true
+            isPlanRideCardVisible = true
         }
     }
 
-    @ViewBuilder func newRideButton() -> some View {
-        Group {
-            if !isNewRideCardVisible {
+    @ViewBuilder func showHistoryCard() -> some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 12) {
+                Text(Localizable.HomeView.rideHistory)
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(.white)
+
                 Button {
-                    navigationManager.path.append(Strings.Navigation.newRide)
+                    // TODO: - show planning view
+                } label: {
+                    Text(Localizable.HomeView.goto)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.black)
+                        .padding(.vertical, 7)
+                        .padding(.horizontal, 23)
+                        .background(.white)
+                        .cornerRadius(40)
+                }
+                .buttonStyle(MainButtonStyle(scaleAnchor: .leading))
+            }
+
+            Spacer()
+
+            Image(systemName: Images.bike)
+                .resizable()
+                .frame(width: 133, height: 82)
+        }
+        .padding()
+        .background {
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Pallete.showHistoryColor)
+        }
+        .onDisappear {
+            if navigationManager.path.isEmpty {
+                isPlanRideCardVisible = false
+            }
+        }
+        .onAppear {
+            isPlanRideCardVisible = true
+        }
+    }
+
+    @ViewBuilder func planRideButton() -> some View {
+        Group {
+            if !isPlanRideCardVisible {
+                Button {
+                    // TODO: - show planning view
                 } label: {
                     Image(systemName: Images.plus)
                         .foregroundStyle(.white)
@@ -149,10 +194,10 @@ struct HomeView: View {
                 .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .animation(.easeIn, value: isNewRideCardVisible)
+        .animation(.easeIn, value: isPlanRideCardVisible)
     }
 
-    @ViewBuilder func rideInfoCard(ride: RideInfoModel) -> some View {
+    @ViewBuilder func plannedRideInfoCard(ride: RideInfoModel) -> some View {
         let rideDate = ride.rideDate ?? .now
 
         HStack {
@@ -169,7 +214,7 @@ struct HomeView: View {
             Text(
                 String(
                     format: Strings.NumberFormats.forDistance,
-                    Double(ride.realDistance) / 1000.0
+                    Double(ride.estimatedDistance) / 1000.0
                 ) + " км"
             )
             .font(.largeTitle)
