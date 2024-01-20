@@ -28,7 +28,7 @@ struct HomeView: View {
                     .bold()
                     .hLeading()
 
-                ForEach(coreDataManager.allRides.reversed(), id: \.objectID)  { ride in
+                ForEach(coreDataManager.endedRides.reversed(), id: \.objectID)  { ride in
                     rideInfoCard(ride: ride)
                         .id(ride.objectID)
                         .onTapGesture {
@@ -42,7 +42,7 @@ struct HomeView: View {
         .safeAreaInset(edge: .top, content: headerView)
         .safeAreaInset(edge: .bottom, content: newRideButton)
         .onAppear {
-            coreDataManager.fetchAllRides()
+            coreDataManager.fetchEndedRides()
         }
         .scaleEffect(selectedRide == nil ? 1 : 0.95)
         .sheet(item: $selectedRide) { ride in

@@ -9,7 +9,8 @@ class CoreDataManager: ObservableObject {
 
     // MARK: - Property Wrappers
 
-    @Published var allRides: [RideInfoModel] = []
+    @Published var endedRides: [RideInfoModel] = []
+    @Published var plannedRides: [RideInfoModel] = []
 
     // MARK: - Private Properties 
 
@@ -24,12 +25,27 @@ class CoreDataManager: ObservableObject {
 
     // MARK: - Internal Functions
 
-    func fetchAllRides() {
+    func fetchEndedRides() {
         let request = NSFetchRequest<RideInfoModel>(entityName: self.rideEntityName)
         request.sortDescriptors = [.init(keyPath: \RideInfoModel.rideDate, ascending: true)]
+        let predicate = NSPredicate(format: "isEnded = %@", true)
+        request.predicate = predicate
 
         do {
-            self.allRides = try viewContext.fetch(request)
+            self.endedRides = try viewContext.fetch(request)
+        } catch {
+            print("DEBUG: \(error.localizedDescription)")
+        }
+    }
+
+    func fetchPlannedRides() {
+        let request = NSFetchRequest<RideInfoModel>(entityName: self.rideEntityName)
+        request.sortDescriptors = [.init(keyPath: \RideInfoModel.rideDate, ascending: true)]
+        let predicate = NSPredicate(format: "isEnded = %@", false)
+        request.predicate = predicate
+
+        do {
+            self.plannedRides = try viewContext.fetch(request)
         } catch {
             print("DEBUG: \(error.localizedDescription)")
         }
@@ -59,7 +75,7 @@ class CoreDataManager: ObservableObject {
         ride.maxSpeed = Int64(speed.max)
 
         saveContext()
-        fetchAllRides()
+        fetchEndedRides()
     }
 
     func removeRide(
@@ -67,7 +83,7 @@ class CoreDataManager: ObservableObject {
     ) {
         viewContext.delete(ride)
         saveContext()
-        fetchAllRides()
+        fetchEndedRides()
     }
 
     // MARK: - Private Functions
