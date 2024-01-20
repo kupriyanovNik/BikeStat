@@ -35,6 +35,9 @@ struct HistoryView: View {
             }
         }
         .scrollIndicators(.hidden)
+        .safeAreaInset(edge: .top, content: headerView)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
         .scaleEffect(selectedRide == nil ? 1 : 0.95)
         .sheet(item: $selectedRide) { ride in
             RideInfoView(ride: ride) {
@@ -45,9 +48,6 @@ struct HistoryView: View {
             .presentationDetents([.fraction(0.4)])
         }
         .animation(.easeIn, value: selectedRide)
-        .safeAreaInset(edge: .top, content: headerView)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
     }
 
     // MARK: - View Builders
