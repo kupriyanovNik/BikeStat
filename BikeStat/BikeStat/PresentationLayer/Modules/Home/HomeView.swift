@@ -56,6 +56,21 @@ struct HomeView: View {
             .presentationDetents([.fraction(0.4)])
         }
         .animation(.easeIn, value: selectedRide)
+        .overlay {
+            if homeViewModel.shouldShowRidePlanningView {
+                Color.black
+                    .opacity(0.15)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            homeViewModel.shouldShowRidePlanningView = false
+                        }
+                    }
+
+                planningViewPopup()
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
+        }
     }
 
     // MARK: - ViewBuilders
@@ -140,7 +155,9 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    // TODO: - show planning view
+                    withAnimation {
+                        homeViewModel.shouldShowRidePlanningView.toggle()
+                    }
                 } label: {
                     Text(Localizable.HomeView.goto)
                         .font(.title3)
@@ -179,7 +196,9 @@ struct HomeView: View {
         Group {
             if !isPlanRideCardVisible {
                 Button {
-                    // TODO: - show planning view
+                    withAnimation {
+                        homeViewModel.shouldShowRidePlanningView.toggle()
+                    }
                 } label: {
                     Image(systemName: Images.plus)
                         .foregroundStyle(.white)
@@ -224,14 +243,19 @@ struct HomeView: View {
     }
 
     @ViewBuilder func planningViewPopup() -> some View {
-        ZStack {
-            Color.black
-                .ignoresSafeArea()
-
+        VStack {
             PlanningView(
-                planningViewModel: planningViewModel
+                planningViewModel: planningViewModel,
+                homeViewModel: homeViewModel,
+                coreDataManager: coreDataManager
             )
+
+            Spacer()
         }
+        .animation(
+            .easeIn,
+            value: homeViewModel.shouldShowRidePlanningView
+        )
     }
 }
 
