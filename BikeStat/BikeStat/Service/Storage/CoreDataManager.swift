@@ -51,31 +51,22 @@ class CoreDataManager: ObservableObject {
         }
     }
 
-    func addRide(
-        time: Int,
-        date: Date,
-        distance: Int,
-        estimatedComplexity: String,
-        realComplexity: String,
-        pulse: RidePulseInfoModel,
-        speed: RideSpeedInfoModel
+    func planRide(
+        title: String,
+        rideDate: Date,
+        estimatedTime: Int,
+        estimatedDistance: Int,
+        estimatedComplexity: String
     ) {
         let ride = RideInfoModel(context: viewContext)
-        ride.time = Int64(time)
-        ride.rideDate = date
-        ride.distance = Int64(distance)
+        ride.title = title
+        ride.rideDate = rideDate
+        ride.estimatedTime = Int64(estimatedTime)
+        ride.estimatedDistance = Int64(estimatedDistance)
         ride.estimatedComplexity = estimatedComplexity
-        ride.realComplexity = realComplexity
-
-        ride.minPulse = Int64(pulse.min)
-        ride.avgPulse = Int64(pulse.avg)
-        ride.maxPulse = Int64(pulse.max)
-
-        ride.avgSpeed = Int64(speed.avg)
-        ride.maxSpeed = Int64(speed.max)
 
         saveContext()
-        fetchEndedRides()
+        fetchPlannedRides()
     }
 
     func removeRide(

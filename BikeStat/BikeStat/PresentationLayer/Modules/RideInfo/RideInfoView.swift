@@ -34,7 +34,7 @@ struct RideInfoView: View {
                 let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
                 let rideDistance = String(
                     format: Strings.NumberFormats.forDistance,
-                    Double(ride.distance) / 1000.0
+                    Double(ride.realDistance) / 1000.0
                 ) + " км"
                 let speedInfo = RideSpeedInfoModel(
                     avg: Int(ride.avgSpeed),

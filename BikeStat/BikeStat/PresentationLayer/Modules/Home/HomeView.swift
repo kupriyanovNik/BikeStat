@@ -169,7 +169,7 @@ struct HomeView: View {
             Text(
                 String(
                     format: Strings.NumberFormats.forDistance,
-                    Double(ride.distance) / 1000.0
+                    Double(ride.realDistance) / 1000.0
                 ) + " км"
             )
             .font(.largeTitle)
