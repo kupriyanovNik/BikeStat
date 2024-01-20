@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71F69CA2B5C81DC0041372C /* BikeStatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71F69C92B5C81DC0041372C /* BikeStatApp.swift */; };
+		B71F69CD2B5C832E0041372C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71F69CC2B5C832E0041372C /* HistoryView.swift */; };
 		B75555032B4AB2CE003B93E3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555022B4AB2CE003B93E3 /* Color.swift */; };
 		B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555082B4AFC3D003B93E3 /* SettingsView.swift */; };
 		B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755550A2B4AFC5E003B93E3 /* SettingsViewModel.swift */; };
@@ -32,7 +34,6 @@
 		B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6592B445EEC00CDF026 /* RideSpeedInfoModel.swift */; };
 		B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB65A2B445EEC00CDF026 /* RidePulseInfoModel.swift */; };
 		B75CB6802B445EEC00CDF026 /* Impact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB65C2B445EEC00CDF026 /* Impact.swift */; };
-		B75CB6812B445EEC00CDF026 /* BikeStatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB65D2B445EEC00CDF026 /* BikeStatApp.swift */; };
 		B75CB6822B445EEC00CDF026 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB65F2B445EEC00CDF026 /* Strings.swift */; };
 		B75CB6832B445EEC00CDF026 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75CB6602B445EEC00CDF026 /* Assets.xcassets */; };
 		B75CB6842B445EEC00CDF026 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75CB6622B445EEC00CDF026 /* Preview Assets.xcassets */; };
@@ -46,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B71F69C92B5C81DC0041372C /* BikeStatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStatApp.swift; sourceTree = "<group>"; };
+		B71F69CC2B5C832E0041372C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		B75555022B4AB2CE003B93E3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B75555052B4ABAB5003B93E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B75555082B4AFC3D003B93E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -72,7 +75,6 @@
 		B75CB6592B445EEC00CDF026 /* RideSpeedInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideSpeedInfoModel.swift; sourceTree = "<group>"; };
 		B75CB65A2B445EEC00CDF026 /* RidePulseInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RidePulseInfoModel.swift; sourceTree = "<group>"; };
 		B75CB65C2B445EEC00CDF026 /* Impact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Impact.swift; sourceTree = "<group>"; };
-		B75CB65D2B445EEC00CDF026 /* BikeStatApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikeStatApp.swift; path = ../../../../Desktop/BikeStat/BikeStat/BikeStat/BikeStatApp.swift; sourceTree = "<group>"; };
 		B75CB65F2B445EEC00CDF026 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		B75CB6602B445EEC00CDF026 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B75CB6622B445EEC00CDF026 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B71F69CB2B5C83260041372C /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B71F69CC2B5C832E0041372C /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		B75555042B4AB3C0003B93E3 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +188,7 @@
 				B7E726382B598F6F00127692 /* Planning */,
 				B75CB6422B445EEC00CDF026 /* Ride */,
 				B7AA14012B52F7D8009616CD /* RideInfo */,
+				B71F69CB2B5C83260041372C /* History */,
 				B75555072B4AFC1A003B93E3 /* Settings */,
 			);
 			path = Modules;
@@ -347,7 +358,7 @@
 		B7D714C32B3B441A007FD89F /* BikeStat */ = {
 			isa = PBXGroup;
 			children = (
-				B75CB65D2B445EEC00CDF026 /* BikeStatApp.swift */,
+				B71F69C92B5C81DC0041372C /* BikeStatApp.swift */,
 				B75CB65E2B445EEC00CDF026 /* Common */,
 				B75CB6492B445EEC00CDF026 /* Service */,
 				B75CB62E2B445EEB00CDF026 /* Extension */,
@@ -446,16 +457,17 @@
 				B75CB6782B445EEC00CDF026 /* NetworkManager.swift in Sources */,
 				B75CB6772B445EEC00CDF026 /* LocationManager.swift in Sources */,
 				B75CB6792B445EEC00CDF026 /* NetworkDataModels.swift in Sources */,
+				B71F69CA2B5C81DC0041372C /* BikeStatApp.swift in Sources */,
 				B75CB6712B445EEC00CDF026 /* HomeViewModel.swift in Sources */,
 				B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */,
 				B75CB6822B445EEC00CDF026 /* Strings.swift in Sources */,
+				B71F69CD2B5C832E0041372C /* HistoryView.swift in Sources */,
 				B75CB6682B445EEC00CDF026 /* Date.swift in Sources */,
 				B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */,
 				B75CB6762B445EEC00CDF026 /* MainNavigationView.swift in Sources */,
 				B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */,
 				B75CB6692B445EEC00CDF026 /* View.swift in Sources */,
 				B75CB6862B445EEC00CDF026 /* Images.swift in Sources */,
-				B75CB6812B445EEC00CDF026 /* BikeStatApp.swift in Sources */,
 				B75CB67A2B445EEC00CDF026 /* NavigationManager.swift in Sources */,
 				B75CB6802B445EEC00CDF026 /* Impact.swift in Sources */,
 				B75CB67D2B445EEC00CDF026 /* Rides.xcdatamodeld in Sources */,

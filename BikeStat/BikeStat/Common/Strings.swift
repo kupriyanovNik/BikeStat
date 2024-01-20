@@ -24,5 +24,6 @@ enum Strings {
     enum Navigation {
         static let newRide = "NEW Ride"
         static let settings = "SETTINGS"
+        static let history = "HISTORY"
     }
 }

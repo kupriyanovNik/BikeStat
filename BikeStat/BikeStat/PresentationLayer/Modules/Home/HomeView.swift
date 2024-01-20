@@ -14,7 +14,6 @@ struct HomeView: View {
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var navigationManager: NavigationManager
 
-    @State private var selectedRide: RideInfoModel?
     @State private var isPlanRideCardVisible: Bool = true
 
     // MARK: - Body
@@ -46,16 +45,6 @@ struct HomeView: View {
         .onAppear {
             coreDataManager.fetchPlannedRides()
         }
-        .scaleEffect(selectedRide == nil ? 1 : 0.95)
-        .sheet(item: $selectedRide) { ride in
-            RideInfoView(ride: ride) {
-                withAnimation {
-                    coreDataManager.removeRide(ride: ride)
-                }
-            }
-            .presentationDetents([.fraction(0.4)])
-        }
-        .animation(.easeIn, value: selectedRide)
         .overlay {
             if homeViewModel.shouldShowRidePlanningView {
                 Color.black
@@ -155,9 +144,9 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    withAnimation {
-                        homeViewModel.shouldShowRidePlanningView.toggle()
-                    }
+                    navigationManager.path.append(
+                        Strings.Navigation.history
+                    )
                 } label: {
                     Text(Localizable.HomeView.goto)
                         .font(.title3)

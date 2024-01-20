@@ -50,6 +50,10 @@ struct MainNavigationView: View {
                 SettingsView(
                     settingsViewModel: settingsViewModel
                 )
+            } else if value == Strings.Navigation.history {
+                HistoryView(
+                    coreDataManager: coreDataManager
+                )
             }
         }
     }
