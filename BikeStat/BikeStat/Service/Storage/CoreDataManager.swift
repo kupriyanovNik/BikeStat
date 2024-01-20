@@ -10,11 +10,7 @@ class CoreDataManager: ObservableObject {
     // MARK: - Property Wrappers
 
     @Published var endedRides: [RideInfoModel] = []
-    @Published var plannedRides: [RideInfoModel] = [] {
-        didSet {
-            print(plannedRides.count)
-        }
-    }
+    @Published var plannedRides: [RideInfoModel] = []
 
     // MARK: - Private Properties 
 
@@ -25,6 +21,8 @@ class CoreDataManager: ObservableObject {
 
     init() {
         self.viewContext = PersistenceController.shared.viewContext
+        fetchEndedRides()
+        fetchPlannedRides()
     }
 
     // MARK: - Internal Functions

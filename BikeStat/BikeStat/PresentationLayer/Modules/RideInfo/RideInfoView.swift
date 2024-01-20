@@ -22,6 +22,16 @@ struct RideInfoView: View {
 
     private let localizable = Localizable.RideInfoView.self
 
+    private var pageTitle: String {
+        if let title = ride.title, title != "" {
+            return title
+        }
+
+        let rideDate = ride.rideDate ?? .now
+        let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
+        return rideDateString
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -55,7 +65,7 @@ struct RideInfoView: View {
                     100 * (3.6 * Double(speedInfo.max))
                 ) / 100
 
-                Text("\(localizable.ride) \(rideDateString)")
+                Text(pageTitle)
                     .font(.title)
                     .bold()
                     .hCenter()
