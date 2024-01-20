@@ -9,6 +9,7 @@ struct HomeView: View {
     // MARK: - Property Wrappers
 
     @ObservedObject var homeViewModel: HomeViewModel
+    @ObservedObject var rideViewModel: RideViewModel
     @ObservedObject var planningViewModel: PlanningViewModel
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
@@ -35,6 +36,12 @@ struct HomeView: View {
                 )  { ride in
                     plannedRideInfoCard(ride: ride)
                         .id(ride.objectID)
+                        .onTapGesture {
+                            navigationManager.path.append(
+                                Strings.Navigation.newRide
+                            )
+                            rideViewModel.currentRide = ride
+                        }
                 }
             }
             .padding(.horizontal)
@@ -253,6 +260,7 @@ struct HomeView: View {
 #Preview {
     HomeView(
         homeViewModel: .init(),
+        rideViewModel: .init(),
         planningViewModel: .init(),
         coreDataManager: .init(),
         networkManager: .init(),

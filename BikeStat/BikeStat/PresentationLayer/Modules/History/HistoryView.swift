@@ -27,9 +27,10 @@ struct HistoryView: View {
                         .id(ride.objectID)
                         .onTapGesture {
                             withAnimation {
-                                
+                                selectedRide = ride 
                             }
                         }
+                        .padding(.horizontal)
                 }
             }
         }

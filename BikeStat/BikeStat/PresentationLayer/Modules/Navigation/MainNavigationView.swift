@@ -23,6 +23,7 @@ struct MainNavigationView: View {
         NavigationStack(path: $navigationManager.path) {
             HomeView(
                 homeViewModel: homeViewModel,
+                rideViewModel: rideViewModel,
                 planningViewModel: planningViewModel,
                 coreDataManager: coreDataManager,
                 networkManager: networkManager,

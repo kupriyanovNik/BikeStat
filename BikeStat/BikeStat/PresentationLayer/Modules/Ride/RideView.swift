@@ -54,6 +54,9 @@ struct RideView: View {
         .overlay(alignment: .bottom, content: toggleRideButton)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
+        .onDisappear {
+            rideViewModel.currentRide = nil 
+        }
     }
 
     // MARK: - ViewBuilders 
@@ -282,30 +285,26 @@ struct RideView: View {
 
         networkManager.getWatchData()
 
-        delay(0.5) {
-            let pulse = networkManager.watchData?.data.pulse
-            
-//            coreDataManager.addRide(
-//                time: Int(rideViewModel.totalAccumulatedTime),
-//                date: rideViewModel.cyclingStartTime,
-//                distance: Int(locationManager.cyclingTotalDistance),
-//                estimatedComplexity: "хз не играл",
-//                realComplexity: "вообще хз не играл",
-//                pulse: .init(
-//                    min: pulse?.min ?? 0,
-//                    avg: pulse?.avg ?? 0,
-//                    max: pulse?.max ?? 0
-//                ),
-//                speed: .init(
-//                    //TODO: - вылет если cyclingSpeeds.count = 0
-//                    avg: avgSpeed,
-//                    max: maxSpeed
-//                )
-//            )
-            
-            rideViewModel.endRide()
-            locationManager.endRide()
+        if let currentRide = rideViewModel.currentRide {
+            coreDataManager.endRide(
+                ride: currentRide,
+                pulseData: .init(
+                    min: networkManager.watchData?.data.pulse.min ?? 0,
+                    avg: networkManager.watchData?.data.pulse.avg ?? 0,
+                    max: networkManager.watchData?.data.pulse.max ?? 0
+                ),
+                speedData: .init(
+                    avg: avgSpeed,
+                    max: maxSpeed
+                ),
+                realComplexity: "хз",
+                realDistance: Int(locationManager.cyclingTotalDistance),
+                realTime: Int(rideViewModel.totalAccumulatedTime)
+            )
         }
+
+        rideViewModel.endRide()
+        locationManager.endRide()
     }
 }
 

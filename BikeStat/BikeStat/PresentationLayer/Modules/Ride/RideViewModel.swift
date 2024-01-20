@@ -8,6 +8,7 @@ class RideViewModel: ObservableObject {
 
     // MARK: - Property Wrappers
 
+    @Published var currentRide: RideInfoModel?
     @Published var isRideStarted: Bool = false
     @Published var totalAccumulatedTime: TimeInterval = 0
     @Published var cyclingStartTime: Date = .now
