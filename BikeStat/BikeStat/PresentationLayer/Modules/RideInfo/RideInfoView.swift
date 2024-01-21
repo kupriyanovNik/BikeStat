@@ -65,34 +65,7 @@ struct RideInfoView: View {
                     100 * (3.6 * Double(speedInfo.max))
                 ) / 100
 
-                Text(pageTitle)
-                    .font(.title)
-                    .bold()
-                    .hCenter()
-                    .overlay {
-                        HStack {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: Images.back)
-                                    .rotationEffect(.degrees(-90))
-                            }
-
-                            Spacer()
-
-                            Button {
-                                dismiss()
-
-                                delay(0.5) {
-                                    deleteAction?()
-                                }
-                            } label: {
-                                Image(systemName: Images.trash)
-                            }
-                        }
-                        .padding(.horizontal)
-                    }
-                    .padding(.top)
+                headerView()
 
                 TabView(selection: $currentIndex) {
                     tabItemInfoView(
@@ -141,6 +114,36 @@ struct RideInfoView: View {
     }
 
     // MARK: - ViewBuilders
+
+    @ViewBuilder func headerView() -> some View {
+        HStack {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: Images.back)
+                    .rotationEffect(.degrees(-90))
+            }
+
+            Spacer()
+
+            Text(pageTitle)
+                .font(.title)
+                .bold()
+
+            Spacer()
+
+            Button {
+                dismiss()
+
+                delay(0.5) {
+                    deleteAction?()
+                }
+            } label: {
+                Image(systemName: Images.trash)
+            }
+        }
+        .padding([.horizontal, .top])
+    }
 
     @ViewBuilder func tabItemInfoView(
         title: String,

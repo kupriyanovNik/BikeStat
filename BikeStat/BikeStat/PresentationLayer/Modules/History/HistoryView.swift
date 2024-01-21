@@ -20,7 +20,7 @@ struct HistoryView: View {
         ScrollView {
             LazyVStack {
                 ForEach(
-                    coreDataManager.endedRides,
+                    coreDataManager.endedRides.reversed(),
                     id: \.objectID
                 ) { ride in
                     endedRideInfoCard(ride: ride)
@@ -49,7 +49,7 @@ struct HistoryView: View {
                     dismiss()
                 }
             }
-            .presentationDetents([.fraction(0.4)])
+            .presentationDetents([.fraction(0.45)])
         }
         .animation(.easeIn, value: selectedRide)
     }

@@ -168,7 +168,7 @@ struct PlanningView: View {
             coreDataManager.planRide(
                 title: planningViewModel.rideTitle,
                 rideDate: planningViewModel.rideDate,
-                estimatedTime: planningViewModel.estimatedTime,
+                estimatedTime: planningViewModel.estimatedTime * 60,
                 estimatedDistance: planningViewModel.estimatedDistance,
                 estimatedComplexity: "хз не играл"
             )
