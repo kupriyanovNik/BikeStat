@@ -3,6 +3,7 @@
 //
 
 import SwiftUI
+import Foundation
 import MapKit
 
 struct RideView: View {
@@ -36,6 +37,20 @@ struct RideView: View {
             ""
     }
 
+    private var distanceText: String {
+        let estimatedDistance = round(
+            100 * Double(rideViewModel.currentRide?.estimatedDistance ?? 0) / 1000
+        ) / 100
+
+        let currentDistance = round(
+            100 * locationManager.cyclingTotalDistance / 1000
+        ) / 100
+
+        let currentDistanceString = String(format: Strings.NumberFormats.forDistance, currentDistance)
+
+        return "\(localizable.distance): \(currentDistanceString)/\(estimatedDistance) км"
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -67,11 +82,6 @@ struct RideView: View {
         let currentSpeed = round(
             100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))
         ) / 100
-        let currentDistance = round(
-            100 * locationManager.cyclingTotalDistance / 1000
-        ) / 100
-
-        let currentDistanceString = String(format: Strings.NumberFormats.forDistance, currentDistance)
 
         ZStack(alignment: .top) {
             Pallete.accentColor
@@ -105,7 +115,8 @@ struct RideView: View {
                 if isRideStarted, vOffset == .zero {
                     Group {
                         Text("\(localizable.speed): \(Int(currentSpeed)) км/ч")
-                        Text("\(localizable.distance): \(currentDistanceString) км")
+
+                        Text(distanceText)
                     }
                     .font(.title2)
                     .bold()
@@ -186,6 +197,16 @@ struct RideView: View {
                         accumulatedTime: rideViewModel.totalAccumulatedTime
                     )
                 )
+
+                Text(
+                    "/ " +
+                    formatTimeString(
+                        accumulatedTime: TimeInterval(
+                            Int(rideViewModel.currentRide?.estimatedTime ?? 0)
+                        )
+                    )
+                )
+                .font(.callout)
             }
             .font(.title)
             .bold()
