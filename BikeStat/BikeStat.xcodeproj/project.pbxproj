@@ -40,6 +40,8 @@
 		B75CB6862B445EEC00CDF026 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6652B445EEC00CDF026 /* Images.swift */; };
 		B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6672B445EEC00CDF026 /* Localizable.swift */; };
 		B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82D82B5D60320044EDB3 /* TimeInterval.swift */; };
+		B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */; };
+		B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */; };
 		B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */; };
 		B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA14022B52F7E5009616CD /* RideInfoView.swift */; };
 		B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E726392B598F7D00127692 /* PlanningView.swift */; };
@@ -82,6 +84,8 @@
 		B75CB6652B445EEC00CDF026 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		B75CB6672B445EEC00CDF026 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		B77F82D82B5D60320044EDB3 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexityManager.swift; sourceTree = "<group>"; };
+		B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideComplexity.swift; sourceTree = "<group>"; };
 		B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningViewModel.swift; sourceTree = "<group>"; };
 		B7AA14022B52F7E5009616CD /* RideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInfoView.swift; sourceTree = "<group>"; };
 		B7D714C12B3B441A007FD89F /* BikeStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +230,7 @@
 		B75CB6492B445EEC00CDF026 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B77F82DA2B5D63840044EDB3 /* Complexity */,
 				B75CB64A2B445EEC00CDF026 /* Location */,
 				B75CB64C2B445EEC00CDF026 /* Network */,
 				B75CB6502B445EEC00CDF026 /* Navigation */,
@@ -332,6 +337,23 @@
 				B75CB6672B445EEC00CDF026 /* Localizable.swift */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		B77F82DA2B5D63840044EDB3 /* Complexity */ = {
+			isa = PBXGroup;
+			children = (
+				B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */,
+				B77F82DD2B5D64130044EDB3 /* Model */,
+			);
+			path = Complexity;
+			sourceTree = "<group>";
+		};
+		B77F82DD2B5D64130044EDB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B7AA14012B52F7D8009616CD /* RideInfo */ = {
@@ -458,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B75CB6782B445EEC00CDF026 /* NetworkManager.swift in Sources */,
+				B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */,
 				B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */,
 				B75CB6772B445EEC00CDF026 /* LocationManager.swift in Sources */,
 				B75CB6792B445EEC00CDF026 /* NetworkDataModels.swift in Sources */,
@@ -473,6 +496,7 @@
 				B75CB6692B445EEC00CDF026 /* View.swift in Sources */,
 				B75CB6862B445EEC00CDF026 /* Images.swift in Sources */,
 				B75CB67A2B445EEC00CDF026 /* NavigationManager.swift in Sources */,
+				B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */,
 				B75CB6802B445EEC00CDF026 /* Impact.swift in Sources */,
 				B75CB67D2B445EEC00CDF026 /* Rides.xcdatamodeld in Sources */,
 				B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */,
