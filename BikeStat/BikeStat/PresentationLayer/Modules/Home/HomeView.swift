@@ -20,54 +20,48 @@ struct HomeView: View {
     // MARK: - Body
 
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                planRideCard()
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVStack {
+                    VStack {
+                        planRideCard()
 
-                if !coreDataManager.endedRides.isEmpty {
-                    showHistoryCard()
-                }
-
-                Text(Localizable.HomeView.plannedRides)
-                    .font(.title2)
-                    .bold()
-                    .hLeading()
-
-                ForEach(
-                    coreDataManager.plannedRides.reversed(),
-                    id: \.objectID
-                )  { ride in
-                    plannedRideInfoCard(ride: ride)
-                        .id(ride.objectID)
-                        .onTapGesture {
-                            navigationManager.path.append(
-                                Strings.Navigation.newRide
-                            )
-                            rideViewModel.currentRide = ride
-                        }
-                }
-            }
-            .padding(.horizontal)
-        }
-        .scrollIndicators(.hidden)
-        .safeAreaInset(edge: .top, content: headerView)
-        .safeAreaInset(edge: .bottom, content: planRideButton)
-        .onAppear {
-            coreDataManager.fetchPlannedRides()
-        }
-        .overlay {
-            if homeViewModel.shouldShowRidePlanningView {
-                Color.black
-                    .opacity(0.15)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation {
-                            homeViewModel.shouldShowRidePlanningView = false
+                        if !coreDataManager.endedRides.isEmpty {
+                            showHistoryCard()
                         }
                     }
+                    .padding(.bottom, 5)
 
-                planningViewPopup()
-                    .transition(.move(edge: .top))
+                    Text(Localizable.HomeView.plannedRides)
+                        .font(.title2)
+                        .bold()
+                        .hLeading()
+                        .id("TOP")
+
+                    plannedRidesList()
+                }
+                .padding(.horizontal)
+            }
+            .scrollIndicators(.hidden)
+            .safeAreaInset(edge: .top, content: headerView)
+            .safeAreaInset(edge: .bottom, content: planRideButton)
+            .onAppear {
+                coreDataManager.fetchPlannedRides()
+            }
+            .overlay {
+                if homeViewModel.shouldShowRidePlanningView {
+                    Color.black
+                        .opacity(0.15)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            withAnimation {
+                                homeViewModel.shouldShowRidePlanningView = false
+                            }
+                        }
+
+                    planningViewPopup(proxy: proxy)
+                        .transition(.move(edge: .top))
+                }
             }
         }
     }
@@ -241,13 +235,15 @@ struct HomeView: View {
         }
     }
 
-    @ViewBuilder func planningViewPopup() -> some View {
+    @ViewBuilder func planningViewPopup(proxy: ScrollViewProxy) -> some View {
         VStack {
             PlanningView(
                 planningViewModel: planningViewModel,
                 homeViewModel: homeViewModel,
                 coreDataManager: coreDataManager
-            )
+            ) {
+                proxy.scrollTo("TOP", anchor: .top)
+            }
 
             Spacer()
         }
@@ -255,6 +251,22 @@ struct HomeView: View {
             .easeIn,
             value: homeViewModel.shouldShowRidePlanningView
         )
+    }
+
+    @ViewBuilder func plannedRidesList() -> some View {
+        ForEach(
+            coreDataManager.plannedRides.reversed(),
+            id: \.objectID
+        )  { ride in
+            plannedRideInfoCard(ride: ride)
+                .id(ride.objectID)
+                .onTapGesture {
+                    navigationManager.path.append(
+                        Strings.Navigation.newRide
+                    )
+                    rideViewModel.currentRide = ride
+                }
+        }
     }
 }
 

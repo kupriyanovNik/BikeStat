@@ -12,6 +12,10 @@ struct PlanningView: View {
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var coreDataManager: CoreDataManager
 
+    // MARK: - Internal Properties
+
+    var addingAction: (() -> ())? = nil
+
     // MARK: - Body
 
     var body: some View {
@@ -159,6 +163,8 @@ struct PlanningView: View {
 
     private func planRide() {
         withAnimation {
+            addingAction?()
+
             coreDataManager.planRide(
                 title: planningViewModel.rideTitle,
                 rideDate: planningViewModel.rideDate,
