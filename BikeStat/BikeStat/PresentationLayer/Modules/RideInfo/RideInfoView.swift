@@ -41,11 +41,17 @@ struct RideInfoView: View {
 
             VStack(spacing: 25) {
                 let rideDate = ride.rideDate ?? .now
-                let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
+
                 let rideDistance = String(
                     format: Strings.NumberFormats.forDistance,
                     Double(ride.realDistance) / 1000.0
+                ) + " / " + String(
+                    format: Strings.NumberFormats.forDistance,
+                    Double(ride.estimatedDistance) / 1000.0
                 ) + " км"
+
+                let rideTime = Int(ride.realTime).formatAsTime() + " / " + Int(ride.estimatedTime).formatAsTime()
+
                 let speedInfo = RideSpeedInfoModel(
                     avg: Int(ride.avgSpeed),
                     max: Int(ride.maxSpeed)
@@ -55,6 +61,7 @@ struct RideInfoView: View {
                     avg: Int(ride.avgPulse),
                     max: Int(ride.maxPulse)
                 )
+
                 let rideEstimatedComplexity = ride.estimatedComplexity ?? "no info"
                 let rideRealComplexity = ride.realComplexity ?? "no info"
 
@@ -72,7 +79,9 @@ struct RideInfoView: View {
                         title: localizable.mainInformation,
                         tag: 1,
                         texts: [
-                            "\(localizable.distance): \(rideDistance)"
+                            (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .shortened),
+                            "\(localizable.distance): \(rideDistance)",
+                            "Время в пути: \(rideTime)"
                         ]
                     )
 

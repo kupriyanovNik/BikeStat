@@ -31,7 +31,7 @@ enum Localizable {
     enum RideInfoView {
         static let ride = "Поездка"
         static let mainInformation = "Основная информация"
-        static let distance = "Пройденное расстояние"
+        static let distance = "Расстояние"
         static let speedInfo = "Информация о скорости"
         static let avgSpeed = "Средняя Скорость"
         static let maxSpeed = "Максимальная скорость"

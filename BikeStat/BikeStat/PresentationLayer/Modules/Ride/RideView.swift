@@ -192,21 +192,10 @@ struct RideView: View {
             VStack {
                 Text(toggleRideButtonText)
 
-                Text(
-                    formatTimeString(
-                        accumulatedTime: rideViewModel.totalAccumulatedTime
-                    )
-                )
+                Text(rideViewModel.totalAccumulatedTime.asString())
 
-                Text(
-                    "/ " +
-                    formatTimeString(
-                        accumulatedTime: TimeInterval(
-                            Int(rideViewModel.currentRide?.estimatedTime ?? 0)
-                        )
-                    )
-                )
-                .font(.callout)
+                Text("/ " + Int(rideViewModel.currentRide?.estimatedTime ?? 0).formatAsTime())
+                    .font(.callout)
             }
             .font(.title)
             .bold()
@@ -277,21 +266,6 @@ struct RideView: View {
             rideViewModel.startRide()
             locationManager.startRide()
         }
-    }
-
-    private func formatTimeString(accumulatedTime: TimeInterval) -> String {
-        let hours = Int(accumulatedTime) / 3600
-        let minutes = Int(accumulatedTime) / 60 % 60
-        let seconds = Int(accumulatedTime) % 60
-
-        if hours != 0 {
-            return String(
-                format: Strings.Time.withHours,
-                hours, minutes, seconds
-            )
-        }
-
-        return String(format: Strings.Time.withoutHours, minutes, seconds)
     }
 
     private func persistRide() {
