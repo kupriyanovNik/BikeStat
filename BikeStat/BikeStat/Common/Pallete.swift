@@ -10,12 +10,28 @@ enum Pallete {
 
     enum Complexity {
         static let easy = Color(hex: 0xAEDDA6)
-        static let normal = Color(hex: 0xFFF2AF)
+        static let medium = Color(hex: 0xFFF2AF)
         static let hard = Color(hex: 0xFD9898)
 
         static func getRandomColor() -> Color {
             return [
-                Complexity.easy, Complexity.normal, Complexity.hard
+                Complexity.easy, 
+                Complexity.medium,
+                Complexity.hard
+            ].randomElement() ?? .clear
+        }
+    }
+
+    enum EstimatedComplexity {
+        static let easy = Color(hex: 0xDCFFD6)
+        static let medium = Color(hex: 0xFFF6C9)
+        static let hard = Color(hex: 0xFFC2C2)
+
+        static func getRandomColor() -> Color {
+            return [
+                EstimatedComplexity.easy,
+                EstimatedComplexity.medium,
+                EstimatedComplexity.hard
             ].randomElement() ?? .clear
         }
     }
