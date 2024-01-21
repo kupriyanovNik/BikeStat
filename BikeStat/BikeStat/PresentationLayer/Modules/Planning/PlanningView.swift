@@ -170,7 +170,10 @@ struct PlanningView: View {
                 rideDate: planningViewModel.rideDate,
                 estimatedTime: planningViewModel.estimatedTime * 60,
                 estimatedDistance: planningViewModel.estimatedDistance,
-                estimatedComplexity: "хз не играл"
+                estimatedComplexity: ComplexityManager.shared.getEstimatedComplexity(
+                    estimatedDistance: planningViewModel.estimatedDistance,
+                    estimatedTime: planningViewModel.estimatedTime * 60
+                ).rawValue
             )
         }
 
