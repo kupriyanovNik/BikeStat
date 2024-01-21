@@ -74,12 +74,12 @@ struct HistoryView: View {
 
             Spacer()
         }
-        .foregroundStyle(.black)
+        .foregroundStyle(Pallete.textColor)
         .font(.largeTitle)
         .padding(.horizontal)
         .padding(.bottom, 4)
         .background {
-            Color.white
+            Pallete.headerBackground
                 .ignoresSafeArea()
         }
     }

@@ -8,6 +8,9 @@ enum Pallete {
     static let accentColor = Color(hex: 0x72A5D5)
     static let showHistoryColor = Color(hex: 0x406E9A)
 
+    static let textColor = Color.primary
+    static let headerBackground: some View = Color.primary.colorInvert()
+
     enum Complexity {
         static let easy = Color(hex: 0xAEDDA6)
         static let medium = Color(hex: 0xFFF2AF)
