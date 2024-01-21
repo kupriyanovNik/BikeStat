@@ -44,6 +44,10 @@ struct HistoryView: View {
                 withAnimation {
                     coreDataManager.removeRide(ride: ride)
                 }
+
+                if coreDataManager.endedRides.isEmpty {
+                    dismiss()
+                }
             }
             .presentationDetents([.fraction(0.4)])
         }
