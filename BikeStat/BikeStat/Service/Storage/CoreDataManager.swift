@@ -9,7 +9,8 @@ class CoreDataManager: ObservableObject {
 
     // MARK: - Property Wrappers
 
-    @Published var allRides: [RideInfoModel] = []
+    @Published var endedRides: [RideInfoModel] = []
+    @Published var plannedRides: [RideInfoModel] = []
 
     // MARK: - Private Properties 
 
@@ -20,46 +21,77 @@ class CoreDataManager: ObservableObject {
 
     init() {
         self.viewContext = PersistenceController.shared.viewContext
+        fetchEndedRides()
+        fetchPlannedRides()
     }
 
     // MARK: - Internal Functions
 
-    func fetchAllRides() {
+    func fetchEndedRides() {
         let request = NSFetchRequest<RideInfoModel>(entityName: self.rideEntityName)
         request.sortDescriptors = [.init(keyPath: \RideInfoModel.rideDate, ascending: true)]
+        let predicate = NSPredicate(format: "isEnded == %i", true)
+        request.predicate = predicate
 
         do {
-            self.allRides = try viewContext.fetch(request)
+            self.endedRides = try viewContext.fetch(request)
         } catch {
             print("DEBUG: \(error.localizedDescription)")
         }
     }
 
-    func addRide(
-        time: Int,
-        date: Date,
-        distance: Int,
-        estimatedComplexity: String,
-        realComplexity: String,
-        pulse: RidePulseInfoModel,
-        speed: RideSpeedInfoModel
+    func fetchPlannedRides() {
+        let request = NSFetchRequest<RideInfoModel>(entityName: self.rideEntityName)
+        request.sortDescriptors = [.init(keyPath: \RideInfoModel.rideDate, ascending: true)]
+        request.predicate = NSPredicate(format: "isEnded == %i", false)
+
+        do {
+            self.plannedRides = try viewContext.fetch(request)
+        } catch {
+            print("DEBUG: \(error.localizedDescription)")
+        }
+    }
+
+    func planRide(
+        title: String,
+        rideDate: Date,
+        estimatedTime: Int,
+        estimatedDistance: Int,
+        estimatedComplexity: String
     ) {
         let ride = RideInfoModel(context: viewContext)
-        ride.time = Int64(time)
-        ride.rideDate = date
-        ride.distance = Int64(distance)
+        ride.title = title
+        ride.isEnded = false
+        ride.rideDate = rideDate
+        ride.estimatedTime = Int64(estimatedTime)
+        ride.estimatedDistance = Int64(estimatedDistance)
         ride.estimatedComplexity = estimatedComplexity
-        ride.realComplexity = realComplexity
-
-        ride.minPulse = Int64(pulse.min)
-        ride.avgPulse = Int64(pulse.avg)
-        ride.maxPulse = Int64(pulse.max)
-
-        ride.avgSpeed = Int64(speed.avg)
-        ride.maxSpeed = Int64(speed.max)
 
         saveContext()
-        fetchAllRides()
+        fetchPlannedRides()
+    }
+
+    func endRide(
+        ride: RideInfoModel,
+        pulseData: RidePulseInfoModel,
+        speedData: RideSpeedInfoModel,
+        realComplexity: String,
+        realDistance: Int,
+        realTime: Int
+    ) {
+        ride.isEnded = true
+        ride.minPulse = Int64(pulseData.min)
+        ride.avgPulse = Int64(pulseData.avg)
+        ride.maxPulse = Int64(pulseData.max)
+        ride.avgSpeed = Int64(speedData.avg)
+        ride.maxSpeed = Int64(speedData.max)
+        ride.realComplexity = realComplexity
+        ride.realDistance = Int64(realDistance)
+        ride.realTime = Int64(realTime)
+
+        saveContext()
+        fetchPlannedRides()
+        fetchEndedRides()
     }
 
     func removeRide(
@@ -67,7 +99,7 @@ class CoreDataManager: ObservableObject {
     ) {
         viewContext.delete(ride)
         saveContext()
-        fetchAllRides()
+        fetchEndedRides()
     }
 
     // MARK: - Private Functions

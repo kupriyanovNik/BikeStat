@@ -3,6 +3,7 @@
 //
 
 import SwiftUI
+import Foundation
 import MapKit
 
 struct RideView: View {
@@ -36,6 +37,20 @@ struct RideView: View {
             ""
     }
 
+    private var distanceText: String {
+        let estimatedDistance = round(
+            100 * Double(rideViewModel.currentRide?.estimatedDistance ?? 0) / 1000
+        ) / 100
+
+        let currentDistance = round(
+            100 * locationManager.cyclingTotalDistance / 1000
+        ) / 100
+
+        let currentDistanceString = String(format: Strings.NumberFormats.forDistance, currentDistance)
+
+        return "\(localizable.distance): \(currentDistanceString)/\(estimatedDistance) км"
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -54,6 +69,9 @@ struct RideView: View {
         .overlay(alignment: .bottom, content: toggleRideButton)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
+        .onDisappear {
+            rideViewModel.currentRide = nil 
+        }
     }
 
     // MARK: - ViewBuilders 
@@ -64,11 +82,6 @@ struct RideView: View {
         let currentSpeed = round(
             100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))
         ) / 100
-        let currentDistance = round(
-            100 * locationManager.cyclingTotalDistance / 1000
-        ) / 100
-
-        let currentDistanceString = String(format: Strings.NumberFormats.forDistance, currentDistance)
 
         ZStack(alignment: .top) {
             Pallete.accentColor
@@ -102,7 +115,8 @@ struct RideView: View {
                 if isRideStarted, vOffset == .zero {
                     Group {
                         Text("\(localizable.speed): \(Int(currentSpeed)) км/ч")
-                        Text("\(localizable.distance): \(currentDistanceString) км")
+
+                        Text(distanceText)
                     }
                     .font(.title2)
                     .bold()
@@ -178,11 +192,10 @@ struct RideView: View {
             VStack {
                 Text(toggleRideButtonText)
 
-                Text(
-                    formatTimeString(
-                        accumulatedTime: rideViewModel.totalAccumulatedTime
-                    )
-                )
+                Text(rideViewModel.totalAccumulatedTime.asString())
+
+                Text("/ " + Int(rideViewModel.currentRide?.estimatedTime ?? 0).formatAsTime())
+                    .font(.callout)
             }
             .font(.title)
             .bold()
@@ -255,21 +268,6 @@ struct RideView: View {
         }
     }
 
-    private func formatTimeString(accumulatedTime: TimeInterval) -> String {
-        let hours = Int(accumulatedTime) / 3600
-        let minutes = Int(accumulatedTime) / 60 % 60
-        let seconds = Int(accumulatedTime) % 60
-
-        if hours != 0 {
-            return String(
-                format: Strings.Time.withHours,
-                hours, minutes, seconds
-            )
-        }
-
-        return String(format: Strings.Time.withoutHours, minutes, seconds)
-    }
-
     private func persistRide() {
         let cyclingSpeeds = locationManager.cyclingSpeeds.map { Int($0 ?? 0) }
         let avgSpeed = cyclingSpeeds.reduce(0, +) / cyclingSpeeds.count
@@ -282,30 +280,26 @@ struct RideView: View {
 
         networkManager.getWatchData()
 
-        delay(0.5) {
-            let pulse = networkManager.watchData?.data.pulse
-            
-            coreDataManager.addRide(
-                time: Int(rideViewModel.totalAccumulatedTime),
-                date: rideViewModel.cyclingStartTime,
-                distance: Int(locationManager.cyclingTotalDistance),
-                estimatedComplexity: "хз не играл",
-                realComplexity: "вообще хз не играл",
-                pulse: .init(
-                    min: pulse?.min ?? 0,
-                    avg: pulse?.avg ?? 0,
-                    max: pulse?.max ?? 0
+        if let currentRide = rideViewModel.currentRide {
+            coreDataManager.endRide(
+                ride: currentRide,
+                pulseData: .init(
+                    min: networkManager.watchData?.data.pulse.min ?? 0,
+                    avg: networkManager.watchData?.data.pulse.avg ?? 0,
+                    max: networkManager.watchData?.data.pulse.max ?? 0
                 ),
-                speed: .init(
-                    //TODO: - вылет если cyclingSpeeds.count = 0
+                speedData: .init(
                     avg: avgSpeed,
                     max: maxSpeed
-                )
+                ),
+                realComplexity: "хз",
+                realDistance: Int(locationManager.cyclingTotalDistance),
+                realTime: Int(rideViewModel.totalAccumulatedTime)
             )
-            
-            rideViewModel.endRide()
-            locationManager.endRide()
         }
+
+        rideViewModel.endRide()
+        locationManager.endRide()
     }
 }
 

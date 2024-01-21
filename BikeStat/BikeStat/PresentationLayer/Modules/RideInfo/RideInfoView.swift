@@ -22,6 +22,16 @@ struct RideInfoView: View {
 
     private let localizable = Localizable.RideInfoView.self
 
+    private var pageTitle: String {
+        if let title = ride.title, title != "" {
+            return title
+        }
+
+        let rideDate = ride.rideDate ?? .now
+        let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
+        return rideDateString
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -31,11 +41,17 @@ struct RideInfoView: View {
 
             VStack(spacing: 25) {
                 let rideDate = ride.rideDate ?? .now
-                let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
+
                 let rideDistance = String(
                     format: Strings.NumberFormats.forDistance,
-                    Double(ride.distance) / 1000.0
+                    Double(ride.realDistance) / 1000.0
+                ) + " / " + String(
+                    format: Strings.NumberFormats.forDistance,
+                    Double(ride.estimatedDistance) / 1000.0
                 ) + " км"
+
+                let rideTime = Int(ride.realTime).formatAsTime() + " / " + Int(ride.estimatedTime).formatAsTime()
+
                 let speedInfo = RideSpeedInfoModel(
                     avg: Int(ride.avgSpeed),
                     max: Int(ride.maxSpeed)
@@ -45,6 +61,7 @@ struct RideInfoView: View {
                     avg: Int(ride.avgPulse),
                     max: Int(ride.maxPulse)
                 )
+
                 let rideEstimatedComplexity = ride.estimatedComplexity ?? "no info"
                 let rideRealComplexity = ride.realComplexity ?? "no info"
 
@@ -55,41 +72,16 @@ struct RideInfoView: View {
                     100 * (3.6 * Double(speedInfo.max))
                 ) / 100
 
-                Text("\(localizable.ride) \(rideDateString)")
-                    .font(.title)
-                    .bold()
-                    .hCenter()
-                    .overlay {
-                        HStack {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: Images.back)
-                                    .rotationEffect(.degrees(-90))
-                            }
-
-                            Spacer()
-
-                            Button {
-                                dismiss()
-
-                                delay(0.5) {
-                                    deleteAction?()
-                                }
-                            } label: {
-                                Image(systemName: Images.trash)
-                            }
-                        }
-                        .padding(.horizontal)
-                    }
-                    .padding(.top)
+                headerView()
 
                 TabView(selection: $currentIndex) {
                     tabItemInfoView(
                         title: localizable.mainInformation,
                         tag: 1,
                         texts: [
-                            "\(localizable.distance): \(rideDistance)"
+                            (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .shortened),
+                            "\(localizable.distance): \(rideDistance)",
+                            "Время в пути: \(rideTime)"
                         ]
                     )
 
@@ -131,6 +123,36 @@ struct RideInfoView: View {
     }
 
     // MARK: - ViewBuilders
+
+    @ViewBuilder func headerView() -> some View {
+        HStack {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: Images.back)
+                    .rotationEffect(.degrees(-90))
+            }
+
+            Spacer()
+
+            Text(pageTitle)
+                .font(.title)
+                .bold()
+
+            Spacer()
+
+            Button {
+                dismiss()
+
+                delay(0.5) {
+                    deleteAction?()
+                }
+            } label: {
+                Image(systemName: Images.trash)
+            }
+        }
+        .padding([.horizontal, .top])
+    }
 
     @ViewBuilder func tabItemInfoView(
         title: String,

@@ -3,13 +3,17 @@
     <entity name="RideInfoModel" representedClassName="RideInfoModel" syncable="YES" codeGenerationType="class">
         <attribute name="avgPulse" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="avgSpeed" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="distance" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="estimatedComplexity" optional="YES" attributeType="String"/>
+        <attribute name="estimatedComplexity" attributeType="String"/>
+        <attribute name="estimatedDistance" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="estimatedTime" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isEnded" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="maxPulse" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="maxSpeed" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="minPulse" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="realComplexity" optional="YES" attributeType="String"/>
-        <attribute name="rideDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="realDistance" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="realTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rideDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
     </entity>
 </model>

@@ -18,10 +18,12 @@ enum Strings {
     enum NumberFormats {
         static let forTime = "%02d"
         static let forDistance = "%.2f"
+        static let forDistanceShort = "%.1f"
     }
 
     enum Navigation {
         static let newRide = "NEW Ride"
         static let settings = "SETTINGS"
+        static let history = "HISTORY"
     }
 }

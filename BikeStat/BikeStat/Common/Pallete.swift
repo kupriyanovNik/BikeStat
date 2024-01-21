@@ -6,6 +6,7 @@ import SwiftUI
 
 enum Pallete {
     static let accentColor = Color(hex: 0x72A5D5)
+    static let showHistoryColor = Color(hex: 0x406E9A)
 
     enum Complexity {
         static let easy = Color(hex: 0xAEDDA6)

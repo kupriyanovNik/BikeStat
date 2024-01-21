@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71F69CA2B5C81DC0041372C /* BikeStatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71F69C92B5C81DC0041372C /* BikeStatApp.swift */; };
+		B71F69CD2B5C832E0041372C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71F69CC2B5C832E0041372C /* HistoryView.swift */; };
 		B75555032B4AB2CE003B93E3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555022B4AB2CE003B93E3 /* Color.swift */; };
 		B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555082B4AFC3D003B93E3 /* SettingsView.swift */; };
 		B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755550A2B4AFC5E003B93E3 /* SettingsViewModel.swift */; };
@@ -32,12 +34,15 @@
 		B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6592B445EEC00CDF026 /* RideSpeedInfoModel.swift */; };
 		B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB65A2B445EEC00CDF026 /* RidePulseInfoModel.swift */; };
 		B75CB6802B445EEC00CDF026 /* Impact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB65C2B445EEC00CDF026 /* Impact.swift */; };
-		B75CB6812B445EEC00CDF026 /* BikeStatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB65D2B445EEC00CDF026 /* BikeStatApp.swift */; };
 		B75CB6822B445EEC00CDF026 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB65F2B445EEC00CDF026 /* Strings.swift */; };
 		B75CB6832B445EEC00CDF026 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75CB6602B445EEC00CDF026 /* Assets.xcassets */; };
 		B75CB6842B445EEC00CDF026 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75CB6622B445EEC00CDF026 /* Preview Assets.xcassets */; };
 		B75CB6862B445EEC00CDF026 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6652B445EEC00CDF026 /* Images.swift */; };
 		B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6672B445EEC00CDF026 /* Localizable.swift */; };
+		B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82D82B5D60320044EDB3 /* TimeInterval.swift */; };
+		B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */; };
+		B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */; };
+		B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */; };
 		B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA14022B52F7E5009616CD /* RideInfoView.swift */; };
 		B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E726392B598F7D00127692 /* PlanningView.swift */; };
 		B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263C2B59A4D800127692 /* RoundedShape.swift */; };
@@ -45,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B71F69C92B5C81DC0041372C /* BikeStatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStatApp.swift; sourceTree = "<group>"; };
+		B71F69CC2B5C832E0041372C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		B75555022B4AB2CE003B93E3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B75555052B4ABAB5003B93E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B75555082B4AFC3D003B93E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -71,12 +78,15 @@
 		B75CB6592B445EEC00CDF026 /* RideSpeedInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideSpeedInfoModel.swift; sourceTree = "<group>"; };
 		B75CB65A2B445EEC00CDF026 /* RidePulseInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RidePulseInfoModel.swift; sourceTree = "<group>"; };
 		B75CB65C2B445EEC00CDF026 /* Impact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Impact.swift; sourceTree = "<group>"; };
-		B75CB65D2B445EEC00CDF026 /* BikeStatApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikeStatApp.swift; path = ../../../../Desktop/BikeStat/BikeStat/BikeStat/BikeStatApp.swift; sourceTree = "<group>"; };
 		B75CB65F2B445EEC00CDF026 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		B75CB6602B445EEC00CDF026 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B75CB6622B445EEC00CDF026 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B75CB6652B445EEC00CDF026 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		B75CB6672B445EEC00CDF026 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		B77F82D82B5D60320044EDB3 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexityManager.swift; sourceTree = "<group>"; };
+		B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideComplexity.swift; sourceTree = "<group>"; };
+		B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningViewModel.swift; sourceTree = "<group>"; };
 		B7AA14022B52F7E5009616CD /* RideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInfoView.swift; sourceTree = "<group>"; };
 		B7D714C12B3B441A007FD89F /* BikeStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E726392B598F7D00127692 /* PlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningView.swift; sourceTree = "<group>"; };
@@ -95,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B71F69CB2B5C83260041372C /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B71F69CC2B5C832E0041372C /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		B75555042B4AB3C0003B93E3 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +147,7 @@
 				B75CB6322B445EEB00CDF026 /* Internal.swift */,
 				B75CB6332B445EEB00CDF026 /* UINavigationController.swift */,
 				B75555022B4AB2CE003B93E3 /* Color.swift */,
+				B77F82D82B5D60320044EDB3 /* TimeInterval.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -176,6 +195,7 @@
 				B7E726382B598F6F00127692 /* Planning */,
 				B75CB6422B445EEC00CDF026 /* Ride */,
 				B7AA14012B52F7D8009616CD /* RideInfo */,
+				B71F69CB2B5C83260041372C /* History */,
 				B75555072B4AFC1A003B93E3 /* Settings */,
 			);
 			path = Modules;
@@ -210,6 +230,7 @@
 		B75CB6492B445EEC00CDF026 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B77F82DA2B5D63840044EDB3 /* Complexity */,
 				B75CB64A2B445EEC00CDF026 /* Location */,
 				B75CB64C2B445EEC00CDF026 /* Network */,
 				B75CB6502B445EEC00CDF026 /* Navigation */,
@@ -318,6 +339,23 @@
 			path = Localizable;
 			sourceTree = "<group>";
 		};
+		B77F82DA2B5D63840044EDB3 /* Complexity */ = {
+			isa = PBXGroup;
+			children = (
+				B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */,
+				B77F82DD2B5D64130044EDB3 /* Model */,
+			);
+			path = Complexity;
+			sourceTree = "<group>";
+		};
+		B77F82DD2B5D64130044EDB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B7AA14012B52F7D8009616CD /* RideInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,7 +383,7 @@
 		B7D714C32B3B441A007FD89F /* BikeStat */ = {
 			isa = PBXGroup;
 			children = (
-				B75CB65D2B445EEC00CDF026 /* BikeStatApp.swift */,
+				B71F69C92B5C81DC0041372C /* BikeStatApp.swift */,
 				B75CB65E2B445EEC00CDF026 /* Common */,
 				B75CB6492B445EEC00CDF026 /* Service */,
 				B75CB62E2B445EEB00CDF026 /* Extension */,
@@ -358,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				B7E726392B598F7D00127692 /* PlanningView.swift */,
+				B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */,
 			);
 			path = Planning;
 			sourceTree = "<group>";
@@ -441,19 +480,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B75CB6782B445EEC00CDF026 /* NetworkManager.swift in Sources */,
+				B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */,
+				B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */,
 				B75CB6772B445EEC00CDF026 /* LocationManager.swift in Sources */,
 				B75CB6792B445EEC00CDF026 /* NetworkDataModels.swift in Sources */,
+				B71F69CA2B5C81DC0041372C /* BikeStatApp.swift in Sources */,
 				B75CB6712B445EEC00CDF026 /* HomeViewModel.swift in Sources */,
 				B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */,
 				B75CB6822B445EEC00CDF026 /* Strings.swift in Sources */,
+				B71F69CD2B5C832E0041372C /* HistoryView.swift in Sources */,
 				B75CB6682B445EEC00CDF026 /* Date.swift in Sources */,
 				B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */,
 				B75CB6762B445EEC00CDF026 /* MainNavigationView.swift in Sources */,
 				B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */,
 				B75CB6692B445EEC00CDF026 /* View.swift in Sources */,
 				B75CB6862B445EEC00CDF026 /* Images.swift in Sources */,
-				B75CB6812B445EEC00CDF026 /* BikeStatApp.swift in Sources */,
 				B75CB67A2B445EEC00CDF026 /* NavigationManager.swift in Sources */,
+				B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */,
 				B75CB6802B445EEC00CDF026 /* Impact.swift in Sources */,
 				B75CB67D2B445EEC00CDF026 /* Rides.xcdatamodeld in Sources */,
 				B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */,
@@ -465,6 +508,7 @@
 				B75CB6732B445EEC00CDF026 /* RideView.swift in Sources */,
 				B75CB66B2B445EEC00CDF026 /* Internal.swift in Sources */,
 				B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */,
+				B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */,
 				B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */,
 				B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */,
 				B75CB6742B445EEC00CDF026 /* RideViewModel.swift in Sources */,

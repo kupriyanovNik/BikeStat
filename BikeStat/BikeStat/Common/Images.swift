@@ -13,4 +13,5 @@ enum Images {
     static let trash = "trash"
     static let lock = "lock"
     static let opendedLock = "lock.open"
+    static let mountain = "mountain.2"
 }
