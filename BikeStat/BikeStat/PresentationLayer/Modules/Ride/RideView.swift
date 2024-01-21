@@ -21,7 +21,7 @@ struct RideView: View {
     @State private var shouldCenterMapOnLocation: Bool = true
     @State private var mapSpanDeltaValue: Double = 0.008
 
-    @State private var vOffset: CGFloat = .zero
+    @State private var shouldShowInfo: Bool = true
 
     // MARK: - Private Properties
 
@@ -78,6 +78,7 @@ struct RideView: View {
 
     @ViewBuilder func headerView() -> some View {
         let isRideStarted = rideViewModel.isRideStarted
+        let isExpanded = isRideStarted && shouldShowInfo
 
         let currentSpeed = round(
             100 * (3.6 * (locationManager.cyclingSpeed ?? .nan))
@@ -92,7 +93,14 @@ struct RideView: View {
                     )
                 )
                 .ignoresSafeArea()
-                .frame(height: (isRideStarted ? 120 : 75) - vOffset)
+                .frame(height: isExpanded ? 120 : 75)
+                .onTapGesture {
+                    if isRideStarted {
+                        withAnimation {
+                            shouldShowInfo.toggle()
+                        }
+                    }
+                }
 
             VStack {
                 Text(localizable.pageTitle)
@@ -112,7 +120,7 @@ struct RideView: View {
                         }
                     }
 
-                if isRideStarted, vOffset == .zero {
+                if isRideStarted, shouldShowInfo {
                     Group {
                         Text("\(localizable.speed): \(Int(currentSpeed)) км/ч")
 
@@ -123,32 +131,6 @@ struct RideView: View {
                 }
             }
             .foregroundStyle(.white)
-        }
-        .gesture(
-            DragGesture()
-                .onChanged { value in
-                    if isRideStarted {
-                        withAnimation {
-                            vOffset = -value.translation.height / 5
-                        }
-                    }
-                }
-                .onEnded { value in
-                    if isRideStarted {
-                        withAnimation {
-                            if abs(vOffset) > 20 {
-                                vOffset = 45
-                            } else {
-                                vOffset = .zero
-                            }
-                        }
-                    }
-                }
-        )
-        .onChange(of: isRideStarted) { _ in
-            withAnimation {
-                vOffset = .zero
-            }
         }
         .animation(.easeIn, value: isRideStarted)
     }
