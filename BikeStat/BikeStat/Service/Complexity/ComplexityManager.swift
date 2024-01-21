@@ -42,4 +42,15 @@ class ComplexityManager {
         default: return .unowned
         }
     }
+
+    func getRealComplexity(
+        avgPulse: Int
+    ) -> RideComplexity {
+        switch avgPulse {
+        case 0...130: return .easy
+        case 131...170: return .medium
+        case 171...: return .hard
+        default: return .unowned
+        }
+    }
 }

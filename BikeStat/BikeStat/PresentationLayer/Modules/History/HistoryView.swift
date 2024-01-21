@@ -101,9 +101,15 @@ struct HistoryView: View {
         .fontWeight(.semibold)
         .padding()
         .background {
-            Pallete.Complexity
-                .getRandomColor()
-                .cornerRadius(25)
+            Group {
+                switch ride.realComplexity {
+                case "Простой": Pallete.Complexity.easy
+                case "Средний": Pallete.Complexity.medium
+                case "Сложный": Pallete.Complexity.hard
+                default: Pallete.accentColor
+                }
+            }
+            .cornerRadius(25)
         }
     }
 }

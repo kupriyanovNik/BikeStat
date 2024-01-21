@@ -72,6 +72,10 @@ struct RideView: View {
         .onDisappear {
             rideViewModel.currentRide = nil 
         }
+        .onAppear {
+            // TODO: - getWatchData() when ride was ended
+            networkManager.getWatchData()
+        }
     }
 
     // MARK: - ViewBuilders 
@@ -244,6 +248,7 @@ struct RideView: View {
     private func toggleRideButtonAction() {
         if rideViewModel.isRideStarted {
             persistRide()
+            dismiss()
         } else {
             rideViewModel.startRide()
             locationManager.startRide()
@@ -260,21 +265,21 @@ struct RideView: View {
             }
         }
 
-        networkManager.getWatchData()
-
-        if let currentRide = rideViewModel.currentRide {
+        if let currentRide = rideViewModel.currentRide,
+           let pulseData = networkManager.watchData?.data {
             coreDataManager.endRide(
                 ride: currentRide,
                 pulseData: .init(
-                    min: networkManager.watchData?.data.pulse.min ?? 0,
-                    avg: networkManager.watchData?.data.pulse.avg ?? 0,
-                    max: networkManager.watchData?.data.pulse.max ?? 0
+                    min: pulseData.pulse.min,
+                    avg: pulseData.pulse.avg,
+                    max: pulseData.pulse.max
                 ),
                 speedData: .init(
                     avg: avgSpeed,
                     max: maxSpeed
                 ),
-                realComplexity: "хз",
+                realComplexity: ComplexityManager.shared
+                    .getRealComplexity(avgPulse: pulseData.pulse.avg).rawValue,
                 realDistance: Int(locationManager.cyclingTotalDistance),
                 realTime: Int(rideViewModel.totalAccumulatedTime)
             )
