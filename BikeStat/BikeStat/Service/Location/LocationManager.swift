@@ -17,8 +17,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     @Published var cyclingTotalDistance: CLLocationDistance = 0.0
 
-    @Published var lastLocation: CLLocation?
-
     // MARK: - Inits
 
     override init() {
