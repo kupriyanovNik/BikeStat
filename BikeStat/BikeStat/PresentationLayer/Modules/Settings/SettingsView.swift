@@ -51,12 +51,12 @@ struct SettingsView: View {
 
             Spacer()
         }
-        .foregroundStyle(.black)
+        .foregroundStyle(Pallete.textColor)
         .font(.largeTitle)
         .padding(.horizontal)
         .padding(.bottom, 4)
         .background {
-            Color.white
+            Pallete.headerBackground
                 .ignoresSafeArea()
         }
     }
@@ -80,7 +80,7 @@ struct SettingsView: View {
 
         HStack {
             Circle()
-                .stroke(.black, lineWidth: 2)
+                .stroke(Pallete.textColor, lineWidth: 2)
                 .frame(width: 30, height: 30)
                 .overlay {
                     if isSelected {

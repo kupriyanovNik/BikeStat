@@ -156,6 +156,8 @@ struct PlanningView: View {
     // MARK: - Private Functions
 
     private func dismiss() {
+        planningViewModel.reset()
+
         withAnimation {
             homeViewModel.shouldShowRidePlanningView = false
         }

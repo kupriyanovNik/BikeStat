@@ -17,15 +17,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     @Published var cyclingTotalDistance: CLLocationDistance = 0.0
 
-    @Published var lastLocation: CLLocation?
-
     // MARK: - Inits
 
     override init() {
         super.init()
 
         locationManager.delegate = self
-        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.distanceFilter = 5
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
@@ -46,7 +44,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         guard let location = locations.last else { return }
 
         cyclingLastLocation = location
-        cyclingSpeed = location.speed
+        cyclingSpeed = max(0, location.speed)
 
         cyclingLocations.append(cyclingLastLocation)
         cyclingSpeeds.append(cyclingSpeed)
