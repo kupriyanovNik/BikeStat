@@ -17,8 +17,8 @@ struct StatisticsView: View {
 
     // MARK: - Private Properties
 
-    private var last7Rides: [RideInfoModel] {
-        coreDataManager.endedRides.suffix(7)
+    private var last5Rides: [RideInfoModel] {
+        coreDataManager.endedRides.suffix(5)
     }
 
     private var shouldShowStatistics: Bool {
@@ -26,14 +26,14 @@ struct StatisticsView: View {
     }
 
     private var shouldShowRecomendations: Bool {
-        last7Rides.count > 7
+        last5Rides.count > 5
     }
 
     private var middleDistance: Double {
-        if last7Rides.count != 0 {
-            return last7Rides.map {
+        if last5Rides.count != 0 {
+            return last5Rides.map {
                 Double($0.realDistance)
-            }.reduce(0, +) / Double(last7Rides.count)
+            }.reduce(0, +) / Double(last5Rides.count)
         }
 
         return 0
@@ -54,7 +54,7 @@ struct StatisticsView: View {
             Chart {
                 ForEach(chartData) { dataPoint in
                     BarMark(
-                        x: .value("День", dataPoint.title),
+                        x: .value("Номер", "\(dataPoint.number)"),
                         y: .value("Расстояние", dataPoint.distance/1000)
                     )
                     .foregroundStyle(
@@ -69,15 +69,18 @@ struct StatisticsView: View {
                 RuleMark(
                     y: .value("Среднее", middleDistance / 1000.0)
                 )
-                .foregroundStyle(.black)
+                .foregroundStyle(.gray.gradient)
                 .annotation(
                     position: .bottom,
                     alignment: .bottomLeading
                 ) {
                     Text("Среднее: \(middleDistanceAnnotation) км")
+                        .font(.headline)
+                        .foregroundStyle(.gray.gradient)
                         .padding(.leading, 5)
                 }
             }
+            .chartLegend(.visible)
             .padding(.horizontal)
             .frame(height: 300)
             .aspectRatio(1, contentMode: .fit)
@@ -88,17 +91,20 @@ struct StatisticsView: View {
         .safeAreaInset(edge: .top, content: headerView)
         .onAppear {
             var data: [StatisticsChartData] = []
+            var currentNumber: Int = 1
 
-            for ride in last7Rides {
+            for ride in last5Rides {
                 data.append(
                     .init(
+                        number: currentNumber,
                         title: (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted),
                         distance: Int(ride.realDistance),
                         complexity: ride.realComplexity
                     )
                 )
+                currentNumber += 1
             }
-
+            
             self.chartData = data
         }
     }
