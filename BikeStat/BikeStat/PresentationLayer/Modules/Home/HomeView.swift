@@ -74,7 +74,7 @@ struct HomeView: View {
             Spacer()
 
             Button {
-                navigationManager.path.append(Strings.Navigation.settings)
+                navigationManager.path.append(.settings)
             } label: {
                 Image(systemName: Images.gearshape)
             }
@@ -146,9 +146,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    navigationManager.path.append(
-                        Strings.Navigation.history
-                    )
+                    navigationManager.path.append(.history)
                 } label: {
                     Text(Localizable.HomeView.goto)
                         .font(.title3)
@@ -263,9 +261,8 @@ struct HomeView: View {
             plannedRideInfoCard(ride: ride)
                 .id(ride.objectID)
                 .onTapGesture {
-                    navigationManager.path.append(
-                        Strings.Navigation.newRide
-                    )
+                    navigationManager.path.append(.newRide)
+                    
                     rideViewModel.currentRide = ride
                 }
         }
