@@ -5,7 +5,7 @@
 import SwiftUI
 
 enum Pallete {
-    static let accentColor = Color(hex: 0x72A5D5)
+    static let accentColor = Color(hex: 0xA3C1DD)
     static let showHistoryColor = Color(hex: 0x406E9A)
 
     static let textColor = Color.primary

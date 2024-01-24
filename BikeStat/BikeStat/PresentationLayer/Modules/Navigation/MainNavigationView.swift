@@ -59,7 +59,9 @@ struct MainNavigationView: View {
                     coreDataManager: coreDataManager
                 )
             case .statistics:
-                StatisticsView()
+                StatisticsView(
+                    coreDataManager: coreDataManager
+                )
             }
         }
     }

@@ -6,6 +6,10 @@ import SwiftUI
 
 struct StatisticsView: View {
 
+    // MARK: - Property Wrappers
+
+    @ObservedObject var coreDataManager: CoreDataManager
+
     // MARK: - Body
 
     var body: some View {
@@ -16,5 +20,7 @@ struct StatisticsView: View {
 // MARK: - Preview
 
 #Preview {
-    StatisticsView()
+    StatisticsView(
+        coreDataManager: .init()
+    )
 }
