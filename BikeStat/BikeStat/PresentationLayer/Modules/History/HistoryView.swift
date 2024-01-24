@@ -80,15 +80,11 @@ struct HistoryView: View {
         .fontWeight(.semibold)
         .padding()
         .background {
-            Group {
-                switch ride.realComplexity {
-                case "Простой": Pallete.Complexity.easy
-                case "Средний": Pallete.Complexity.medium
-                case "Сложный": Pallete.Complexity.hard
-                default: Pallete.accentColor
-                }
-            }
-            .cornerRadius(25)
+            ComplexityManager.shared
+                .getColorByComplexity(
+                    complexity: ride.realComplexity
+                )
+                .cornerRadius(25)
         }
     }
 }

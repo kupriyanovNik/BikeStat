@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ComplexityManager {
 
@@ -51,6 +52,24 @@ class ComplexityManager {
         case 131...170: return .medium
         case 171...: return .hard
         default: return .unowned
+        }
+    }
+
+    func getColorByComplexity(complexity: String?) -> Color {
+        switch complexity {
+        case "Простой": Pallete.Complexity.easy
+        case "Средний": Pallete.Complexity.medium
+        case "Сложный": Pallete.Complexity.hard
+        default: Pallete.accentColor
+        }
+    }
+
+    func getColorByEstimatedComplexity(complexity: String?) -> Color {
+        switch complexity {
+        case "Простой": Pallete.EstimatedComplexity.easy
+        case "Средний": Pallete.EstimatedComplexity.medium
+        case "Сложный": Pallete.EstimatedComplexity.hard
+        default: Pallete.accentColor
         }
     }
 }

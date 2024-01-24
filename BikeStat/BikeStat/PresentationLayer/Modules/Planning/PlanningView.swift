@@ -45,6 +45,7 @@ struct PlanningView: View {
                 DatePicker(
                     "",
                     selection: $planningViewModel.rideDate,
+                    in: Date()..., 
                     displayedComponents: .hourAndMinute
                 )
                 .labelsHidden()

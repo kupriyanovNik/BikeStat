@@ -253,15 +253,11 @@ struct HomeView: View {
         .fontWeight(.semibold)
         .padding()
         .background {
-            Group {
-                switch ride.estimatedComplexity {
-                case "Простой": Pallete.EstimatedComplexity.easy
-                case "Средний": Pallete.EstimatedComplexity.medium
-                case "Сложный": Pallete.EstimatedComplexity.hard
-                default: Pallete.accentColor
-                }
-            }
-            .cornerRadius(25)
+            ComplexityManager.shared
+                .getColorByEstimatedComplexity(
+                    complexity: ride.estimatedComplexity
+                )
+                .cornerRadius(25)
         }
     }
 
