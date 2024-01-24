@@ -51,6 +51,28 @@ struct StatisticsView: View {
 
     var body: some View {
         ScrollView {
+            chartView()
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .scrollIndicators(.hidden)
+        .safeAreaInset(edge: .top, content: headerView)
+        .onAppear {
+            getLast5Rides()
+        }
+    }
+
+    // MARK: - View Builders
+
+    @ViewBuilder func headerView() -> some View {
+        Text("Статистика")
+            .makeHeader {
+                dismiss()
+            }
+    }
+
+    @ViewBuilder func chartView() -> some View {
+        VStack {
             Chart {
                 ForEach(chartData) { dataPoint in
                     BarMark(
@@ -80,42 +102,35 @@ struct StatisticsView: View {
                         .padding(.leading, 5)
                 }
             }
-            .chartLegend(.visible)
-            .padding(.horizontal)
             .frame(height: 300)
             .aspectRatio(1, contentMode: .fit)
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .scrollIndicators(.hidden)
-        .safeAreaInset(edge: .top, content: headerView)
-        .onAppear {
-            var data: [StatisticsChartData] = []
-            var currentNumber: Int = 1
 
-            for ride in last5Rides {
-                data.append(
-                    .init(
-                        number: currentNumber,
-                        title: (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted),
-                        distance: Int(ride.realDistance),
-                        complexity: ride.realComplexity
-                    )
-                )
-                currentNumber += 1
-            }
-            
-            self.chartData = data
+            Text("График километража за последние 5 поездок ")
+                .font(.caption)
+                .multilineTextAlignment(.center)
         }
+        .padding(.horizontal)
     }
 
-    // MARK: - View Builders
+    // MARK: - Private Functions
 
-    @ViewBuilder func headerView() -> some View {
-        Text("Статистика")
-            .makeHeader {
-                dismiss()
-            }
+    private func getLast5Rides() {
+        var data: [StatisticsChartData] = []
+        var currentNumber: Int = 1
+
+        for ride in last5Rides {
+            data.append(
+                .init(
+                    number: currentNumber,
+                    title: (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted),
+                    distance: Int(ride.realDistance),
+                    complexity: ride.realComplexity
+                )
+            )
+            currentNumber += 1
+        }
+
+        self.chartData = data
     }
 }
 
