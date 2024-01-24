@@ -21,10 +21,6 @@ struct StatisticsView: View {
         coreDataManager.endedRides.suffix(5)
     }
 
-    private var shouldShowStatistics: Bool {
-        !coreDataManager.endedRides.isEmpty
-    }
-
     private var shouldShowRecomendations: Bool {
         last5Rides.count > 5
     }
@@ -52,6 +48,10 @@ struct StatisticsView: View {
     var body: some View {
         ScrollView {
             chartView()
+
+            if shouldShowRecomendations {
+                recomendationsView()
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
@@ -110,6 +110,14 @@ struct StatisticsView: View {
                 .multilineTextAlignment(.center)
         }
         .padding(.horizontal)
+    }
+
+    @ViewBuilder func recomendationsView() -> some View {
+        VStack {
+            Text("Рекомендиции по поездкам")
+                .fontWeight(.semibold)
+                .font(.title2)
+        }
     }
 
     // MARK: - Private Functions

@@ -74,31 +74,33 @@ struct HomeView: View {
 
             Spacer()
 
-            Button {
-                navigationManager.path.append(.statistics)
-            } label: {
-                Circle()
-                    .strokeBorder(Color.black, lineWidth: 2)
-                    .frame(width: 40, height: 40)
-                    .background {
-                        Circle()
-                            .fill(Pallete.accentColor)
-                    }
-                    .overlay {
-                        HStack(alignment: .bottom, spacing: 4) {
-                            Rectangle()
-                                .fill(Pallete.Complexity.hard)
-                                .frame(width: 4, height: 21)
-                            Rectangle()
-                                .fill(Pallete.Complexity.easy)
-                                .frame(width: 4, height: 15)
-                            Rectangle()
-                                .fill(Pallete.Complexity.medium)
-                                .frame(width: 4, height: 12)
+            if !coreDataManager.endedRides.isEmpty {
+                Button {
+                    navigationManager.path.append(.statistics)
+                } label: {
+                    Circle()
+                        .strokeBorder(Color.black, lineWidth: 2)
+                        .frame(width: 40, height: 40)
+                        .background {
+                            Circle()
+                                .fill(Pallete.accentColor)
                         }
-                    }
+                        .overlay {
+                            HStack(alignment: .bottom, spacing: 4) {
+                                Rectangle()
+                                    .fill(Pallete.Complexity.hard)
+                                    .frame(width: 4, height: 21)
+                                Rectangle()
+                                    .fill(Pallete.Complexity.easy)
+                                    .frame(width: 4, height: 15)
+                                Rectangle()
+                                    .fill(Pallete.Complexity.medium)
+                                    .frame(width: 4, height: 12)
+                            }
+                        }
+                }
+                .buttonStyle(MainButtonStyle())
             }
-            .buttonStyle(MainButtonStyle())
 
             Button {
                 navigationManager.path.append(.settings)
