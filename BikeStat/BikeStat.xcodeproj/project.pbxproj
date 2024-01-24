@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B71F69CA2B5C81DC0041372C /* BikeStatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71F69C92B5C81DC0041372C /* BikeStatApp.swift */; };
 		B71F69CD2B5C832E0041372C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71F69CC2B5C832E0041372C /* HistoryView.swift */; };
+		B72FD8152B617DF50039F6B2 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72FD8142B617DF50039F6B2 /* StatisticsView.swift */; };
 		B75555032B4AB2CE003B93E3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555022B4AB2CE003B93E3 /* Color.swift */; };
 		B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75555082B4AFC3D003B93E3 /* SettingsView.swift */; };
 		B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755550A2B4AFC5E003B93E3 /* SettingsViewModel.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		B71F69C92B5C81DC0041372C /* BikeStatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStatApp.swift; sourceTree = "<group>"; };
 		B71F69CC2B5C832E0041372C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		B72FD8142B617DF50039F6B2 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		B75555022B4AB2CE003B93E3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B75555052B4ABAB5003B93E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B75555082B4AFC3D003B93E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 				B71F69CC2B5C832E0041372C /* HistoryView.swift */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		B72FD8132B617DE00039F6B2 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				B72FD8142B617DF50039F6B2 /* StatisticsView.swift */,
+			);
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 		B75555042B4AB3C0003B93E3 /* Assets */ = {
@@ -196,6 +206,7 @@
 				B75CB6422B445EEC00CDF026 /* Ride */,
 				B7AA14012B52F7D8009616CD /* RideInfo */,
 				B71F69CB2B5C83260041372C /* History */,
+				B72FD8132B617DE00039F6B2 /* Statistics */,
 				B75555072B4AFC1A003B93E3 /* Settings */,
 			);
 			path = Modules;
@@ -510,6 +521,7 @@
 				B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */,
 				B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */,
 				B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */,
+				B72FD8152B617DF50039F6B2 /* StatisticsView.swift in Sources */,
 				B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */,
 				B75CB6742B445EEC00CDF026 /* RideViewModel.swift in Sources */,
 				B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */,

@@ -123,6 +123,10 @@ struct PlanningView: View {
                     .padding(.horizontal, 23)
                     .background(.white)
                     .cornerRadius(40)
+                    .shadow(
+                        color: .white.opacity(0.2),
+                        radius: 20
+                    )
             }
             .buttonStyle(MainButtonStyle())
             .hCenter()
@@ -173,6 +177,10 @@ struct PlanningView: View {
                                     currentComplexity.estimatedComplexityColor
                                 )
                         }
+                        .shadow(
+                            color: currentComplexity.estimatedComplexityColor,
+                            radius: 20
+                        )
                         .animation(.linear, value: currentComplexity)
                 }
                 .padding()
