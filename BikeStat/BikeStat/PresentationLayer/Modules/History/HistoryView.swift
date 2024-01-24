@@ -57,31 +57,10 @@ struct HistoryView: View {
     // MARK: - View Builders
 
     @ViewBuilder func headerView() -> some View {
-        HStack {
-            Button {
+        Text("История")
+            .makeHeader {
                 dismiss()
-            } label: {
-                Image(systemName: Images.back)
-                    .font(.title2)
-                    .bold()
             }
-
-            Spacer()
-
-            Text("История поездок")
-                .font(.largeTitle)
-                .bold()
-
-            Spacer()
-        }
-        .foregroundStyle(Pallete.textColor)
-        .font(.largeTitle)
-        .padding(.horizontal)
-        .padding(.bottom, 4)
-        .background {
-            Pallete.headerBackground
-                .ignoresSafeArea()
-        }
     }
 
     @ViewBuilder func endedRideInfoCard(ride: RideInfoModel) -> some View {

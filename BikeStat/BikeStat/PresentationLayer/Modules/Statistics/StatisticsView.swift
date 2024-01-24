@@ -25,14 +25,8 @@ struct StatisticsView: View {
 
     @ViewBuilder func headerView() -> some View {
         Text("Статистика")
-            .hCenter()
-            .overlay(alignment: .leading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: Images.back)
-                        .padding()
-                }
+            .makeHeader {
+                dismiss()
             }
     }
 }
