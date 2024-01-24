@@ -70,18 +70,46 @@ struct HomeView: View {
         HStack {
             Text(Localizable.HomeView.pageTitle)
                 .bold()
+                .font(.largeTitle)
 
             Spacer()
+
+            Button {
+                navigationManager.path.append(.statistics)
+            } label: {
+                Circle()
+                    .strokeBorder(Color.black, lineWidth: 2)
+                    .frame(width: 40, height: 40)
+                    .background {
+                        Circle()
+                            .fill(Pallete.accentColor)
+                    }
+                    .overlay {
+                        HStack(alignment: .bottom, spacing: 4) {
+                            Rectangle()
+                                .fill(Pallete.Complexity.hard)
+                                .frame(width: 4, height: 21)
+                            Rectangle()
+                                .fill(Pallete.Complexity.easy)
+                                .frame(width: 4, height: 15)
+                            Rectangle()
+                                .fill(Pallete.Complexity.medium)
+                                .frame(width: 4, height: 12)
+                        }
+                    }
+            }
+            .buttonStyle(MainButtonStyle())
 
             Button {
                 navigationManager.path.append(.settings)
             } label: {
                 Image(systemName: Images.gearshape)
+                    .resizable()
+                    .frame(width: 35, height: 35)
             }
             .buttonStyle(MainButtonStyle())
         }
         .foregroundStyle(Pallete.textColor)
-        .font(.largeTitle)
         .padding(.horizontal)
         .padding(.bottom, 4)
         .background {

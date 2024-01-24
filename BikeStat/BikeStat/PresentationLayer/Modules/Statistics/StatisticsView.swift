@@ -36,6 +36,8 @@ struct StatisticsView: View {
                 Text("no")
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
     }
