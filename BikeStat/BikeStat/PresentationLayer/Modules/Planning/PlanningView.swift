@@ -16,6 +16,17 @@ struct PlanningView: View {
 
     var addingAction: (() -> ())? = nil
 
+    // MARK: - Private Properties
+
+    private let complexityManager = ComplexityManager.shared
+
+    private var currentComplexity: RideComplexity {
+        complexityManager.getEstimatedComplexity(
+            estimatedDistance: planningViewModel.estimatedDistance,
+            estimatedTime: planningViewModel.estimatedTime * 60
+        )
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -141,15 +152,30 @@ struct PlanningView: View {
             .font(.largeTitle)
             .bold()
             .hCenter()
-            .overlay(alignment: .leading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: Images.back)
-                        .font(.title2)
-                        .bold()
-                        .padding()
+            .overlay(alignment: .top) {
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: Images.back)
+                            .font(.title2)
+                            .bold()
+                    }
+
+                    Spacer()
+
+                    Circle()
+                        .strokeBorder(Color.black, lineWidth: 2)
+                        .frame(width: 30, height: 30)
+                        .background {
+                            Circle()
+                                .fill(
+                                    currentComplexity.estimatedComplexityColor
+                                )
+                        }
+                        .animation(.linear, value: currentComplexity)
                 }
+                .padding()
             }
     }
 
