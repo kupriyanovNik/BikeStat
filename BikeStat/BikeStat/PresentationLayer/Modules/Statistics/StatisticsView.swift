@@ -12,12 +12,31 @@ struct StatisticsView: View {
 
     @ObservedObject var coreDataManager: CoreDataManager
 
+    // MARK: - Private Properties
+
+    private var last7Rides: [RideInfoModel] {
+        coreDataManager.endedRides.suffix(7)
+    }
+
+    private var shouldShowStatistics: Bool {
+        !coreDataManager.endedRides.isEmpty
+    }
+
+    private var shouldShowRecomendations: Bool {
+        last7Rides.count > 7
+    }
+
     // MARK: - Body
 
     var body: some View {
-        VStack {
-            Spacer()
+        ScrollView {
+            if shouldShowStatistics {
+                Text("yes")
+            } else {
+                Text("no")
+            }
         }
+        .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
     }
 
