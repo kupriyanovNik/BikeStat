@@ -169,6 +169,14 @@ struct StatisticsView: View {
                         .cornerRadius(5)
                 }
             }
+
+            (
+                Text("Рекомендованная сложность следующего маршрута: ")
+                +
+                Text(recommeddedComplexity.rawValue)
+                    .bold()
+            )
+            .multilineTextAlignment(.center)
         }
     }
 
