@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct StatisticsChartData: Identifiable, Equatable {
+struct StatisticsChartDataModel: Identifiable, Equatable {
     let id = UUID()
     var number: Int
     var title: String

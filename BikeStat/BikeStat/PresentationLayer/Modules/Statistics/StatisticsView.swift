@@ -13,7 +13,7 @@ struct StatisticsView: View {
 
     @ObservedObject var coreDataManager: CoreDataManager
 
-    @State private var chartData: [StatisticsChartData] = []
+    @State private var chartData: [StatisticsChartDataModel] = []
 
     // MARK: - Private Properties
 
@@ -36,9 +36,11 @@ struct StatisticsView: View {
     }
 
     private var middleDistanceAnnotation: String {
-        let roundedMiddleDistance = round(
-            10 * (middleDistance)
-        ) / 10
+        let roundedMiddleDistance = round (
+            round(
+               100 * (middleDistance)
+           ) / 1000
+        ) / 100
 
         return "\(roundedMiddleDistance)"
     }
@@ -123,7 +125,7 @@ struct StatisticsView: View {
     // MARK: - Private Functions
 
     private func getLast5Rides() {
-        var data: [StatisticsChartData] = []
+        var data: [StatisticsChartDataModel] = []
         var currentNumber: Int = 1
 
         for ride in last5Rides {

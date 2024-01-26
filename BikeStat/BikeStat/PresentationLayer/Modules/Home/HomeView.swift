@@ -31,11 +31,12 @@ struct HomeView: View {
                 }
                 .padding(.bottom, 5)
 
-                Text(Localizable.HomeView.plannedRides)
-                    .font(.title2)
-                    .bold()
-                    .hLeading()
-                    .id("TOP")
+                if !coreDataManager.plannedRides.isEmpty {
+                    Text(Localizable.HomeView.plannedRides)
+                        .font(.title2)
+                        .bold()
+                        .hLeading()
+                }
 
                 plannedRidesList()
             }
