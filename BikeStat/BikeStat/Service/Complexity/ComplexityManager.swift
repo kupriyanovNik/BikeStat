@@ -21,38 +21,19 @@ class ComplexityManager {
         estimatedDistance: Int,
         estimatedTime: Int
     ) -> RideComplexity {
-        let avgSpeed = estimatedDistance / estimatedTime
-
-        switch avgSpeed {
-        case 0...5: return .easy
-        case 6...15: return .medium
-        case 16...: return .hard
-        default: return .unowned
-        }
+        prepareEstimatedComplexity(for: estimatedDistance / estimatedTime)
     }
 
     func getRealComplexity(
         pulse: RidePulseInfoModel
     ) -> RideComplexity {
-        let avgPulse = pulse.avg
-
-        switch avgPulse {
-        case 0...130: return .easy
-        case 131...170: return .medium
-        case 171...: return .hard
-        default: return .unowned
-        }
+        prepareRealComplexity(for: pulse.avg)
     }
 
     func getRealComplexity(
         avgPulse: Int
     ) -> RideComplexity {
-        switch avgPulse {
-        case 0...130: return .easy
-        case 131...170: return .medium
-        case 171...: return .hard
-        default: return .unowned
-        }
+        prepareRealComplexity(for: avgPulse)
     }
 
     func getColorByComplexity(complexity: String?) -> Color {
@@ -70,6 +51,26 @@ class ComplexityManager {
         case "Средний": Pallete.EstimatedComplexity.medium
         case "Сложный": Pallete.EstimatedComplexity.hard
         default: Pallete.accentColor
+        }
+    }
+
+    // MARK: - Private Functions
+
+    private func prepareRealComplexity(for pulse: Int) -> RideComplexity {
+        switch pulse {
+        case 0...100: .easy
+        case 101...145: .medium
+        case 146...: .hard
+        default: .unowned
+        }
+    }
+
+    private func prepareEstimatedComplexity(for speed: Int) -> RideComplexity {
+        switch speed {
+        case 0...3: return .easy
+        case 4...10: return .medium
+        case 11...: return .hard
+        default: return .unowned
         }
     }
 }
