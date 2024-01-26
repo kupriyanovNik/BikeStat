@@ -17,7 +17,7 @@ final class Requests {
 
         let path: String = "/api/watch"
         let headers: HTTPHeader? = [
-            HTTPHeaderField.apiKey.rawValue: Strings.Network.apiKey
+            HTTPHeaderField.xAccessTokens.rawValue: Strings.Network.apiKey
         ]
     }
 }

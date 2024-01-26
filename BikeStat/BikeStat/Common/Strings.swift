@@ -6,7 +6,7 @@ import Foundation
 
 enum Strings {
     enum Network {
-        static let apiUrl = "https://dt.miet.ru/ppo_it/"
+        static let apiUrl = "https://dt.miet.ru/ppo_it"
         static let apiKey = "az4fvf7nzi1XPIsYiMEu"
     }
 

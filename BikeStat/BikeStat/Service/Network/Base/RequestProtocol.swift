@@ -66,4 +66,5 @@ enum HTTPHeaderField: String {
     case acceptLanguage = "Accept-Language"
     case userAgent = "User-Agent"
     case apiKey = "x-api-key"
+    case xAccessTokens = "x-access-tokens"
 }
