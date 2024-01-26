@@ -42,6 +42,15 @@
 		B75CB6842B445EEC00CDF026 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75CB6622B445EEC00CDF026 /* Preview Assets.xcassets */; };
 		B75CB6862B445EEC00CDF026 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6652B445EEC00CDF026 /* Images.swift */; };
 		B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6672B445EEC00CDF026 /* Localizable.swift */; };
+		B76B09682B643AB200803125 /* SessionDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09622B643AB200803125 /* SessionDispatch.swift */; };
+		B76B09692B643AB200803125 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09632B643AB200803125 /* ApiError.swift */; };
+		B76B096A2B643AB200803125 /* ApiMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09642B643AB200803125 /* ApiMethods.swift */; };
+		B76B096B2B643AB200803125 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09652B643AB200803125 /* DataProvider.swift */; };
+		B76B096C2B643AB200803125 /* RequestImplimentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09662B643AB200803125 /* RequestImplimentation.swift */; };
+		B76B096D2B643AB200803125 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09672B643AB200803125 /* RequestProtocol.swift */; };
+		B76B09752B643F0400803125 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09742B643F0400803125 /* NetworkManagerTests.swift */; };
+		B76B097C2B6440B900803125 /* LocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B097B2B6440B900803125 /* LocationManagerTests.swift */; };
+		B76B097E2B64430B00803125 /* ComplexityManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B097D2B64430B00803125 /* ComplexityManagerTests.swift */; };
 		B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82D82B5D60320044EDB3 /* TimeInterval.swift */; };
 		B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */; };
 		B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */; };
@@ -51,6 +60,16 @@
 		B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263C2B59A4D800127692 /* RoundedShape.swift */; };
 		B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263E2B59AFA500127692 /* Pallete.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B76B09762B643F0400803125 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7D714B92B3B441A007FD89F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7D714C02B3B441A007FD89F;
+			remoteInfo = BikeStat;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B71F69C92B5C81DC0041372C /* BikeStatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStatApp.swift; sourceTree = "<group>"; };
@@ -89,6 +108,16 @@
 		B75CB6622B445EEC00CDF026 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B75CB6652B445EEC00CDF026 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		B75CB6672B445EEC00CDF026 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		B76B09622B643AB200803125 /* SessionDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDispatch.swift; sourceTree = "<group>"; };
+		B76B09632B643AB200803125 /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		B76B09642B643AB200803125 /* ApiMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiMethods.swift; sourceTree = "<group>"; };
+		B76B09652B643AB200803125 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		B76B09662B643AB200803125 /* RequestImplimentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestImplimentation.swift; sourceTree = "<group>"; };
+		B76B09672B643AB200803125 /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
+		B76B09722B643F0400803125 /* BikeStatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeStatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B76B09742B643F0400803125 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		B76B097B2B6440B900803125 /* LocationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTests.swift; sourceTree = "<group>"; };
+		B76B097D2B64430B00803125 /* ComplexityManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexityManagerTests.swift; sourceTree = "<group>"; };
 		B77F82D82B5D60320044EDB3 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexityManager.swift; sourceTree = "<group>"; };
 		B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideComplexity.swift; sourceTree = "<group>"; };
@@ -101,6 +130,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B76B096F2B643F0400803125 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7D714BE2B3B441A007FD89F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -269,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				B75CB64D2B445EEC00CDF026 /* NetworkManager.swift */,
+				B76B09612B643AB200803125 /* Base */,
 				B75CB64E2B445EEC00CDF026 /* Model */,
 			);
 			path = Network;
@@ -356,6 +393,29 @@
 			path = Localizable;
 			sourceTree = "<group>";
 		};
+		B76B09612B643AB200803125 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B76B09622B643AB200803125 /* SessionDispatch.swift */,
+				B76B09632B643AB200803125 /* ApiError.swift */,
+				B76B09642B643AB200803125 /* ApiMethods.swift */,
+				B76B09652B643AB200803125 /* DataProvider.swift */,
+				B76B09662B643AB200803125 /* RequestImplimentation.swift */,
+				B76B09672B643AB200803125 /* RequestProtocol.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B76B09732B643F0400803125 /* BikeStatTests */ = {
+			isa = PBXGroup;
+			children = (
+				B76B09742B643F0400803125 /* NetworkManagerTests.swift */,
+				B76B097B2B6440B900803125 /* LocationManagerTests.swift */,
+				B76B097D2B64430B00803125 /* ComplexityManagerTests.swift */,
+			);
+			path = BikeStatTests;
+			sourceTree = "<group>";
+		};
 		B77F82DA2B5D63840044EDB3 /* Complexity */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				B7D714C32B3B441A007FD89F /* BikeStat */,
+				B76B09732B643F0400803125 /* BikeStatTests */,
 				B7D714C22B3B441A007FD89F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -393,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				B7D714C12B3B441A007FD89F /* BikeStat.app */,
+				B76B09722B643F0400803125 /* BikeStatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,6 +491,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B76B09712B643F0400803125 /* BikeStatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B76B09782B643F0400803125 /* Build configuration list for PBXNativeTarget "BikeStatTests" */;
+			buildPhases = (
+				B76B096E2B643F0400803125 /* Sources */,
+				B76B096F2B643F0400803125 /* Frameworks */,
+				B76B09702B643F0400803125 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B76B09772B643F0400803125 /* PBXTargetDependency */,
+			);
+			name = BikeStatTests;
+			productName = BikeStatTests;
+			productReference = B76B09722B643F0400803125 /* BikeStatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B7D714C02B3B441A007FD89F /* BikeStat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7D714CF2B3B441B007FD89F /* Build configuration list for PBXNativeTarget "BikeStat" */;
@@ -456,6 +536,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					B76B09712B643F0400803125 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = B7D714C02B3B441A007FD89F;
+					};
 					B7D714C02B3B441A007FD89F = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -475,11 +559,19 @@
 			projectRoot = "";
 			targets = (
 				B7D714C02B3B441A007FD89F /* BikeStat */,
+				B76B09712B643F0400803125 /* BikeStatTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B76B09702B643F0400803125 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7D714BF2B3B441A007FD89F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,15 +584,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B76B096E2B643F0400803125 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B76B097E2B64430B00803125 /* ComplexityManagerTests.swift in Sources */,
+				B76B097C2B6440B900803125 /* LocationManagerTests.swift in Sources */,
+				B76B09752B643F0400803125 /* NetworkManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7D714BD2B3B441A007FD89F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B75CB6782B445EEC00CDF026 /* NetworkManager.swift in Sources */,
 				B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */,
+				B76B09682B643AB200803125 /* SessionDispatch.swift in Sources */,
 				B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */,
 				B75CB6772B445EEC00CDF026 /* LocationManager.swift in Sources */,
+				B76B096A2B643AB200803125 /* ApiMethods.swift in Sources */,
 				B75CB6792B445EEC00CDF026 /* NetworkDataModels.swift in Sources */,
+				B76B096C2B643AB200803125 /* RequestImplimentation.swift in Sources */,
 				B71F69CA2B5C81DC0041372C /* BikeStatApp.swift in Sources */,
 				B75CB6712B445EEC00CDF026 /* HomeViewModel.swift in Sources */,
 				B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */,
@@ -521,6 +626,7 @@
 				B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */,
 				B75CB67C2B445EEC00CDF026 /* Persistence.swift in Sources */,
 				B75CB66C2B445EEC00CDF026 /* UINavigationController.swift in Sources */,
+				B76B09692B643AB200803125 /* ApiError.swift in Sources */,
 				B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */,
 				B75CB67B2B445EEC00CDF026 /* CoreDataManager.swift in Sources */,
 				B75555032B4AB2CE003B93E3 /* Color.swift in Sources */,
@@ -530,11 +636,13 @@
 				B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */,
 				B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */,
 				B72FD8152B617DF50039F6B2 /* StatisticsView.swift in Sources */,
+				B76B096D2B643AB200803125 /* RequestProtocol.swift in Sources */,
 				B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */,
 				B75CB6742B445EEC00CDF026 /* RideViewModel.swift in Sources */,
 				B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */,
 				B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */,
 				B75CB6722B445EEC00CDF026 /* HomeView.swift in Sources */,
+				B76B096B2B643AB200803125 /* DataProvider.swift in Sources */,
 				B75CB6702B445EEC00CDF026 /* RepresentableMapView.swift in Sources */,
 				B75CB66D2B445EEC00CDF026 /* MainButtonStyle.swift in Sources */,
 			);
@@ -542,7 +650,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B76B09772B643F0400803125 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7D714C02B3B441A007FD89F /* BikeStat */;
+			targetProxy = B76B09762B643F0400803125 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		B76B09792B643F0400803125 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HDF545ZQ6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kupriyanov.BikeStatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BikeStat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BikeStat";
+			};
+			name = Debug;
+		};
+		B76B097A2B643F0400803125 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7HDF545ZQ6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kupriyanov.BikeStatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BikeStat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BikeStat";
+			};
+			name = Release;
+		};
 		B7D714CD2B3B441B007FD89F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -729,6 +881,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B76B09782B643F0400803125 /* Build configuration list for PBXNativeTarget "BikeStatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B76B09792B643F0400803125 /* Debug */,
+				B76B097A2B643F0400803125 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B7D714BC2B3B441A007FD89F /* Build configuration list for PBXProject "BikeStat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -212,15 +212,33 @@ struct RideView: View {
 
     @ViewBuilder func mapSpanControls() -> some View {
         VStack {
-            mapSpanControlButton(imageName: Images.plus) {
-                withAnimation {
-                    mapSpanDeltaValue = max(mapSpanDeltaValue - 0.008, 0.008)
+            if #available(iOS 17, *) {
+                mapSpanControlButton(imageName: Images.plus) {
+                    withAnimation {
+                        mapSpanDeltaValue = max(mapSpanDeltaValue - 0.008, 0.008)
+                    }
+                }
+                .buttonRepeatBehavior(.enabled)
+            } else {
+                mapSpanControlButton(imageName: Images.plus) {
+                    withAnimation {
+                        mapSpanDeltaValue = max(mapSpanDeltaValue - 0.008, 0.008)
+                    }
                 }
             }
 
-            mapSpanControlButton(imageName: Images.minus) {
-                withAnimation {
-                    mapSpanDeltaValue += 0.008
+            if #available(iOS 17, *) {
+                mapSpanControlButton(imageName: Images.minus) {
+                    withAnimation {
+                        mapSpanDeltaValue += 0.008
+                    }
+                }
+                .buttonRepeatBehavior(.enabled)
+            } else {
+                mapSpanControlButton(imageName: Images.minus) {
+                    withAnimation {
+                        mapSpanDeltaValue += 0.008
+                    }
                 }
             }
         }

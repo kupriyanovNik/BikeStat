@@ -13,7 +13,7 @@ struct PersistenceController {
     // MARK: - Inits
 
     init() {
-        container = NSPersistentContainer(name: "Rides")
+        container = .init(name: "Rides")
 
         container.loadPersistentStores { description, error in
             if let error  {
