@@ -35,14 +35,37 @@ struct StatisticsView: View {
         return 0
     }
 
-    private var middleDistanceAnnotation: String {
-        let roundedMiddleDistance = round (
-            round(
-               100 * (middleDistance)
-           ) / 1000
-        ) / 100
+    private var recommeddedComplexity: RideComplexity {
+        if !last5Rides.isEmpty {
+            let easyCount = getCountOfComplexity(for: .easy)
+            let mediumCount = getCountOfComplexity(for: .medium)
+            let hardCount = getCountOfComplexity(for: .hard)
 
-        return "\(roundedMiddleDistance)"
+            let maxCount = [easyCount, mediumCount, hardCount].max() ?? 0
+
+            let majorComplexity: RideComplexity = easyCount == maxCount ? .easy : mediumCount == maxCount ? .medium : .hard
+
+            if maxCount == last5Rides.count {
+                return maxCount == easyCount ? .easy : maxCount == mediumCount ? .medium : .hard
+            } else {
+                switch majorComplexity {
+                case .easy:
+                    return .medium
+                case .medium:
+                    return .hard
+                case .hard:
+                    return .hard
+                case .unowned:
+                    return .unowned 
+                }
+            }
+        }
+
+        return .unowned
+    }
+
+    private var middleDistanceAnnotation: String {
+        "\(round(round(100 * (middleDistance)) / 1000) / 100)"
     }
 
     // MARK: - Body
@@ -110,6 +133,8 @@ struct StatisticsView: View {
             Text("График километража за последние 5 поездок ")
                 .font(.caption)
                 .multilineTextAlignment(.center)
+
+            Text(recommeddedComplexity.rawValue)
         }
         .padding(.horizontal)
     }
@@ -141,6 +166,18 @@ struct StatisticsView: View {
         }
 
         self.chartData = data
+    }
+
+    private func getCountOfComplexity(for complexity: RideComplexity) -> Int {
+        var counter: Int = 0
+
+        for item in last5Rides {
+            if item.realComplexity == complexity.rawValue {
+                counter += 1
+            }
+        }
+
+        return counter
     }
 }
 
