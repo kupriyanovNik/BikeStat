@@ -41,6 +41,22 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         _ manager: CLLocationManager,
         didUpdateLocations locations: [CLLocation]
     ) {
+        handleLocationUpdate(for: locations)
+    }
+
+    func startRide() {
+        shouldCount = true
+        clearLocationArray()
+    }
+
+    func endRide() {
+        shouldCount = false
+        clearLocationArray()
+    }
+
+    // MARK: - Private Functions
+
+    private func handleLocationUpdate(for locations: [CLLocation]) {
         guard let location = locations.last else { return }
 
         cyclingLastLocation = location
@@ -57,18 +73,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             cyclingTotalDistance += newDistanceInMeters ?? 0.0
         }
     }
-
-    func startRide() {
-        shouldCount = true
-        clearLocationArray()
-    }
-
-    func endRide() {
-        shouldCount = false
-        clearLocationArray()
-    }
-
-    // MARK: - Private Functions
 
     private func clearLocationArray() {
         cyclingLocations.removeAll()

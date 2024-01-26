@@ -49,6 +49,7 @@
 		B76B096C2B643AB200803125 /* RequestImplimentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09662B643AB200803125 /* RequestImplimentation.swift */; };
 		B76B096D2B643AB200803125 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09672B643AB200803125 /* RequestProtocol.swift */; };
 		B76B09752B643F0400803125 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09742B643F0400803125 /* NetworkManagerTests.swift */; };
+		B76B097C2B6440B900803125 /* LocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B097B2B6440B900803125 /* LocationManagerTests.swift */; };
 		B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82D82B5D60320044EDB3 /* TimeInterval.swift */; };
 		B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */; };
 		B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */; };
@@ -114,6 +115,7 @@
 		B76B09672B643AB200803125 /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		B76B09722B643F0400803125 /* BikeStatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeStatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B76B09742B643F0400803125 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		B76B097B2B6440B900803125 /* LocationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTests.swift; sourceTree = "<group>"; };
 		B77F82D82B5D60320044EDB3 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexityManager.swift; sourceTree = "<group>"; };
 		B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideComplexity.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				B76B09742B643F0400803125 /* NetworkManagerTests.swift */,
+				B76B097B2B6440B900803125 /* LocationManagerTests.swift */,
 			);
 			path = BikeStatTests;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B76B097C2B6440B900803125 /* LocationManagerTests.swift in Sources */,
 				B76B09752B643F0400803125 /* NetworkManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
