@@ -11,3 +11,10 @@ struct StatisticsChartDataModel: Identifiable, Equatable {
     var distance: Int
     var complexity: String?
 }
+
+struct RecomendationsChartDataModel: Identifiable, Equatable {
+    let id = UUID()
+    var title: String
+    var count: Int
+    var complexity: String
+}

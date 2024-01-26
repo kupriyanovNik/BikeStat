@@ -13,7 +13,8 @@ struct StatisticsView: View {
 
     @ObservedObject var coreDataManager: CoreDataManager
 
-    @State private var chartData: [StatisticsChartDataModel] = []
+    @State private var last5RidesChartData: [StatisticsChartDataModel] = []
+    @State private var recomendationsChartData: [RecomendationsChartDataModel] = []
 
     // MARK: - Private Properties
 
@@ -22,7 +23,7 @@ struct StatisticsView: View {
     }
 
     private var shouldShowRecomendations: Bool {
-        last5Rides.count > 5
+        last5Rides.count >= 5
     }
 
     private var middleDistance: Double {
@@ -56,7 +57,7 @@ struct StatisticsView: View {
                 case .hard:
                     return .hard
                 case .unowned:
-                    return .unowned 
+                    return .unowned
                 }
             }
         }
@@ -83,7 +84,8 @@ struct StatisticsView: View {
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
         .onAppear {
-            getLast5Rides()
+            getLast5RidesChartData()
+            getRecomendationsChartData()
         }
     }
 
@@ -98,18 +100,21 @@ struct StatisticsView: View {
 
     @ViewBuilder func chartView() -> some View {
         VStack {
+            Text("График километража за последние 5 поездок")
+                .font(.caption)
+                .multilineTextAlignment(.center)
+
             Chart {
-                ForEach(chartData) { dataPoint in
+                ForEach(last5RidesChartData) { dataPoint in
                     BarMark(
                         x: .value("Номер", "\(dataPoint.number)"),
-                        y: .value("Расстояние", dataPoint.distance/1000)
+                        y: .value("Расстояние", (dataPoint.distance)/1000)
                     )
                     .foregroundStyle(
                         ComplexityManager.shared
                             .getColorByComplexity(
                                 complexity: dataPoint.complexity
                             )
-                            .gradient
                     )
                 }
 
@@ -129,12 +134,6 @@ struct StatisticsView: View {
             }
             .frame(height: 300)
             .aspectRatio(1, contentMode: .fit)
-
-            Text("График километража за последние 5 поездок ")
-                .font(.caption)
-                .multilineTextAlignment(.center)
-
-            Text(recommeddedComplexity.rawValue)
         }
         .padding(.horizontal)
     }
@@ -144,12 +143,46 @@ struct StatisticsView: View {
             Text("Рекомендиции по поездкам")
                 .fontWeight(.semibold)
                 .font(.title2)
+
+            if #available(iOS 17, *) {
+                Chart(recomendationsChartData, id: \.id) { item in
+                    SectorMark(
+                        angle: .value("key", item.count),
+                        innerRadius: .ratio(0.5),
+                        angularInset: 5
+                    )
+                    .cornerRadius(15)
+                    .foregroundStyle(
+                        ComplexityManager.shared
+                            .getColorByComplexity(
+                                complexity: item.complexity
+                            )
+                    )
+                }
+                .frame(width: 220, height: 220)
+                .aspectRatio(1, contentMode: .fit)
+                .chartLegend(position: .bottom, spacing: 20)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 35)
+                .background {
+                    Pallete.accentColor
+                        .cornerRadius(5)
+                }
+            }
+
+            (
+                Text("Рекомендованная сложность следующего маршрута: ")
+                +
+                Text(recommeddedComplexity.rawValue)
+                    .bold()
+            )
+            .multilineTextAlignment(.center)
         }
     }
 
     // MARK: - Private Functions
 
-    private func getLast5Rides() {
+    private func getLast5RidesChartData() {
         var data: [StatisticsChartDataModel] = []
         var currentNumber: Int = 1
 
@@ -165,7 +198,19 @@ struct StatisticsView: View {
             currentNumber += 1
         }
 
-        self.chartData = data
+        self.last5RidesChartData = data
+    }
+
+    private func getRecomendationsChartData() {
+        self.recomendationsChartData.append(
+            .init(title: "Простые", count: getCountOfComplexity(for: .easy), complexity: "Простой")
+        )
+        self.recomendationsChartData.append(
+            .init(title: "Средние", count: getCountOfComplexity(for: .medium), complexity: "Средний")
+        )
+        self.recomendationsChartData.append(
+            .init(title: "Сложные", count: getCountOfComplexity(for: .hard), complexity: "Сложный")
+        )
     }
 
     private func getCountOfComplexity(for complexity: RideComplexity) -> Int {
