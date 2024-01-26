@@ -42,6 +42,12 @@
 		B75CB6842B445EEC00CDF026 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75CB6622B445EEC00CDF026 /* Preview Assets.xcassets */; };
 		B75CB6862B445EEC00CDF026 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6652B445EEC00CDF026 /* Images.swift */; };
 		B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75CB6672B445EEC00CDF026 /* Localizable.swift */; };
+		B76B09682B643AB200803125 /* SessionDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09622B643AB200803125 /* SessionDispatch.swift */; };
+		B76B09692B643AB200803125 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09632B643AB200803125 /* ApiError.swift */; };
+		B76B096A2B643AB200803125 /* ApiMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09642B643AB200803125 /* ApiMethods.swift */; };
+		B76B096B2B643AB200803125 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09652B643AB200803125 /* DataProvider.swift */; };
+		B76B096C2B643AB200803125 /* RequestImplimentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09662B643AB200803125 /* RequestImplimentation.swift */; };
+		B76B096D2B643AB200803125 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B09672B643AB200803125 /* RequestProtocol.swift */; };
 		B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82D82B5D60320044EDB3 /* TimeInterval.swift */; };
 		B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */; };
 		B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */; };
@@ -89,6 +95,12 @@
 		B75CB6622B445EEC00CDF026 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B75CB6652B445EEC00CDF026 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		B75CB6672B445EEC00CDF026 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		B76B09622B643AB200803125 /* SessionDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDispatch.swift; sourceTree = "<group>"; };
+		B76B09632B643AB200803125 /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		B76B09642B643AB200803125 /* ApiMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiMethods.swift; sourceTree = "<group>"; };
+		B76B09652B643AB200803125 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		B76B09662B643AB200803125 /* RequestImplimentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestImplimentation.swift; sourceTree = "<group>"; };
+		B76B09672B643AB200803125 /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		B77F82D82B5D60320044EDB3 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexityManager.swift; sourceTree = "<group>"; };
 		B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideComplexity.swift; sourceTree = "<group>"; };
@@ -269,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				B75CB64D2B445EEC00CDF026 /* NetworkManager.swift */,
+				B76B09612B643AB200803125 /* Base */,
 				B75CB64E2B445EEC00CDF026 /* Model */,
 			);
 			path = Network;
@@ -354,6 +367,19 @@
 				B75CB6672B445EEC00CDF026 /* Localizable.swift */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		B76B09612B643AB200803125 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B76B09622B643AB200803125 /* SessionDispatch.swift */,
+				B76B09632B643AB200803125 /* ApiError.swift */,
+				B76B09642B643AB200803125 /* ApiMethods.swift */,
+				B76B09652B643AB200803125 /* DataProvider.swift */,
+				B76B09662B643AB200803125 /* RequestImplimentation.swift */,
+				B76B09672B643AB200803125 /* RequestProtocol.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		B77F82DA2B5D63840044EDB3 /* Complexity */ = {
@@ -498,9 +524,12 @@
 			files = (
 				B75CB6782B445EEC00CDF026 /* NetworkManager.swift in Sources */,
 				B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */,
+				B76B09682B643AB200803125 /* SessionDispatch.swift in Sources */,
 				B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */,
 				B75CB6772B445EEC00CDF026 /* LocationManager.swift in Sources */,
+				B76B096A2B643AB200803125 /* ApiMethods.swift in Sources */,
 				B75CB6792B445EEC00CDF026 /* NetworkDataModels.swift in Sources */,
+				B76B096C2B643AB200803125 /* RequestImplimentation.swift in Sources */,
 				B71F69CA2B5C81DC0041372C /* BikeStatApp.swift in Sources */,
 				B75CB6712B445EEC00CDF026 /* HomeViewModel.swift in Sources */,
 				B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */,
@@ -521,6 +550,7 @@
 				B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */,
 				B75CB67C2B445EEC00CDF026 /* Persistence.swift in Sources */,
 				B75CB66C2B445EEC00CDF026 /* UINavigationController.swift in Sources */,
+				B76B09692B643AB200803125 /* ApiError.swift in Sources */,
 				B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */,
 				B75CB67B2B445EEC00CDF026 /* CoreDataManager.swift in Sources */,
 				B75555032B4AB2CE003B93E3 /* Color.swift in Sources */,
@@ -530,11 +560,13 @@
 				B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */,
 				B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */,
 				B72FD8152B617DF50039F6B2 /* StatisticsView.swift in Sources */,
+				B76B096D2B643AB200803125 /* RequestProtocol.swift in Sources */,
 				B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */,
 				B75CB6742B445EEC00CDF026 /* RideViewModel.swift in Sources */,
 				B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */,
 				B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */,
 				B75CB6722B445EEC00CDF026 /* HomeView.swift in Sources */,
+				B76B096B2B643AB200803125 /* DataProvider.swift in Sources */,
 				B75CB6702B445EEC00CDF026 /* RepresentableMapView.swift in Sources */,
 				B75CB66D2B445EEC00CDF026 /* MainButtonStyle.swift in Sources */,
 			);
