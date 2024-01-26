@@ -38,18 +38,18 @@ class ComplexityManager {
 
     func getColorByComplexity(complexity: String?) -> Color {
         switch complexity {
-        case "Простой": Pallete.Complexity.easy
-        case "Средний": Pallete.Complexity.medium
-        case "Сложный": Pallete.Complexity.hard
+        case RideComplexity.easy.rawValue: Pallete.Complexity.easy
+        case RideComplexity.medium.rawValue: Pallete.Complexity.medium
+        case RideComplexity.hard.rawValue: Pallete.Complexity.hard
         default: Pallete.accentColor
         }
     }
 
     func getColorByEstimatedComplexity(complexity: String?) -> Color {
         switch complexity {
-        case "Простой": Pallete.EstimatedComplexity.easy
-        case "Средний": Pallete.EstimatedComplexity.medium
-        case "Сложный": Pallete.EstimatedComplexity.hard
+        case RideComplexity.easy.rawValue: Pallete.EstimatedComplexity.easy
+        case RideComplexity.medium.rawValue: Pallete.EstimatedComplexity.medium
+        case RideComplexity.hard.rawValue: Pallete.EstimatedComplexity.hard
         default: Pallete.accentColor
         }
     }

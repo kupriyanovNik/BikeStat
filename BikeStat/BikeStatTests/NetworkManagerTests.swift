@@ -21,7 +21,7 @@ final class NetworkManagerTests: XCTestCase {
         }
     }
 
-    func testSampleRequest() async throws {
+    func testWatchDataRequest() async throws {
         let result = try await DataProvider.fetchData(Requests.GetWatchData())
         XCTAssertNotNil(result)
     }
