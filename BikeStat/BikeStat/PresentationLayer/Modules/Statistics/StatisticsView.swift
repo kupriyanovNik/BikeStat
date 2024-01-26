@@ -108,7 +108,7 @@ struct StatisticsView: View {
                 ForEach(last5RidesChartData) { dataPoint in
                     BarMark(
                         x: .value("Номер", "\(dataPoint.number)"),
-                        y: .value("Расстояние", (dataPoint.distance ?? 0)/1000)
+                        y: .value("Расстояние", (dataPoint.distance)/1000)
                     )
                     .foregroundStyle(
                         ComplexityManager.shared
