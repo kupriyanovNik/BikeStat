@@ -12,7 +12,7 @@ protocol Request {
     var method: APIMethod { get }
     var body: Codable? { get }
     var headers: HTTPHeader? { get }
-    var queryParam: QueryParams? { get }
+    var queryParams: QueryParams? { get }
     
     associatedtype ReturnType: Codable
 }
@@ -24,14 +24,14 @@ extension Request {
     var method: APIMethod { .get }
     var body: Codable? { nil }
     var headers: HTTPHeader? { nil }
-    var queryParam: QueryParams? { nil }
+    var queryParams: QueryParams? { nil }
 
     // MARK: - Internal Functions
 
     func asURLRequest(_ baseURL: String) -> URLRequest? {
         guard var urlComponents = URLComponents(string: baseURL) else { return nil }
         urlComponents.path = "\(urlComponents.path)\(path)"
-        urlComponents.queryItems = addQueryParams(queryParams: queryParam)
+        urlComponents.queryItems = addQueryParams(queryParams: queryParams)
         guard let finalURL = urlComponents.url else { return nil }
         
         var urlRequest = URLRequest(url: finalURL)
