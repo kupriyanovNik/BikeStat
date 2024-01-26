@@ -34,31 +34,10 @@ struct SettingsView: View {
     // MARK: - ViewBuilders
 
     @ViewBuilder func headerView() -> some View {
-        HStack {
-            Button {
+        Text(localizable.pageTitle)
+            .makeHeader {
                 dismiss()
-            } label: {
-                Image(systemName: Images.back)
-                    .font(.title2)
-                    .bold()
             }
-
-            Spacer()
-
-            Text(localizable.pageTitle)
-                .font(.largeTitle)
-                .bold()
-
-            Spacer()
-        }
-        .foregroundStyle(Pallete.textColor)
-        .font(.largeTitle)
-        .padding(.horizontal)
-        .padding(.bottom, 4)
-        .background {
-            Pallete.headerBackground
-                .ignoresSafeArea()
-        }
     }
 
     @ViewBuilder func metricPickerView() -> some View {

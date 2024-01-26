@@ -16,6 +16,17 @@ struct PlanningView: View {
 
     var addingAction: (() -> ())? = nil
 
+    // MARK: - Private Properties
+
+    private let complexityManager = ComplexityManager.shared
+
+    private var currentComplexity: RideComplexity {
+        complexityManager.getEstimatedComplexity(
+            estimatedDistance: planningViewModel.estimatedDistance,
+            estimatedTime: planningViewModel.estimatedTime * 60
+        )
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -34,6 +45,7 @@ struct PlanningView: View {
                 DatePicker(
                     "",
                     selection: $planningViewModel.rideDate,
+                    in: Date()..., 
                     displayedComponents: .hourAndMinute
                 )
                 .labelsHidden()
@@ -112,6 +124,10 @@ struct PlanningView: View {
                     .padding(.horizontal, 23)
                     .background(.white)
                     .cornerRadius(40)
+                    .shadow(
+                        color: .white.opacity(0.2),
+                        radius: 20
+                    )
             }
             .buttonStyle(MainButtonStyle())
             .hCenter()
@@ -141,15 +157,34 @@ struct PlanningView: View {
             .font(.largeTitle)
             .bold()
             .hCenter()
-            .overlay(alignment: .leading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: Images.back)
-                        .font(.title2)
-                        .bold()
-                        .padding()
+            .overlay(alignment: .top) {
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: Images.back)
+                            .font(.title2)
+                            .bold()
+                    }
+
+                    Spacer()
+
+                    Circle()
+                        .strokeBorder(Color.black, lineWidth: 2)
+                        .frame(width: 30, height: 30)
+                        .background {
+                            Circle()
+                                .fill(
+                                    currentComplexity.estimatedComplexityColor
+                                )
+                        }
+                        .shadow(
+                            color: currentComplexity.estimatedComplexityColor,
+                            radius: 20
+                        )
+                        .animation(.linear, value: currentComplexity)
                 }
+                .padding()
             }
     }
 

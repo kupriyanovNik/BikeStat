@@ -31,11 +31,12 @@ struct HomeView: View {
                 }
                 .padding(.bottom, 5)
 
-                Text(Localizable.HomeView.plannedRides)
-                    .font(.title2)
-                    .bold()
-                    .hLeading()
-                    .id("TOP")
+                if !coreDataManager.plannedRides.isEmpty {
+                    Text(Localizable.HomeView.plannedRides)
+                        .font(.title2)
+                        .bold()
+                        .hLeading()
+                }
 
                 plannedRidesList()
             }
@@ -70,18 +71,48 @@ struct HomeView: View {
         HStack {
             Text(Localizable.HomeView.pageTitle)
                 .bold()
+                .font(.largeTitle)
 
             Spacer()
 
+            if !coreDataManager.endedRides.isEmpty {
+                Button {
+                    navigationManager.path.append(.statistics)
+                } label: {
+                    Circle()
+                        .strokeBorder(Color.black, lineWidth: 2)
+                        .frame(width: 40, height: 40)
+                        .background {
+                            Circle()
+                                .fill(Pallete.accentColor)
+                        }
+                        .overlay {
+                            HStack(alignment: .bottom, spacing: 4) {
+                                Rectangle()
+                                    .fill(Pallete.Complexity.hard)
+                                    .frame(width: 4, height: 21)
+                                Rectangle()
+                                    .fill(Pallete.Complexity.easy)
+                                    .frame(width: 4, height: 15)
+                                Rectangle()
+                                    .fill(Pallete.Complexity.medium)
+                                    .frame(width: 4, height: 12)
+                            }
+                        }
+                }
+                .buttonStyle(MainButtonStyle())
+            }
+
             Button {
-                navigationManager.path.append(Strings.Navigation.settings)
+                navigationManager.path.append(.settings)
             } label: {
                 Image(systemName: Images.gearshape)
+                    .resizable()
+                    .frame(width: 35, height: 35)
             }
             .buttonStyle(MainButtonStyle())
         }
         .foregroundStyle(Pallete.textColor)
-        .font(.largeTitle)
         .padding(.horizontal)
         .padding(.bottom, 4)
         .background {
@@ -146,9 +177,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    navigationManager.path.append(
-                        Strings.Navigation.history
-                    )
+                    navigationManager.path.append(.history)
                 } label: {
                     Text(Localizable.HomeView.goto)
                         .font(.title3)
@@ -227,15 +256,11 @@ struct HomeView: View {
         .fontWeight(.semibold)
         .padding()
         .background {
-            Group {
-                switch ride.estimatedComplexity {
-                case "Простой": Pallete.EstimatedComplexity.easy
-                case "Средний": Pallete.EstimatedComplexity.medium
-                case "Сложный": Pallete.EstimatedComplexity.hard
-                default: Pallete.accentColor
-                }
-            }
-            .cornerRadius(25)
+            ComplexityManager.shared
+                .getColorByEstimatedComplexity(
+                    complexity: ride.estimatedComplexity
+                )
+                .cornerRadius(25)
         }
     }
 
@@ -263,9 +288,8 @@ struct HomeView: View {
             plannedRideInfoCard(ride: ride)
                 .id(ride.objectID)
                 .onTapGesture {
-                    navigationManager.path.append(
-                        Strings.Navigation.newRide
-                    )
+                    navigationManager.path.append(.newRide)
+                    
                     rideViewModel.currentRide = ride
                 }
         }

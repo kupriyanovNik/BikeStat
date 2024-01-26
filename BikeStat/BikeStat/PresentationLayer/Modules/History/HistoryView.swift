@@ -57,31 +57,10 @@ struct HistoryView: View {
     // MARK: - View Builders
 
     @ViewBuilder func headerView() -> some View {
-        HStack {
-            Button {
+        Text("История")
+            .makeHeader {
                 dismiss()
-            } label: {
-                Image(systemName: Images.back)
-                    .font(.title2)
-                    .bold()
             }
-
-            Spacer()
-
-            Text("История поездок")
-                .font(.largeTitle)
-                .bold()
-
-            Spacer()
-        }
-        .foregroundStyle(Pallete.textColor)
-        .font(.largeTitle)
-        .padding(.horizontal)
-        .padding(.bottom, 4)
-        .background {
-            Pallete.headerBackground
-                .ignoresSafeArea()
-        }
     }
 
     @ViewBuilder func endedRideInfoCard(ride: RideInfoModel) -> some View {
@@ -101,15 +80,11 @@ struct HistoryView: View {
         .fontWeight(.semibold)
         .padding()
         .background {
-            Group {
-                switch ride.realComplexity {
-                case "Простой": Pallete.Complexity.easy
-                case "Средний": Pallete.Complexity.medium
-                case "Сложный": Pallete.Complexity.hard
-                default: Pallete.accentColor
-                }
-            }
-            .cornerRadius(25)
+            ComplexityManager.shared
+                .getColorByComplexity(
+                    complexity: ride.realComplexity
+                )
+                .cornerRadius(25)
         }
     }
 }

@@ -29,7 +29,7 @@ struct MainNavigationView: View {
                 networkManager: networkManager,
                 navigationManager: navigationManager
             )
-            .navigationDestination(for: String.self) { value in
+            .navigationDestination(for: NavigationModel.self) { value in
                 destinationView(value: value)
             }
         }
@@ -37,9 +37,12 @@ struct MainNavigationView: View {
 
     // MARK: - View Builder
 
-    @ViewBuilder func destinationView(value: String) -> some View {
+    @ViewBuilder func destinationView(
+        value: NavigationModel
+    ) -> some View {
         Group {
-            if value == Strings.Navigation.newRide {
+            switch value {
+            case .newRide:
                 RideView(
                     rideViewModel: rideViewModel,
                     navigationManager: navigationManager,
@@ -47,12 +50,16 @@ struct MainNavigationView: View {
                     networkManager: networkManager,
                     locationManager: locationManager
                 )
-            } else if value == Strings.Navigation.settings {
+            case .settings:
                 SettingsView(
                     settingsViewModel: settingsViewModel
                 )
-            } else if value == Strings.Navigation.history {
+            case .history:
                 HistoryView(
+                    coreDataManager: coreDataManager
+                )
+            case .statistics:
+                StatisticsView(
                     coreDataManager: coreDataManager
                 )
             }

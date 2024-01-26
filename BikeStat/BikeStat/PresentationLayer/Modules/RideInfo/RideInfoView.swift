@@ -32,6 +32,11 @@ struct RideInfoView: View {
         return rideDateString
     }
 
+    private var rideCalories: Int {
+        let kkal = 0.014 * 60 * Double(ride.realTime) * (0.12 * Double(ride.avgPulse) - 7)
+        return Int(round(100 * kkal) / 100)
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -40,8 +45,6 @@ struct RideInfoView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 25) {
-                let rideDate = ride.rideDate ?? .now
-
                 let rideDistance = String(
                     format: Strings.NumberFormats.forDistance,
                     Double(ride.realDistance) / 1000.0
@@ -81,7 +84,8 @@ struct RideInfoView: View {
                         texts: [
                             (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .shortened),
                             "\(localizable.distance): \(rideDistance)",
-                            "Время в пути: \(rideTime)"
+                            "Время в пути: \(rideTime)",
+                            "Калории: \(rideCalories) ккал"
                         ]
                     )
 

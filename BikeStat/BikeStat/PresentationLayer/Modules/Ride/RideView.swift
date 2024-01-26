@@ -204,6 +204,10 @@ struct RideView: View {
                 pressedScale: rideViewModel.isRideStarted ? 0.9 : 1.1
             )
         )
+        .disabled(
+            locationManager.cyclingSpeeds.isEmpty &&
+            rideViewModel.isRideStarted
+        )
     }
 
     @ViewBuilder func mapSpanControls() -> some View {

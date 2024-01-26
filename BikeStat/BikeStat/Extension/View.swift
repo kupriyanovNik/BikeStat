@@ -40,3 +40,28 @@ extension View {
         onTapGesture { }
     }
 }
+
+extension View {
+    func makeHeader(backButtonAction: @escaping () -> ()) -> some View {
+        self
+            .bold()
+            .hCenter()
+            .overlay(alignment: .leading) {
+                Button {
+                    backButtonAction()
+                } label: {
+                    Image(systemName: Images.back)
+                        .bold()
+                        .font(.title2)
+                }
+                .padding()
+            }
+            .foregroundStyle(Pallete.textColor)
+            .font(.largeTitle)
+            .padding(.bottom, 4)
+            .background {
+                Pallete.headerBackground
+                    .ignoresSafeArea()
+            }
+    }
+}
