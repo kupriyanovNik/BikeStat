@@ -31,6 +31,8 @@ enum Localizable {
     enum RideInfoView {
         static let ride = "Поездка"
         static let mainInformation = "Основная информация"
+        static let timeDuringRide = "Время в пути"
+        static let calories = "Калории"
         static let distance = "Расстояние"
         static let speedInfo = "Информация о скорости"
         static let avgSpeed = "Средняя Скорость"
@@ -42,5 +44,26 @@ enum Localizable {
         static let complexity = "Сложность"
         static let estimatedComplexity = "Расчетная сложность"
         static let realComplexity = "Реальная сложность"
+    }
+
+    enum Planning {
+        static let pageTitle = "Планирование\nпоездки"
+        static let enterRideTitle = "Введите название поездки"
+        static let selectTime = "Выберите время поездки:"
+        static let selectDate = "Выберите дату поездки:"
+        static let selectTimeDuringRide = "Выберите время\nнахождения в поездке:"
+        static let selectDistance = "Выберите длину маршрута:"
+        static let save = "Сохранить"
+    }
+
+    enum History {
+        static let pageTitle = "История"
+    }
+
+    enum Statistics {
+        static let pageTitle = "Статистика"
+        static let chart = "График километража за последние 5 поездок"
+        static let recomendations = "Рекомендиции по поездкам"
+        static let recomendedComplexity = "Рекомендованная сложность следующего маршрута: "
     }
 }

@@ -57,7 +57,7 @@ struct HistoryView: View {
     // MARK: - View Builders
 
     @ViewBuilder func headerView() -> some View {
-        Text("История")
+        Text(Localizable.History.pageTitle)
             .makeHeader {
                 dismiss()
             }
