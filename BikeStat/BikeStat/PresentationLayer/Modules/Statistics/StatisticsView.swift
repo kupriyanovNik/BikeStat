@@ -112,7 +112,7 @@ struct StatisticsView: View {
                 ForEach(last5RidesChartData) { dataPoint in
                     BarMark(
                         x: .value("Номер", "\(dataPoint.number)"),
-                        y: .value("Расстояние", (dataPoint.distance)/1000)
+                        y: .value("Расстояние", dataPoint.distance / 1000.0)
                     )
                     .foregroundStyle(
                         ComplexityManager.shared
@@ -196,10 +196,11 @@ struct StatisticsView: View {
                 .init(
                     number: currentNumber,
                     title: (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted),
-                    distance: Int(ride.realDistance),
+                    distance: Double(ride.realDistance),
                     complexity: ride.realComplexity
                 )
             )
+
             currentNumber += 1
         }
 
