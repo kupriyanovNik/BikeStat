@@ -77,7 +77,7 @@ struct HomeView: View {
 
             if !coreDataManager.endedRides.isEmpty {
                 Button {
-                    navigationManager.path.append(.statistics)
+                    navigationManager.showStatisticsView()
                 } label: {
                     Circle()
                         .strokeBorder(Color.black, lineWidth: 2)
@@ -104,7 +104,7 @@ struct HomeView: View {
             }
 
             Button {
-                navigationManager.path.append(.settings)
+                navigationManager.showSettingsView()
             } label: {
                 Image(systemName: Images.gearshape)
                     .resizable()
@@ -177,7 +177,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    navigationManager.path.append(.history)
+                    navigationManager.showHistoryView()
                 } label: {
                     Text(Localizable.HomeView.goto)
                         .font(.title3)
@@ -288,7 +288,7 @@ struct HomeView: View {
             plannedRideInfoCard(ride: ride)
                 .id(ride.objectID)
                 .onTapGesture {
-                    navigationManager.path.append(.newRide)
+                    navigationManager.showRideView()
                     
                     rideViewModel.currentRide = ride
                 }
