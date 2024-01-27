@@ -120,9 +120,7 @@ struct StatisticsView: View {
             if showRecomendations {
                 recomendationsView()
                     .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
-
-            if !showRecomendations {
+            } else {
                 Text("Нажмите, чтобы посмотреть рекомендации")
                     .multilineTextAlignment(.center)
             }
