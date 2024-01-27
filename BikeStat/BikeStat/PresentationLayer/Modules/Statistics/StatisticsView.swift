@@ -16,6 +16,8 @@ struct StatisticsView: View {
     @State private var last5RidesChartData: [StatisticsChartDataModel] = []
     @State private var recomendationsChartData: [RecomendationsChartDataModel] = []
 
+    @State private var showRecomendations: Bool = false
+
     // MARK: - Private Properties
 
     private var last5Rides: [RideInfoModel] {
@@ -72,21 +74,32 @@ struct StatisticsView: View {
     // MARK: - Body
 
     var body: some View {
-        ScrollView {
+        VStack {
             chartView()
 
-            if shouldShowRecomendations {
-                recomendationsView()
-            } else {
-                Text(Localizable.Statistics.moreRides)
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-            }
+            Spacer()
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
+        .overlay {
+            if showRecomendations {
+                Color.black
+                    .opacity(0.15)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            showRecomendations = false
+                        }
+                    }
+            }
+        }
+        .overlay(alignment: .bottom) {
+            if shouldShowRecomendations {
+                bottomView()
+            }
+        }
         .onAppear {
             getLast5RidesChartData()
             getRecomendationsChartData()
@@ -102,17 +115,46 @@ struct StatisticsView: View {
             }
     }
 
+    @ViewBuilder func bottomView() -> some View {
+        VStack {
+            if showRecomendations {
+                recomendationsView()
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            } else {
+                Text("Нажмите, чтобы посмотреть рекомендации")
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .font(.headline)
+        .bold()
+        .multilineTextAlignment(.center)
+        .hCenter()
+        .padding(24)
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(.white)
+                .shadow(color: .white, radius: 100, x: 0, y: 100)
+                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
+        }
+        .padding(.horizontal, 24)
+        .padding(.bottom, 5)
+        .onTapGesture {
+            withAnimation {
+                withAnimation {
+                    showRecomendations.toggle()
+                }
+            }
+        }
+        .ignoresSafeArea()
+    }
+
     @ViewBuilder func chartView() -> some View {
         VStack {
-            Text(Localizable.Statistics.chart)
-                .font(.caption)
-                .multilineTextAlignment(.center)
-
             Chart {
                 ForEach(last5RidesChartData) { dataPoint in
                     BarMark(
                         x: .value("Номер", "\(dataPoint.number)"),
-                        y: .value("Расстояние", (dataPoint.distance)/1000)
+                        y: .value("Расстояние", dataPoint.distance / 1000.0)
                     )
                     .foregroundStyle(
                         ComplexityManager.shared
@@ -138,6 +180,10 @@ struct StatisticsView: View {
             }
             .frame(height: 300)
             .aspectRatio(1, contentMode: .fit)
+
+            Text(Localizable.Statistics.chart)
+                .font(.caption)
+                .multilineTextAlignment(.center)
         }
         .padding(.horizontal)
     }
@@ -196,10 +242,11 @@ struct StatisticsView: View {
                 .init(
                     number: currentNumber,
                     title: (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted),
-                    distance: Int(ride.realDistance),
+                    distance: Double(ride.realDistance),
                     complexity: ride.realComplexity
                 )
             )
+
             currentNumber += 1
         }
 
