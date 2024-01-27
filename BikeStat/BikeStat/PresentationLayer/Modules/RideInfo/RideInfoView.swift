@@ -139,9 +139,7 @@ struct RideInfoView: View {
 
             Spacer()
 
-            Text(pageTitle)
-                .font(.title)
-                .bold()
+            MarqueeText(text: pageTitle)
 
             Spacer()
 
