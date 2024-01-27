@@ -17,6 +17,9 @@ extension TimeInterval {
             )
         }
 
-        return String(format: Strings.Time.withoutHours, minutes, seconds)
+        return String(
+            format: Strings.Time.withoutHours,
+            minutes, seconds
+        )
     }
 }

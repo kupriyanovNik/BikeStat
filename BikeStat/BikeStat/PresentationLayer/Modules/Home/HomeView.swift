@@ -27,6 +27,10 @@ struct HomeView: View {
 
                     if !coreDataManager.endedRides.isEmpty {
                         showHistoryCard()
+                    } else {
+                        Text("Совершите больше поездок, чтобы увидеть ваши рекомендации по сложности")
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
                     }
                 }
                 .padding(.bottom, 5)

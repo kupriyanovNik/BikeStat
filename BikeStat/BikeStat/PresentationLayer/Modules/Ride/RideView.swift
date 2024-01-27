@@ -3,8 +3,6 @@
 //
 
 import SwiftUI
-import Foundation
-import MapKit
 
 struct RideView: View {
 

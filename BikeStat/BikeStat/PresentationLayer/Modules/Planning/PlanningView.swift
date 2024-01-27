@@ -12,10 +12,6 @@ struct PlanningView: View {
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var coreDataManager: CoreDataManager
 
-    // MARK: - Internal Properties
-
-    var addingAction: (() -> ())? = nil
-
     // MARK: - Private Properties
 
     private let complexityManager = ComplexityManager.shared
@@ -200,8 +196,6 @@ struct PlanningView: View {
 
     private func planRide() {
         withAnimation {
-            addingAction?()
-
             coreDataManager.planRide(
                 title: planningViewModel.rideTitle,
                 rideDate: planningViewModel.rideDate,
