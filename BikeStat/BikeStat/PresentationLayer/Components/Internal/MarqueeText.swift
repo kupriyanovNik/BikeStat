@@ -55,6 +55,25 @@ struct MarqueeText: View {
                                 maxHeight: .infinity,
                                 alignment: .topLeading
                             )
+
+                        Text(self.text)
+                            .lineLimit(1)
+                            .font(.init(font))
+                            .offset(x: self.animate ? 0 : stringWidth + stringHeight * 2)
+                            .animation(self.animate ? animation : nullAnimation, value: self.animate)
+                            .onAppear {
+                                DispatchQueue.main.async {
+                                    self.animate = geo.size.width < stringWidth
+                                }
+                            }
+                            .fixedSize(horizontal: true, vertical: false)
+                            .frame(
+                                minWidth: 0,
+                                maxWidth: .infinity,
+                                minHeight: 0,
+                                maxHeight: .infinity,
+                                alignment: .topLeading
+                            )
                     }
                     .onChange(of: self.text) { text in
                         self.animate = geo.size.width < stringWidth
