@@ -13,33 +13,33 @@ struct StatisticsView: View {
 
     @ObservedObject var coreDataManager: CoreDataManager
 
-    @State private var last5RidesChartData: [StatisticsChartDataModel] = []
+    @State private var last10RidesChartData: [StatisticsChartDataModel] = []
     @State private var recomendationsChartData: [RecomendationsChartDataModel] = []
 
     @State private var showRecomendations: Bool = false
 
     // MARK: - Private Properties
 
-    private var last5Rides: [RideInfoModel] {
-        coreDataManager.endedRides.suffix(5)
+    private var last10Rides: [RideInfoModel] {
+        coreDataManager.endedRides.suffix(10)
     }
 
     private var shouldShowRecomendations: Bool {
-        last5Rides.count >= 5
+        last10Rides.count >= 3
     }
 
     private var middleDistance: Double {
-        if last5Rides.count != 0 {
-            return last5Rides.map {
+        if last10Rides.count != 0 {
+            return last10Rides.map {
                 Double($0.realDistance)
-            }.reduce(0, +) / Double(last5Rides.count)
+            }.reduce(0, +) / Double(last10Rides.count)
         }
 
         return 0
     }
 
     private var recommeddedComplexity: RideComplexity {
-        if !last5Rides.isEmpty {
+        if !last10Rides.isEmpty {
             let easyCount = getCountOfComplexity(for: .easy)
             let mediumCount = getCountOfComplexity(for: .medium)
             let hardCount = getCountOfComplexity(for: .hard)
@@ -48,7 +48,7 @@ struct StatisticsView: View {
 
             let majorComplexity: RideComplexity = easyCount == maxCount ? .easy : mediumCount == maxCount ? .medium : .hard
 
-            if maxCount == last5Rides.count {
+            if maxCount == last10Rides.count {
                 return maxCount == easyCount ? .easy : maxCount == mediumCount ? .medium : .hard
             } else {
                 switch majorComplexity {
@@ -151,7 +151,7 @@ struct StatisticsView: View {
     @ViewBuilder func chartView() -> some View {
         VStack {
             Chart {
-                ForEach(last5RidesChartData) { dataPoint in
+                ForEach(last10RidesChartData) { dataPoint in
                     BarMark(
                         x: .value("Номер", "\(dataPoint.number)"),
                         y: .value("Расстояние", dataPoint.distance / 1000.0)
@@ -237,7 +237,7 @@ struct StatisticsView: View {
         var data: [StatisticsChartDataModel] = []
         var currentNumber: Int = 1
 
-        for ride in last5Rides {
+        for ride in last10Rides {
             data.append(
                 .init(
                     number: currentNumber,
@@ -250,7 +250,7 @@ struct StatisticsView: View {
             currentNumber += 1
         }
 
-        self.last5RidesChartData = data
+        self.last10RidesChartData = data
     }
 
     private func getRecomendationsChartData() {
@@ -274,7 +274,7 @@ struct StatisticsView: View {
     private func getCountOfComplexity(for complexity: RideComplexity) -> Int {
         var counter: Int = 0
 
-        for item in last5Rides {
+        for item in last10Rides {
             if item.realComplexity == complexity.rawValue {
                 counter += 1
             }
