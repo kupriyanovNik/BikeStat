@@ -4,7 +4,7 @@
 
 import Foundation
 
-class NavigationManager: ObservableObject {
+final class NavigationManager: ObservableObject {
     
     // MARK: - Property Wrappers
 

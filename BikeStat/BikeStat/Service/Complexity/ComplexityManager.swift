@@ -5,7 +5,7 @@
 import Foundation
 import SwiftUI
 
-class ComplexityManager {
+final class ComplexityManager {
 
     // MARK: - Static Properties
 
