@@ -58,8 +58,8 @@ final class ComplexityManager {
 
     private func prepareRealComplexity(for pulse: Int) -> RideComplexity {
         switch pulse {
-        case 0...120: .easy
-        case 121...145: .medium
+        case 0...110: .easy
+        case 111...145: .medium
         case 146...: .hard
         default: .unowned
         }

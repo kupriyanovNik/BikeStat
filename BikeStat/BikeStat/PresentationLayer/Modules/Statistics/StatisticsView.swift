@@ -179,6 +179,7 @@ struct StatisticsView: View {
                 +
                 Text(recommeddedComplexity.rawValue)
                     .bold()
+                    .foregroundColor(Pallete.accentColorForMap)
             )
             .multilineTextAlignment(.center)
         }
