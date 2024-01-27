@@ -37,9 +37,7 @@ struct MainNavigationView: View {
 
     // MARK: - View Builder
 
-    @ViewBuilder func destinationView(
-        value: NavigationModel
-    ) -> some View {
+    @ViewBuilder func destinationView(value: NavigationModel) -> some View {
         Group {
             switch value {
             case .newRide:

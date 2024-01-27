@@ -84,8 +84,8 @@ struct RideInfoView: View {
                         texts: [
                             (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .shortened),
                             "\(localizable.distance): \(rideDistance)",
-                            "Время в пути: \(rideTime)",
-                            "Калории: \(rideCalories) ккал"
+                            "\(localizable.timeDuringRide): \(rideTime)",
+                            "\(localizable.calories): \(rideCalories) ккал"
                         ]
                     )
 
@@ -139,9 +139,7 @@ struct RideInfoView: View {
 
             Spacer()
 
-            Text(pageTitle)
-                .font(.title)
-                .bold()
+            MarqueeText(text: pageTitle)
 
             Spacer()
 

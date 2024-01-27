@@ -12,10 +12,6 @@ struct PlanningView: View {
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var coreDataManager: CoreDataManager
 
-    // MARK: - Internal Properties
-
-    var addingAction: (() -> ())? = nil
-
     // MARK: - Private Properties
 
     private let complexityManager = ComplexityManager.shared
@@ -32,13 +28,13 @@ struct PlanningView: View {
     var body: some View {
         VStack(alignment: .leading) {
             TextField(
-                "Введите название поездки:",
+                Localizable.Planning.enterRideTitle,
                 text: $planningViewModel.rideTitle
             )
             .onTapContinueEditing()
 
             HStack {
-                Text("Выберите время поездки:")
+                Text(Localizable.Planning.selectTime)
 
                 Spacer()
 
@@ -52,7 +48,7 @@ struct PlanningView: View {
             }
 
             HStack {
-                Text("Выберите дату поездки:")
+                Text(Localizable.Planning.selectDate)
 
                 Spacer()
 
@@ -65,7 +61,7 @@ struct PlanningView: View {
             }
 
             HStack {
-                Text("Выберите время\nнахождения в поездке:")
+                Text(Localizable.Planning.selectTimeDuringRide)
 
                 Spacer()
 
@@ -87,7 +83,7 @@ struct PlanningView: View {
             }
 
             HStack {
-                Text("Выберите длину маршрута:")
+                Text(Localizable.Planning.selectDistance)
 
                 Spacer()
 
@@ -116,7 +112,7 @@ struct PlanningView: View {
             Button {
                 planRide()
             } label: {
-                Text("Сохранить")
+                Text(Localizable.Planning.save)
                     .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundStyle(.black)
@@ -152,7 +148,7 @@ struct PlanningView: View {
     // MARK: - View Builders
 
     @ViewBuilder func headerView() -> some View {
-        Text("Планирование\nпоездки")
+        Text(Localizable.Planning.pageTitle)
             .multilineTextAlignment(.center)
             .font(.largeTitle)
             .bold()
@@ -200,8 +196,6 @@ struct PlanningView: View {
 
     private func planRide() {
         withAnimation {
-            addingAction?()
-
             coreDataManager.planRide(
                 title: planningViewModel.rideTitle,
                 rideDate: planningViewModel.rideDate,

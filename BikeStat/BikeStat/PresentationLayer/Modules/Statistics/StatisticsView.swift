@@ -77,6 +77,10 @@ struct StatisticsView: View {
 
             if shouldShowRecomendations {
                 recomendationsView()
+            } else {
+                Text(Localizable.Statistics.moreRides)
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -92,7 +96,7 @@ struct StatisticsView: View {
     // MARK: - View Builders
 
     @ViewBuilder func headerView() -> some View {
-        Text("Статистика")
+        Text(Localizable.Statistics.pageTitle)
             .makeHeader {
                 dismiss()
             }
@@ -100,7 +104,7 @@ struct StatisticsView: View {
 
     @ViewBuilder func chartView() -> some View {
         VStack {
-            Text("График километража за последние 5 поездок")
+            Text(Localizable.Statistics.chart)
                 .font(.caption)
                 .multilineTextAlignment(.center)
 
@@ -140,7 +144,7 @@ struct StatisticsView: View {
 
     @ViewBuilder func recomendationsView() -> some View {
         VStack {
-            Text("Рекомендиции по поездкам")
+            Text(Localizable.Statistics.recomendations)
                 .fontWeight(.semibold)
                 .font(.title2)
 
@@ -171,10 +175,11 @@ struct StatisticsView: View {
             }
 
             (
-                Text("Рекомендованная сложность следующего маршрута: ")
+                Text(Localizable.Statistics.recomendedComplexity)
                 +
                 Text(recommeddedComplexity.rawValue)
                     .bold()
+                    .foregroundColor(Pallete.accentColorForMap)
             )
             .multilineTextAlignment(.center)
         }
@@ -203,13 +208,19 @@ struct StatisticsView: View {
 
     private func getRecomendationsChartData() {
         self.recomendationsChartData.append(
-            .init(title: "Простые", count: getCountOfComplexity(for: .easy), complexity: "Простой")
+            .init(title: "Простые",
+                  count: getCountOfComplexity(for: .easy),
+                  complexity: RideComplexity.easy.rawValue)
         )
         self.recomendationsChartData.append(
-            .init(title: "Средние", count: getCountOfComplexity(for: .medium), complexity: "Средний")
+            .init(title: "Средние",
+                  count: getCountOfComplexity(for: .medium),
+                  complexity: RideComplexity.medium.rawValue)
         )
         self.recomendationsChartData.append(
-            .init(title: "Сложные", count: getCountOfComplexity(for: .hard), complexity: "Сложный")
+            .init(title: "Сложные",
+                  count: getCountOfComplexity(for: .hard),
+                  complexity: RideComplexity.hard.rawValue)
         )
     }
 

@@ -5,7 +5,7 @@
 import Foundation
 import CoreData
 
-class CoreDataManager: ObservableObject {
+final class CoreDataManager: ObservableObject {
 
     // MARK: - Property Wrappers
 

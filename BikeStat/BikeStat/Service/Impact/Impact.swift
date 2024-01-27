@@ -4,8 +4,7 @@
 
 import UIKit
 
-/// class that activates vibrations
-class ImpactManager {
+final class ImpactManager {
 
     // MARK: - Static Properties
 

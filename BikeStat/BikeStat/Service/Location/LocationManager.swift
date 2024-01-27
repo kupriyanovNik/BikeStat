@@ -5,7 +5,7 @@
 import Foundation
 import CoreLocation
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     // MARK: - Internal Properties
 
