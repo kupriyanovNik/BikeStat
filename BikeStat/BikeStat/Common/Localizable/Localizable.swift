@@ -65,5 +65,6 @@ enum Localizable {
         static let chart = "График километража за последние 5 поездок"
         static let recomendations = "Рекомендиции по поездкам"
         static let recomendedComplexity = "Рекомендованная сложность следующего маршрута: "
+        static let moreRides = "Совершите больше поездок, чтобы увидеть ваши рекомендации по сложности"
     }
 }

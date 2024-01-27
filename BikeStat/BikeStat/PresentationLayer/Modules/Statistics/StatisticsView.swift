@@ -78,7 +78,7 @@ struct StatisticsView: View {
             if shouldShowRecomendations {
                 recomendationsView()
             } else {
-                Text("Совершите больше поездок, чтобы увидеть ваши рекомендации по сложности")
+                Text(Localizable.Statistics.moreRides)
                     .font(.headline)
                     .multilineTextAlignment(.center)
             }
