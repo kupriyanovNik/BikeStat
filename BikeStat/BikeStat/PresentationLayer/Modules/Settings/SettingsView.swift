@@ -134,8 +134,8 @@ struct SettingsView: View {
     @ViewBuilder func themesListView() -> some View {
         ScrollView(.horizontal) {
             HStack(spacing: -10) {
-                ForEach(0..<DataSource.themesCount) { themeIndex in
-                    let theme = DataSource.getTheme(themeIndex: themeIndex)
+                ForEach(0..<ThemeDataSource.themesCount) { themeIndex in
+                    let theme = ThemeDataSource.getTheme(themeIndex: themeIndex)
                     let isSelected = theme.accentColor == themeManager.selectedTheme.accentColor
 
                     ThemePickerCell(
@@ -143,7 +143,7 @@ struct SettingsView: View {
                         isSelected: isSelected
                     ) {
                         withAnimation {
-                            themeManager.selectedThemeIndex = themeIndex
+                            themeManager.setThemeIndet(at: themeIndex)
                         }
                     }
                     .padding()

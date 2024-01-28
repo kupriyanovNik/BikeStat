@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-enum DataSource {
+enum ThemeDataSource {
 
     // MARK: - Static Properties
 

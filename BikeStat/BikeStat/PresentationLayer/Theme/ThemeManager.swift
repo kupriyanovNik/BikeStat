@@ -8,9 +8,9 @@ class ThemeManager: ObservableObject {
 
     // MARK: - Property Wrappers
 
-    @Published var selectedTheme: Theme = Theme1()
+    @Published private(set) var selectedTheme: Theme = Theme1()
 
-    @AppStorage("THEME_SlectedTheme") var selectedThemeIndex: Int = 0 {
+    @AppStorage("THEME_SlectedTheme") private(set) var selectedThemeIndex: Int = 0 {
         willSet {
             objectWillChange.send()
         }
@@ -26,9 +26,17 @@ class ThemeManager: ObservableObject {
         updateTheme()
     }
 
+    // MARK: - Internal Functions
+
+    func setThemeIndet(at index: Int) {
+        withAnimation {
+            selectedThemeIndex = index
+        }
+    }
+
     // MARK: - Private Functions 
 
     private func updateTheme() {
-        selectedTheme = DataSource.getTheme(themeIndex: selectedThemeIndex)
+        selectedTheme = ThemeDataSource.getTheme(themeIndex: selectedThemeIndex)
     }
 }
