@@ -60,6 +60,8 @@ struct ThemePickerCell: View {
     }
 }
 
+// MARK: - Preview 
+
 #Preview {
     ThemePickerCell(theme: Theme2(), isSelected: true) { }
 }
