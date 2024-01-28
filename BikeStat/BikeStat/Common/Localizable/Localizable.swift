@@ -62,7 +62,7 @@ enum Localizable {
 
     enum Statistics {
         static let pageTitle = "Статистика"
-        static let chart = "График километража за последние 5 поездок"
+        static let chart = "График километража за последние 10 или менее поездок"
         static let recomendations = "Рекомендиции по поездкам"
         static let recomendedComplexity = "Рекомендованная сложность следующего маршрута: "
         static let moreRides = "Совершите больше поездок, чтобы увидеть ваши рекомендации по сложности"

@@ -33,7 +33,7 @@ struct MarqueeText: View {
 
         let nullAnimation: Animation = .linear(duration: 0)
 
-        return ZStack {
+        ZStack {
             GeometryReader { geo in
                 if stringWidth > geo.size.width {
                     Group {
