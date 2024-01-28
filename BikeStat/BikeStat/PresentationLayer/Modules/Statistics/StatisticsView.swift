@@ -216,7 +216,7 @@ struct StatisticsView: View {
                 .padding(.vertical, 10)
                 .padding(.horizontal, 35)
                 .background {
-                    Pallete.accentColor
+                    themeManager.selectedTheme.accentColor
                         .cornerRadius(5)
                 }
             }

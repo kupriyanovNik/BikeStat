@@ -41,7 +41,7 @@ struct HistoryView: View {
         .navigationBarBackButtonHidden()
         .scaleEffect(selectedRide == nil ? 1 : 0.95)
         .sheet(item: $selectedRide) { ride in
-            RideInfoView(ride: ride) {
+            RideInfoView(themeManager: themeManager, ride: ride) {
                 withAnimation {
                     coreDataManager.removeRide(ride: ride)
                 }

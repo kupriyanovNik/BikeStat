@@ -88,7 +88,7 @@ struct SettingsView: View {
                 .overlay {
                     if isSelected {
                         Circle()
-                            .fill(Pallete.accentColor)
+                            .fill(themeManager.selectedTheme.accentColor)
                             .padding(2)
                             .matchedGeometryEffect(id: "selectedUnits", in: animation)
                     }

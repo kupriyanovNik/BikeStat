@@ -8,6 +8,8 @@ struct RideInfoView: View {
 
     // MARK: - Property Wrappers
 
+    @ObservedObject var themeManager: ThemeManager
+
     @Environment(\.dismiss) var dismiss
 
     @State private var currentIndex: Int = 0
@@ -41,7 +43,7 @@ struct RideInfoView: View {
 
     var body: some View {
         ZStack {
-            Pallete.accentColor
+            themeManager.selectedTheme.accentColor
                 .ignoresSafeArea()
 
             VStack(spacing: 25) {

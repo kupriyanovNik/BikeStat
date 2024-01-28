@@ -134,7 +134,7 @@ struct PlanningView: View {
         .foregroundStyle(.black)
         .font(.title2)
         .background {
-            Pallete.accentColor
+            themeManager.selectedTheme.accentColor
                 .clipShape(
                     RoundedShape(
                         corners: [.bottomLeft, .bottomRight],
