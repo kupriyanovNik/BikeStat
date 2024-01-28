@@ -13,6 +13,7 @@ struct SettingsView: View {
     @Namespace var animation
 
     @ObservedObject var settingsViewModel: SettingsViewModel
+    @ObservedObject var themeManager: ThemeManager
 
     // MARK: - Private Properties
 
@@ -90,6 +91,7 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView(
-        settingsViewModel: .init()
+        settingsViewModel: .init(),
+        themeManager: .init()
     )
 }

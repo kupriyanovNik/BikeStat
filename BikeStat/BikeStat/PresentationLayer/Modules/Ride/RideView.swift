@@ -15,6 +15,7 @@ struct RideView: View {
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var locationManager: LocationManager
+    @ObservedObject var themeManager: ThemeManager
 
     @State private var shouldCenterMapOnLocation: Bool = true
     @State private var mapSpanDeltaValue: Double = 0.008
@@ -318,6 +319,7 @@ struct RideView: View {
         navigationManager: .init(),
         coreDataManager: .init(),
         networkManager: .init(),
-        locationManager: .init()
+        locationManager: .init(),
+        themeManager: .init()
     )
 }

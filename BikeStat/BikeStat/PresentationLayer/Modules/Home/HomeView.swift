@@ -14,6 +14,7 @@ struct HomeView: View {
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var navigationManager: NavigationManager
+    @ObservedObject var themeManager: ThemeManager
 
     @State private var isPlanRideCardVisible: Bool = true
 
@@ -269,7 +270,8 @@ struct HomeView: View {
             PlanningView(
                 planningViewModel: planningViewModel,
                 homeViewModel: homeViewModel,
-                coreDataManager: coreDataManager
+                coreDataManager: coreDataManager,
+                themeManager: themeManager
             )
 
             Spacer()
@@ -305,6 +307,7 @@ struct HomeView: View {
         planningViewModel: .init(),
         coreDataManager: .init(),
         networkManager: .init(),
-        navigationManager: .init()
+        navigationManager: .init(),
+        themeManager: .init()
     )
 }

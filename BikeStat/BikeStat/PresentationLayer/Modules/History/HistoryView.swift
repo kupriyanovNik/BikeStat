@@ -11,6 +11,7 @@ struct HistoryView: View {
     @Environment(\.dismiss) var dismiss
 
     @ObservedObject var coreDataManager: CoreDataManager
+    @ObservedObject var themeManager: ThemeManager
 
     @State private var selectedRide: RideInfoModel?
 
@@ -93,6 +94,7 @@ struct HistoryView: View {
 
 #Preview {
     HistoryView(
-        coreDataManager: .init()
+        coreDataManager: .init(),
+        themeManager: .init()
     )
 }

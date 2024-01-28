@@ -16,6 +16,7 @@ struct MainNavigationView: View {
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var locationManager: LocationManager
+    @ObservedObject var themeManager: ThemeManager
 
     // MARK: - Body
 
@@ -27,7 +28,8 @@ struct MainNavigationView: View {
                 planningViewModel: planningViewModel,
                 coreDataManager: coreDataManager,
                 networkManager: networkManager,
-                navigationManager: navigationManager
+                navigationManager: navigationManager,
+                themeManager: themeManager
             )
             .navigationDestination(for: NavigationModel.self) { value in
                 destinationView(value: value)
@@ -46,19 +48,23 @@ struct MainNavigationView: View {
                     navigationManager: navigationManager,
                     coreDataManager: coreDataManager,
                     networkManager: networkManager,
-                    locationManager: locationManager
+                    locationManager: locationManager,
+                    themeManager: themeManager
                 )
             case .settings:
                 SettingsView(
-                    settingsViewModel: settingsViewModel
+                    settingsViewModel: settingsViewModel,
+                    themeManager: themeManager
                 )
             case .history:
                 HistoryView(
-                    coreDataManager: coreDataManager
+                    coreDataManager: coreDataManager,
+                    themeManager: themeManager
                 )
             case .statistics:
                 StatisticsView(
-                    coreDataManager: coreDataManager
+                    coreDataManager: coreDataManager,
+                    themeManager: themeManager
                 )
             }
         }
@@ -77,6 +83,7 @@ struct MainNavigationView: View {
         settingsViewModel :.init(),
         coreDataManager: .init(),
         networkManager: .init(),
-        locationManager: .init()
+        locationManager: .init(),
+        themeManager: .init()
     )
 }

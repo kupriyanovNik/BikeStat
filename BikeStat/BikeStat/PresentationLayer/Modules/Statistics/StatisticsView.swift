@@ -12,6 +12,7 @@ struct StatisticsView: View {
     @Environment(\.dismiss) var dismiss
 
     @ObservedObject var coreDataManager: CoreDataManager
+    @ObservedObject var themeManager: ThemeManager
 
     @State private var last10RidesChartData: [StatisticsChartDataModel] = []
     @State private var recomendationsChartData: [RecomendationsChartDataModel] = []
@@ -288,6 +289,7 @@ struct StatisticsView: View {
 
 #Preview {
     StatisticsView(
-        coreDataManager: .init()
+        coreDataManager: .init(),
+        themeManager: .init()
     )
 }
