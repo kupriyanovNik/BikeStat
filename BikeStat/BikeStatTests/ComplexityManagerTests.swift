@@ -40,7 +40,7 @@ final class ComplexityManagerTests: XCTestCase {
 
     func testRealComplexity() {
         let result1 = manager.getRealComplexity(
-            pulse: .init(min: 65, avg: 119, max: 150)
+            pulse: .init(min: 65, avg: 109, max: 150)
         )
         let result2 = manager.getRealComplexity(
             pulse: .init(min: 23, avg: 143, max: 170)
