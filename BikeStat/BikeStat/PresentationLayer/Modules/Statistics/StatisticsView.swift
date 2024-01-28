@@ -12,6 +12,7 @@ struct StatisticsView: View {
     @Environment(\.dismiss) var dismiss
 
     @ObservedObject var coreDataManager: CoreDataManager
+    @ObservedObject var themeManager: ThemeManager
 
     @State private var last10RidesChartData: [StatisticsChartDataModel] = []
     @State private var recomendationsChartData: [RecomendationsChartDataModel] = []
@@ -121,7 +122,7 @@ struct StatisticsView: View {
                 recomendationsView()
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             } else {
-                Text("Нажмите, чтобы посмотреть рекомендации")
+                Text("Посмотреть рекомендации")
                     .multilineTextAlignment(.center)
             }
         }
@@ -215,7 +216,7 @@ struct StatisticsView: View {
                 .padding(.vertical, 10)
                 .padding(.horizontal, 35)
                 .background {
-                    Pallete.accentColor
+                    themeManager.selectedTheme.accentColor
                         .cornerRadius(5)
                 }
             }
@@ -288,6 +289,7 @@ struct StatisticsView: View {
 
 #Preview {
     StatisticsView(
-        coreDataManager: .init()
+        coreDataManager: .init(),
+        themeManager: .init()
     )
 }

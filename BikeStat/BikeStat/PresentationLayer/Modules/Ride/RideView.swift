@@ -15,6 +15,7 @@ struct RideView: View {
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var locationManager: LocationManager
+    @ObservedObject var themeManager: ThemeManager
 
     @State private var shouldCenterMapOnLocation: Bool = true
     @State private var mapSpanDeltaValue: Double = 0.008
@@ -87,7 +88,7 @@ struct RideView: View {
         ) / 100
 
         ZStack(alignment: .top) {
-            Pallete.accentColor
+            themeManager.selectedTheme.accentColor
                 .clipShape(
                     RoundedShape(
                         corners: [.bottomLeft, .bottomRight], 
@@ -157,7 +158,7 @@ struct RideView: View {
                 .padding(3)
                 .frame(width: 40, height: 40)
                 .background(
-                    Pallete.accentColor
+                    themeManager.selectedTheme.accentColor
                 )
                 .cornerRadius(5)
                 .animation(.none, value: shouldCenterMapOnLocation)
@@ -187,7 +188,7 @@ struct RideView: View {
             .padding(.vertical)
             .padding(.horizontal, 36)
             .background {
-                Pallete.accentColor
+                themeManager.selectedTheme.accentColor
                     .opacity(0.54)
                     .cornerRadius(20)
             }
@@ -255,9 +256,9 @@ struct RideView: View {
                 .foregroundStyle(.white)
                 .padding()
                 .frame(width: 40, height: 40)
-                .background(
-                    Pallete.accentColor
-                )
+                .background {
+                    themeManager.selectedTheme.accentColor
+                }
                 .cornerRadius(5)
         }
         .buttonStyle(MainButtonStyle())
@@ -318,6 +319,7 @@ struct RideView: View {
         navigationManager: .init(),
         coreDataManager: .init(),
         networkManager: .init(),
-        locationManager: .init()
+        locationManager: .init(),
+        themeManager: .init()
     )
 }

@@ -14,6 +14,7 @@ struct HomeView: View {
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
     @ObservedObject var navigationManager: NavigationManager
+    @ObservedObject var themeManager: ThemeManager
 
     @State private var isPlanRideCardVisible: Bool = true
 
@@ -84,7 +85,7 @@ struct HomeView: View {
                         .frame(width: 40, height: 40)
                         .background {
                             Circle()
-                                .fill(Pallete.accentColor)
+                                .fill(themeManager.selectedTheme.accentColor)
                         }
                         .overlay {
                             HStack(alignment: .bottom, spacing: 4) {
@@ -156,7 +157,7 @@ struct HomeView: View {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 25)
-                .fill(Pallete.accentColor)
+                .fill(themeManager.selectedTheme.accentColor)
         }
         .onDisappear {
             if navigationManager.path.isEmpty {
@@ -230,7 +231,7 @@ struct HomeView: View {
                 .padding(10)
                 .frame(width: 70, height: 70)
                 .background {
-                    Pallete.accentColor
+                    themeManager.selectedTheme.accentColor
                         .clipShape(Circle())
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -269,7 +270,8 @@ struct HomeView: View {
             PlanningView(
                 planningViewModel: planningViewModel,
                 homeViewModel: homeViewModel,
-                coreDataManager: coreDataManager
+                coreDataManager: coreDataManager,
+                themeManager: themeManager
             )
 
             Spacer()
@@ -305,6 +307,7 @@ struct HomeView: View {
         planningViewModel: .init(),
         coreDataManager: .init(),
         networkManager: .init(),
-        navigationManager: .init()
+        navigationManager: .init(),
+        themeManager: .init()
     )
 }

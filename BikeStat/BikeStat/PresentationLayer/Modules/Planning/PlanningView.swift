@@ -11,6 +11,7 @@ struct PlanningView: View {
     @ObservedObject var planningViewModel: PlanningViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var coreDataManager: CoreDataManager
+    @ObservedObject var themeManager: ThemeManager
 
     // MARK: - Private Properties
 
@@ -133,7 +134,7 @@ struct PlanningView: View {
         .foregroundStyle(.black)
         .font(.title2)
         .background {
-            Pallete.accentColor
+            themeManager.selectedTheme.accentColor
                 .clipShape(
                     RoundedShape(
                         corners: [.bottomLeft, .bottomRight],
@@ -218,6 +219,7 @@ struct PlanningView: View {
     PlanningView(
         planningViewModel: .init(),
         homeViewModel: .init(),
-        coreDataManager: .init()
+        coreDataManager: .init(),
+        themeManager: .init()
     )
 }

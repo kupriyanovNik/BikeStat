@@ -13,10 +13,11 @@ struct BikeStatApp: App {
     @StateObject private var homeViewModel = HomeViewModel()
     @StateObject private var rideViewModel = RideViewModel()
     @StateObject private var settingsViewModel = SettingsViewModel()
+    @StateObject private var planningViewModel = PlanningViewModel()
     @StateObject private var coreDataManager = CoreDataManager()
     @StateObject private var networkManager = NetworkManager()
     @StateObject private var locationManager = LocationManager()
-    @StateObject private var planningViewModel = PlanningViewModel()
+    @StateObject private var themeManager = ThemeManager()
 
     // MARK: - Body
 
@@ -30,7 +31,8 @@ struct BikeStatApp: App {
                 settingsViewModel: settingsViewModel,
                 coreDataManager: coreDataManager,
                 networkManager: networkManager,
-                locationManager: locationManager
+                locationManager: locationManager,
+                themeManager: themeManager
             )
         }
     }

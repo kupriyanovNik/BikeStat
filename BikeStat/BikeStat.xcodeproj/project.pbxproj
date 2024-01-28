@@ -54,6 +54,11 @@
 		B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82D82B5D60320044EDB3 /* TimeInterval.swift */; };
 		B77F82DC2B5D638C0044EDB3 /* ComplexityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */; };
 		B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */; };
+		B784269B2B66DECC00B34906 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78426972B66DECC00B34906 /* ThemeManager.swift */; };
+		B784269C2B66DECC00B34906 /* ThemeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78426982B66DECC00B34906 /* ThemeDefinitions.swift */; };
+		B784269D2B66DECC00B34906 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78426992B66DECC00B34906 /* DataSource.swift */; };
+		B784269E2B66DECC00B34906 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B784269A2B66DECC00B34906 /* ThemeProtocol.swift */; };
+		B78426A12B66E20800B34906 /* ThemePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78426A02B66E20800B34906 /* ThemePickerCell.swift */; };
 		B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */; };
 		B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA14022B52F7E5009616CD /* RideInfoView.swift */; };
 		B7B48E172B65348100E5AE8F /* MarqueeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B48E162B65348100E5AE8F /* MarqueeText.swift */; };
@@ -123,6 +128,11 @@
 		B77F82D82B5D60320044EDB3 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		B77F82DB2B5D638C0044EDB3 /* ComplexityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexityManager.swift; sourceTree = "<group>"; };
 		B77F82DE2B5D64160044EDB3 /* RideComplexity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideComplexity.swift; sourceTree = "<group>"; };
+		B78426972B66DECC00B34906 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		B78426982B66DECC00B34906 /* ThemeDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeDefinitions.swift; sourceTree = "<group>"; };
+		B78426992B66DECC00B34906 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		B784269A2B66DECC00B34906 /* ThemeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
+		B78426A02B66E20800B34906 /* ThemePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerCell.swift; sourceTree = "<group>"; };
 		B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningViewModel.swift; sourceTree = "<group>"; };
 		B7AA14022B52F7E5009616CD /* RideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInfoView.swift; sourceTree = "<group>"; };
 		B7B48E162B65348100E5AE8F /* MarqueeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarqueeText.swift; sourceTree = "<group>"; };
@@ -211,6 +221,7 @@
 		B75CB6342B445EEC00CDF026 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				B78426962B66DECC00B34906 /* Theme */,
 				B75CB6352B445EEC00CDF026 /* Components */,
 				B75CB63E2B445EEC00CDF026 /* Modules */,
 			);
@@ -223,6 +234,7 @@
 				B7E7263B2B59A4D400127692 /* Internal */,
 				B75CB6362B445EEC00CDF026 /* ButtonStyles */,
 				B75CB63C2B445EEC00CDF026 /* Representable */,
+				B784269F2B66E1FF00B34906 /* Settings */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -438,6 +450,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B78426962B66DECC00B34906 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				B78426972B66DECC00B34906 /* ThemeManager.swift */,
+				B78426982B66DECC00B34906 /* ThemeDefinitions.swift */,
+				B78426992B66DECC00B34906 /* DataSource.swift */,
+				B784269A2B66DECC00B34906 /* ThemeProtocol.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		B784269F2B66E1FF00B34906 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B78426A02B66E20800B34906 /* ThemePickerCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		B7AA14012B52F7D8009616CD /* RideInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,6 +642,7 @@
 				B77F82D92B5D60320044EDB3 /* TimeInterval.swift in Sources */,
 				B75CB6772B445EEC00CDF026 /* LocationManager.swift in Sources */,
 				B76B096A2B643AB200803125 /* ApiMethods.swift in Sources */,
+				B784269B2B66DECC00B34906 /* ThemeManager.swift in Sources */,
 				B75CB6792B445EEC00CDF026 /* NetworkDataModels.swift in Sources */,
 				B76B096C2B643AB200803125 /* RequestImplimentation.swift in Sources */,
 				B71F69CA2B5C81DC0041372C /* BikeStatApp.swift in Sources */,
@@ -618,6 +650,7 @@
 				B75CB67E2B445EEC00CDF026 /* RideSpeedInfoModel.swift in Sources */,
 				B75CB6822B445EEC00CDF026 /* Strings.swift in Sources */,
 				B71F69CD2B5C832E0041372C /* HistoryView.swift in Sources */,
+				B78426A12B66E20800B34906 /* ThemePickerCell.swift in Sources */,
 				B75CB6682B445EEC00CDF026 /* Date.swift in Sources */,
 				B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */,
 				B75CB6762B445EEC00CDF026 /* MainNavigationView.swift in Sources */,
@@ -638,13 +671,16 @@
 				B755550B2B4AFC5E003B93E3 /* SettingsViewModel.swift in Sources */,
 				B75CB67B2B445EEC00CDF026 /* CoreDataManager.swift in Sources */,
 				B75555032B4AB2CE003B93E3 /* Color.swift in Sources */,
+				B784269C2B66DECC00B34906 /* ThemeDefinitions.swift in Sources */,
 				B75CB6732B445EEC00CDF026 /* RideView.swift in Sources */,
 				B75CB66B2B445EEC00CDF026 /* Internal.swift in Sources */,
 				B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */,
 				B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */,
 				B75555092B4AFC3D003B93E3 /* SettingsView.swift in Sources */,
 				B72FD8152B617DF50039F6B2 /* StatisticsView.swift in Sources */,
+				B784269D2B66DECC00B34906 /* DataSource.swift in Sources */,
 				B76B096D2B643AB200803125 /* RequestProtocol.swift in Sources */,
+				B784269E2B66DECC00B34906 /* ThemeProtocol.swift in Sources */,
 				B75CB67F2B445EEC00CDF026 /* RidePulseInfoModel.swift in Sources */,
 				B75CB6742B445EEC00CDF026 /* RideViewModel.swift in Sources */,
 				B75CB66A2B445EEC00CDF026 /* Int.swift in Sources */,
