@@ -15,6 +15,9 @@ struct SettingsView: View {
     @ObservedObject var settingsViewModel: SettingsViewModel
     @ObservedObject var themeManager: ThemeManager
 
+    @State private var isExpandedUnitsPicker: Bool = false
+    @State private var isExpandedThemePicker: Bool = false
+
     // MARK: - Private Properties
 
     private let localizable = Localizable.SettingsView.self
@@ -23,8 +26,13 @@ struct SettingsView: View {
 
     var body: some View {
         ScrollView {
-            metricPickerView()
-                .padding(.horizontal, 14)
+            VStack(alignment: .leading) {
+                metricPickerView()
+                    .hLeading()
+
+                themePickerView()
+                    .hLeading()
+            }
         }
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
@@ -43,14 +51,29 @@ struct SettingsView: View {
 
     @ViewBuilder func metricPickerView() -> some View {
         VStack(alignment: .leading) {
-            Text(localizable.units)
-                .bold()
-                .font(.title2)
-                .padding(.leading, 2)
+            HStack {
+                Text("Единицы измерения")
 
-            metricPickerViewCell(value: true)
+                Image(systemName: Images.back)
+                    .rotationEffect(.degrees(isExpandedUnitsPicker ? 270 : 180))
+            }
+            .bold()
+            .font(.title2)
+            .padding(.leading)
+            .onTapGesture {
+                withAnimation {
+                    isExpandedUnitsPicker.toggle()
+                }
+            }
 
-            metricPickerViewCell(value: false)
+            Group {
+                if isExpandedUnitsPicker {
+                    metricPickerViewCell(value: true)
+
+                    metricPickerViewCell(value: false)
+                }
+            }
+            .padding(.leading)
         }
     }
 
@@ -73,8 +96,7 @@ struct SettingsView: View {
                 .scaleEffect(isSelected ? 1.1 : 1)
 
             Text(text)
-                .bold()
-                .font(.title2)
+                .font(.headline)
 
             Spacer()
         }
@@ -84,6 +106,51 @@ struct SettingsView: View {
                 settingsViewModel.isMetricUnits = value
             }
         }
+    }
+
+    @ViewBuilder func themePickerView() -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Text("Цветовая гамма")
+
+                Image(systemName: Images.back)
+                    .rotationEffect(.degrees(isExpandedThemePicker ? 270 : 180))
+            }
+            .bold()
+            .font(.title2)
+            .padding(.leading)
+            .onTapGesture {
+                withAnimation {
+                    isExpandedThemePicker.toggle()
+                }
+            }
+
+            if isExpandedThemePicker {
+                themesListView()
+            }
+        }
+    }
+
+    @ViewBuilder func themesListView() -> some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: -10) {
+                ForEach(0..<DataSource.themesCount) { themeIndex in
+                    let theme = DataSource.getTheme(themeIndex: themeIndex)
+                    let isSelected = theme.accentColor == themeManager.selectedTheme.accentColor
+
+                    ThemePickerCell(
+                        theme: theme,
+                        isSelected: isSelected
+                    ) {
+                        withAnimation {
+                            themeManager.selectedThemeIndex = themeIndex
+                        }
+                    }
+                    .padding()
+                }
+            }
+        }
+        .scrollIndicators(.hidden)
     }
 }
 
