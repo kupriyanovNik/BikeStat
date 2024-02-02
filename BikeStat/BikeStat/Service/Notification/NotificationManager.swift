@@ -1,5 +1,5 @@
 //
-//  Notifications.swift
+//  NotificationManager.swift
 //
 
 import Foundation

@@ -25,15 +25,17 @@ final class ComplexityManager {
     }
 
     func getRealComplexity(
-        pulse: RidePulseInfoModel
+        pulse: RidePulseInfoModel,
+        speed: RideSpeedInfoModel
     ) -> RideComplexity {
-        prepareRealComplexity(for: pulse.avg)
+        prepareRealComplexity(for: pulse.avg, with: speed.avg)
     }
 
     func getRealComplexity(
-        avgPulse: Int
+        avgPulse: Int,
+        avgSpeed: Int
     ) -> RideComplexity {
-        prepareRealComplexity(for: avgPulse)
+        prepareRealComplexity(for: avgPulse, with: avgSpeed)
     }
 
     func getColorByComplexity(complexity: String?) -> Color {
@@ -56,11 +58,11 @@ final class ComplexityManager {
 
     // MARK: - Private Functions
 
-    private func prepareRealComplexity(for pulse: Int) -> RideComplexity {
-        switch pulse {
-        case 0...110: .easy
-        case 111...145: .medium
-        case 146...: .hard
+    private func prepareRealComplexity(for pulse: Int, with speed: Int) -> RideComplexity {
+        switch pulse * Int(Double(speed) / 1.4) {
+        case 0...850: .easy
+        case 851...1500: .medium
+        case 1501...: .hard
         default: .unowned
         }
     }

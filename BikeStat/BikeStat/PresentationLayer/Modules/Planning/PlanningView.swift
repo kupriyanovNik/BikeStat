@@ -198,9 +198,11 @@ struct PlanningView: View {
     private func planRide() {
         let rideTitle = planningViewModel.rideTitle
         let rideDate = planningViewModel.rideDate
+        let rideDistance = planningViewModel.estimatedDistance
+        let parsedDistance = String(format: Strings.NumberFormats.forDistanceShort, Double(rideDistance) / 1000)
 
-        let notificationTitle = !(rideTitle).isEmpty ? "Поездка: \(rideTitle)" : "Поездка!"
-        NotificationManager.shared.sendNotification(subtitle: notificationTitle, date: rideDate)
+        let notificationTitleWithDistance = rideTitle + " (\(parsedDistance) км)"
+        NotificationManager.shared.sendNotification(subtitle: notificationTitleWithDistance, date: rideDate)
 
         withAnimation {
             coreDataManager.planRide(
