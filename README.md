@@ -1,11 +1,17 @@
 # **BikeStat 🚲**
 
+![МОШ](https://predprof.olimpiada.ru/images/logo-predporf.svg)
+
 ![Xcode](https://img.shields.io/badge/Xcode-007ACC?style=for-the-badge&logo=Xcode&logoColor=white)
 ![Swift](https://img.shields.io/badge/swift-F54A2A?style=for-the-badge&logo=swift&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
 ## Добро пожаловать в репозиторий!
+
+### Разработчики 
+1. [Никита Куприянов](https://github.com/kupriyanovNik)
+2. [Анфиса Опарина](https://github.com/Anfisok)
 
 ### Описание
 Наше приложение написано на [SwiftUI](https://developer.apple.com/xcode/swiftui/) и предназначено для устройств с операционной системой [iOS 16](https://ru.wikipedia.org/wiki/IOS_16) и новее. 
@@ -27,7 +33,7 @@
 - Поддержка [iOS 16](https://ru.wikipedia.org/wiki/IOS_16) и выше
 - Возможность выбрать цветовую гамму приложения и единицы измерения  
 
-### Техническая информация 
+### Краткая техническая информация 
 - Архитектура: [MVVM](https://ru.wikipedia.org/wiki/Model-View-ViewModel)+S
 - Локальное сохранение данных: [CoreData](https://developer.apple.com/documentation/coredata/)
 - Сетевой слой на [async/await](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/)
