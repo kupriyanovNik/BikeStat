@@ -86,7 +86,7 @@ struct HomeView: View {
                     navigationManager.showStatisticsView()
                 } label: {
                     Circle()
-                        .strokeBorder(Color.black, lineWidth: 2)
+                        .strokeBorder(Color.primary, lineWidth: 2)
                         .frame(width: 40, height: 40)
                         .background {
                             Circle()
@@ -258,6 +258,7 @@ struct HomeView: View {
                 Text(rideDate.formatted(date: .omitted, time: .shortened))
             }
         }
+        .foregroundStyle(.black)
         .font(.title2)
         .fontWeight(.semibold)
         .padding()
@@ -296,7 +297,7 @@ struct HomeView: View {
                 .id(ride.objectID)
                 .onTapGesture {
                     navigationManager.showRideView()
-                    
+
                     rideViewModel.currentRide = ride
                 }
         }

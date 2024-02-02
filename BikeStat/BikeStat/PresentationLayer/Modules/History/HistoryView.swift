@@ -87,6 +87,7 @@ struct HistoryView: View {
                 Text(rideDate.formatted(date: .omitted, time: .shortened))
             }
         }
+        .foregroundStyle(.black)
         .font(.title2)
         .fontWeight(.semibold)
         .padding()
