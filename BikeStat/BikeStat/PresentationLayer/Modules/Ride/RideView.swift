@@ -288,6 +288,12 @@ struct RideView: View {
 
         if let currentRide = rideViewModel.currentRide,
            let pulseData = networkManager.watchData?.data {
+            let realComplexity = ComplexityManager.shared
+                .getRealComplexity(
+                    avgPulse: pulseData.pulse.avg,
+                    avgSpeed: avgSpeed
+                )
+            
             coreDataManager.endRide(
                 ride: currentRide,
                 pulseData: .init(
@@ -299,8 +305,7 @@ struct RideView: View {
                     avg: avgSpeed,
                     max: maxSpeed
                 ),
-                realComplexity: ComplexityManager.shared
-                    .getRealComplexity(avgPulse: pulseData.pulse.avg).rawValue,
+                realComplexity: realComplexity.rawValue,
                 realDistance: Int(locationManager.cyclingTotalDistance),
                 realTime: Int(rideViewModel.totalAccumulatedTime)
             )
