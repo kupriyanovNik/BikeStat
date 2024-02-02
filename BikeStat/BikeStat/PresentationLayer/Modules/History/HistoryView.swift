@@ -67,6 +67,11 @@ struct HistoryView: View {
             .makeHeader {
                 dismiss()
             }
+            .onTapGesture(count: 3) {
+                withAnimation {
+                    coreDataManager.removeAllEndedRides()
+                }
+            }
     }
 
     @ViewBuilder func endedRideInfoCard(ride: RideInfoModel) -> some View {
@@ -82,6 +87,7 @@ struct HistoryView: View {
                 Text(rideDate.formatted(date: .omitted, time: .shortened))
             }
         }
+        .foregroundStyle(.black)
         .font(.title2)
         .fontWeight(.semibold)
         .padding()

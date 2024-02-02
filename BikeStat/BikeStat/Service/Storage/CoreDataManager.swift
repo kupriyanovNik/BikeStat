@@ -100,6 +100,23 @@ final class CoreDataManager: ObservableObject {
         viewContext.delete(ride)
         saveContext()
         fetchEndedRides()
+        fetchPlannedRides()
+    }
+
+    // MARK: - Debug
+
+    func removeAllPlannedRides() {
+        for ride in plannedRides {
+            removeRide(ride: ride)
+        }
+
+        NotificationManager.shared.removeAllNotifications()
+    }
+
+    func removeAllEndedRides() {
+        for ride in endedRides {
+            removeRide(ride: ride)
+        }
     }
 
     // MARK: - Private Functions

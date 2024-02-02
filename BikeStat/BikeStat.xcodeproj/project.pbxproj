@@ -64,6 +64,7 @@
 		B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA14022B52F7E5009616CD /* RideInfoView.swift */; };
 		B7B48E172B65348100E5AE8F /* MarqueeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B48E162B65348100E5AE8F /* MarqueeText.swift */; };
 		B7B48E192B65378100E5AE8F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B48E182B65378100E5AE8F /* String.swift */; };
+		B7CF9EF02B6CE76A000FF98F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF9EEF2B6CE76A000FF98F /* NotificationManager.swift */; };
 		B7E7263A2B598F7D00127692 /* PlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E726392B598F7D00127692 /* PlanningView.swift */; };
 		B7E7263D2B59A4D800127692 /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263C2B59A4D800127692 /* RoundedShape.swift */; };
 		B7E7263F2B59AFA500127692 /* Pallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E7263E2B59AFA500127692 /* Pallete.swift */; };
@@ -139,6 +140,7 @@
 		B7AA14022B52F7E5009616CD /* RideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInfoView.swift; sourceTree = "<group>"; };
 		B7B48E162B65348100E5AE8F /* MarqueeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarqueeText.swift; sourceTree = "<group>"; };
 		B7B48E182B65378100E5AE8F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		B7CF9EEF2B6CE76A000FF98F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B7D714C12B3B441A007FD89F /* BikeStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E726392B598F7D00127692 /* PlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningView.swift; sourceTree = "<group>"; };
 		B7E7263C2B59A4D800127692 /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 		B75CB6492B445EEC00CDF026 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B7CF9EEE2B6CE761000FF98F /* Notification */,
 				B77F82DA2B5D63840044EDB3 /* Complexity */,
 				B75CB64A2B445EEC00CDF026 /* Location */,
 				B75CB64C2B445EEC00CDF026 /* Network */,
@@ -478,6 +481,14 @@
 				B7AA14022B52F7E5009616CD /* RideInfoView.swift */,
 			);
 			path = RideInfo;
+			sourceTree = "<group>";
+		};
+		B7CF9EEE2B6CE761000FF98F /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				B7CF9EEF2B6CE76A000FF98F /* NotificationManager.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		B7D714B82B3B441A007FD89F = {
@@ -676,6 +687,7 @@
 				B75CB67B2B445EEC00CDF026 /* CoreDataManager.swift in Sources */,
 				B75555032B4AB2CE003B93E3 /* Color.swift in Sources */,
 				B784269C2B66DECC00B34906 /* ThemeDefinitions.swift in Sources */,
+				B7CF9EF02B6CE76A000FF98F /* NotificationManager.swift in Sources */,
 				B75CB6732B445EEC00CDF026 /* RideView.swift in Sources */,
 				B75CB66B2B445EEC00CDF026 /* Internal.swift in Sources */,
 				B75CB6872B445EEC00CDF026 /* Localizable.swift in Sources */,

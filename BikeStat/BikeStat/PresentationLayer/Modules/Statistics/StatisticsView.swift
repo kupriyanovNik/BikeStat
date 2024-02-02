@@ -10,6 +10,7 @@ struct StatisticsView: View {
     // MARK: - Property Wrappers
 
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
 
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var themeManager: ThemeManager
@@ -87,7 +88,7 @@ struct StatisticsView: View {
         .overlay {
             if showRecomendations {
                 Color.black
-                    .opacity(0.15)
+                    .opacity(colorScheme == .light ? 0.15 : 0.5)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation {
@@ -133,9 +134,13 @@ struct StatisticsView: View {
         .padding(24)
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.white)
-                .shadow(color: .white, radius: 100, x: 0, y: 100)
-                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
+                .fill(colorScheme == .light ? .white : .black)
+                .shadow(
+                    color: (colorScheme == .light ? Color.black : .white).opacity(0.2),
+                    radius: 10,
+                    x: 0,
+                    y: 0
+                )
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 5)
@@ -194,6 +199,7 @@ struct StatisticsView: View {
             Text(Localizable.Statistics.recomendations)
                 .fontWeight(.semibold)
                 .font(.title2)
+                .foregroundStyle(.primary)
 
             if #available(iOS 17, *) {
                 Chart(recomendationsChartData, id: \.id) { item in
