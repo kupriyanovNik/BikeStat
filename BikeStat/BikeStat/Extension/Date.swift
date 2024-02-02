@@ -5,7 +5,7 @@
 import Foundation
 
 extension Date {
-    /// Function returning a localized string depending on the current time
+    /// unused
     func greeting() -> String {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: self)
@@ -19,5 +19,19 @@ extension Date {
         } else {
             return "Добрый вечер!"
         }
+    }
+
+    func makeDateComponents() -> DateComponents {
+        let calendar = Calendar.current
+        let minute = calendar.component(.minute, from: self)
+        let hour = calendar.component(.hour, from: self)
+        let day = calendar.component(.day, from: self)
+
+        var dateComp = DateComponents()
+        dateComp.hour = hour
+        dateComp.minute = minute
+        dateComp.day = day
+
+        return dateComp
     }
 }
