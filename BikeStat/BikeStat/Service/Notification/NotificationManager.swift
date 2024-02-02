@@ -35,7 +35,9 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         subtitle: String,
         date: Date
     ) {
-        requestAuthorization()
+        if shouldRequestAuthorization() {
+            requestAuthorization()
+        }
 
         let content = UNMutableNotificationContent()
         content.title = title
@@ -81,5 +83,24 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         content: UNMutableNotificationContent
     ) -> UNNotificationRequest{
         .init(identifier: id, content: content, trigger: trigger)
+    }
+
+    private func shouldRequestAuthorization() -> Bool {
+        var isNotificationEnabled = false
+
+        UNUserNotificationCenter
+            .current()
+            .getNotificationSettings { status in
+                switch status.authorizationStatus {
+                case .denied, .ephemeral:
+                    isNotificationEnabled = false
+                case .authorized, .notDetermined, .provisional:
+                    isNotificationEnabled = true
+                @unknown default:
+                    print("DEBUG: unowned notification status")
+                }
+            }
+
+        return !isNotificationEnabled
     }
 }
