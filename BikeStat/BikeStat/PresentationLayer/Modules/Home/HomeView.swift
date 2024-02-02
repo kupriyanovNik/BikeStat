@@ -37,6 +37,11 @@ struct HomeView: View {
                         .font(.title2)
                         .bold()
                         .hLeading()
+                        .onTapGesture(count: 3) {
+                            withAnimation {
+                                coreDataManager.removeAllPlannedRides()
+                            }
+                        }
                 }
 
                 plannedRidesList()

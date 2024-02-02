@@ -67,6 +67,11 @@ struct HistoryView: View {
             .makeHeader {
                 dismiss()
             }
+            .onTapGesture(count: 3) {
+                withAnimation {
+                    coreDataManager.removeAllEndedRides()
+                }
+            }
     }
 
     @ViewBuilder func endedRideInfoCard(ride: RideInfoModel) -> some View {
