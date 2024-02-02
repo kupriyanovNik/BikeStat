@@ -8,6 +8,7 @@ struct RideInfoView: View {
 
     // MARK: - Property Wrappers
 
+    @ObservedObject var settingsViewModel: SettingsViewModel
     @ObservedObject var themeManager: ThemeManager
 
     @Environment(\.dismiss) var dismiss
@@ -35,7 +36,7 @@ struct RideInfoView: View {
     }
 
     private var rideCalories: Int {
-        let kkal = 0.014 * 60 * Double(ride.realTime) * (0.12 * Double(ride.avgPulse) - 7)
+        let kkal = 0.014 * Double(settingsViewModel.userWeight) * Double(ride.realTime) * (0.12 * Double(ride.avgPulse) - 7)
         return Int(round(100 * kkal) / 100)
     }
 

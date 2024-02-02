@@ -17,6 +17,7 @@ struct SettingsView: View {
 
     @State private var isExpandedUnitsPicker: Bool = false
     @State private var isExpandedThemePicker: Bool = false
+    @State private var isExpandedWeightPicker: Bool = false
 
     // MARK: - Private Properties
 
@@ -31,6 +32,9 @@ struct SettingsView: View {
                     .hLeading()
 
                 themePickerView()
+                    .hLeading()
+
+                weightPickerView()
                     .hLeading()
             }
         }
@@ -151,6 +155,47 @@ struct SettingsView: View {
             }
         }
         .scrollIndicators(.hidden)
+    }
+
+    @ViewBuilder func weightPickerView() -> some View {
+        HStack {
+            Text("Персональная информация")
+
+            Image(systemName: Images.back)
+                .rotationEffect(.degrees(isExpandedWeightPicker ? 270 : 180))
+        }
+        .bold()
+        .font(.title2)
+        .padding(.leading)
+        .onTapGesture {
+            withAnimation {
+                isExpandedWeightPicker.toggle()
+            }
+        }
+
+        if isExpandedWeightPicker {
+            weightPickerRow()
+        }
+    }
+
+    @ViewBuilder func weightPickerRow() -> some View {
+        HStack {
+            Text("Ваш вес")
+                .font(.headline)
+
+            Spacer()
+
+            Picker("", selection: $settingsViewModel.userWeight) {
+                ForEach(15...150, id: \.self) {
+                    Text("\($0) кг")
+                        .id($0)
+                        .tag($0)
+                }
+            }
+            .tint(.black)
+            .labelsHidden()
+        }
+        .padding(.horizontal)
     }
 }
 
