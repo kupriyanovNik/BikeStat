@@ -196,10 +196,16 @@ struct PlanningView: View {
     }
 
     private func planRide() {
+        let rideTitle = planningViewModel.rideTitle
+        let rideDate = planningViewModel.rideDate
+
+        let notificationTitle = !(rideTitle).isEmpty ? "Поездка: \(rideTitle)" : "Поездка!"
+        NotificationManager.shared.sendNotification(subtitle: notificationTitle, date: rideDate)
+
         withAnimation {
             coreDataManager.planRide(
-                title: planningViewModel.rideTitle,
-                rideDate: planningViewModel.rideDate,
+                title: rideTitle,
+                rideDate: rideDate,
                 estimatedTime: planningViewModel.estimatedTime * 60,
                 estimatedDistance: planningViewModel.estimatedDistance,
                 estimatedComplexity: ComplexityManager.shared.getEstimatedComplexity(
