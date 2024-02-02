@@ -10,6 +10,7 @@ struct HistoryView: View {
 
     @Environment(\.dismiss) var dismiss
 
+    @ObservedObject var settingsViewModel: SettingsViewModel
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var themeManager: ThemeManager
 
@@ -41,7 +42,11 @@ struct HistoryView: View {
         .navigationBarBackButtonHidden()
         .scaleEffect(selectedRide == nil ? 1 : 0.95)
         .sheet(item: $selectedRide) { ride in
-            RideInfoView(themeManager: themeManager, ride: ride) {
+            RideInfoView(
+                settingsViewModel: settingsViewModel,
+                themeManager: themeManager,
+                ride: ride
+            ) {
                 withAnimation {
                     coreDataManager.removeRide(ride: ride)
                 }
@@ -94,6 +99,7 @@ struct HistoryView: View {
 
 #Preview {
     HistoryView(
+        settingsViewModel: .init(),
         coreDataManager: .init(),
         themeManager: .init()
     )

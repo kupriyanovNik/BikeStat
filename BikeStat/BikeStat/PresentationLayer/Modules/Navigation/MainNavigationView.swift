@@ -58,6 +58,7 @@ struct MainNavigationView: View {
                 )
             case .history:
                 HistoryView(
+                    settingsViewModel: settingsViewModel, 
                     coreDataManager: coreDataManager,
                     themeManager: themeManager
                 )
