@@ -59,7 +59,7 @@ final class ComplexityManager {
     // MARK: - Private Functions
 
     private func prepareRealComplexity(for pulse: Int, with speed: Int) -> RideComplexity {
-        switch pulse * Int(Double(speed) / 2.8) {
+        switch pulse * Int(Double(speed) / 1.4) {
         case 0...850: .easy
         case 851...1500: .medium
         case 1501...: .hard
