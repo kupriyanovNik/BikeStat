@@ -41,19 +41,32 @@
 - Unit-тестирование: [XCTest](https://developer.apple.com/documentation/xctest)
 
 ### Установка
+###### Для запуска приложения на устройстве нужен компьютер с установленной MacOS и телефон работающий под управлением iOS
 Для установки приложения необходимо выполнить следующие шаги:
 
-1. Скачать репозиторий на локальный компьютер
+1. Скачивание репозитория на локальный компьютер
   - Открыть терминал
-  - cd имя_папки_в_которую_нужно_скопировать
-  - git clone https://github.com/kupriyanovNik/BikeStat.git
-2. Открыть проект в [Xcode](https://developer.apple.com/xcode/)
-  - поменять [BundleID](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids) на собственный
-3. [Запустить проект на устройстве или симуляторе](https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device)
-  - cmd + shift + 2
-  - добавить симулятор или физическое устройство
-  - выбрать его как Run Destination
-  - cmd + R
+  - Ввести следующие команды
+    + cd путь_к_папке_в_которую_нужно_скопировать
+    + git clone https://github.com/kupriyanovNik/BikeStat.git
+  - Закрыть терминал (опционально)
+2. Открытие проекта
+  - Запустить [Xcode](https://developer.apple.com/xcode/)
+  - Одновременно нажать cmd + shift + 1
+  - Нажать "Open Existing Project..."
+  - Найти в файловой системе скопированную папку
+  - В папке выделить файл "BikeStat.xcodeproj"
+  - Нажать кнопку "Open" / нажать "return" или "Enter" на клавиатуре (зависит от раскладки)
+  - Следующие шаги раздела необходимы **только** для запуска на физическом устройстве
+  - Перейти в Project Navigator (одновременно нажать cmd + 1)
+  - Нажать на корневой элемент в файловой системе проекта (иконка Xcode, справа от которой будет написано BikeStat)
+  - В появившемся окне выбрать вкладку "Signing & Capabilities"
+  - Поменять [BundleID](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids) на собственный
+3. [Запуск проект на физическом устройстве или в симуляторе](https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device)
+  - Одновременно нажать cmd + shift + 2
+  - Выбрать симулятор или физическое устройство в качестве Run Destination
+  - Закрыть окно выбора Run Destination (красная кнопка слева сверху / одновременно нажать cmd + w)
+  - Запустить (в верхнем меню Product -> Run / одновременно нажать cmd + r)
 
 ### Лицензия
 Проект лицензирован в соответствии с условиями лицензии [LICENSE.md](https://github.com/kupriyanovNik/BikeStat/blob/develop/LICENSE).
