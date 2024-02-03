@@ -64,6 +64,28 @@ extension View {
                     .ignoresSafeArea()
             }
     }
+
+    func makeToast(
+        colorScheme: ColorScheme = .light,
+        action: @escaping () -> ()
+    ) -> some View {
+        self
+            .font(.headline)
+            .bold()
+            .multilineTextAlignment(.center)
+            .hCenter()
+            .padding(24)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(colorScheme == .light ? .white : .black)
+                    .shadow(
+                        color: (colorScheme == .light ? Color.black : .white).opacity(0.2),
+                        radius: 10, x: 0, y: 0
+                    )
+            }
+            .padding(.horizontal)
+            .onTapGesture(perform: action)
+    }
 }
 
 extension View {

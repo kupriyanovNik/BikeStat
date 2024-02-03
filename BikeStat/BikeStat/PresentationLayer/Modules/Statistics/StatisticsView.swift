@@ -16,9 +16,9 @@ struct StatisticsView: View {
     @ObservedObject var themeManager: ThemeManager
 
     @State private var last10RidesChartData: [StatisticsChartDataModel] = []
-    @State private var recomendationsChartData: [RecomendationsChartDataModel] = []
+    @State private var recommendationsChartData: [RecommendationsChartDataModel] = []
 
-    @State private var showRecomendations: Bool = false
+    @State private var showRecommendations: Bool = false
 
     // MARK: - Private Properties
 
@@ -26,7 +26,7 @@ struct StatisticsView: View {
         coreDataManager.endedRides.suffix(10)
     }
 
-    private var shouldShowRecomendations: Bool {
+    private var shouldShowRecommendations: Bool {
         last10Rides.count >= 3
     }
 
@@ -46,7 +46,7 @@ struct StatisticsView: View {
             let mediumCount = getCountOfComplexity(for: .medium)
             let hardCount = getCountOfComplexity(for: .hard)
 
-            let maxCount = [easyCount, mediumCount, hardCount].max() ?? 0
+            let maxCount: Int = [easyCount, mediumCount, hardCount].max().safeUnwrap()
 
             let majorComplexity: RideComplexity = easyCount == maxCount ? .easy : mediumCount == maxCount ? .medium : .hard
 
@@ -69,6 +69,10 @@ struct StatisticsView: View {
         return .unowned
     }
 
+    private var recommeddedComplexityText: String {
+        RecommendationTextModel.getRecomendationsText(complexity: recommeddedComplexity)
+    }
+
     private var middleDistanceAnnotation: String {
         "\(round(round(100 * (middleDistance)) / 1000) / 100)"
     }
@@ -86,25 +90,26 @@ struct StatisticsView: View {
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
         .overlay {
-            if showRecomendations {
+            if showRecommendations {
                 Color.black
-                    .opacity(colorScheme == .light ? 0.15 : 0.5)
+                    .opacity(colorScheme == .light ? 0.3 : 0.5)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation {
-                            showRecomendations = false
+                            showRecommendations = false
                         }
                     }
             }
         }
+        .overlay(alignment: .top) {
+            topRecommendationsView()
+        }
         .overlay(alignment: .bottom) {
-            if shouldShowRecomendations {
-                bottomView()
-            }
+            bottomRecommendationsView()
         }
         .onAppear {
             getLast5RidesChartData()
-            getRecomendationsChartData()
+            getRecommendationsChartData()
         }
     }
 
@@ -117,41 +122,33 @@ struct StatisticsView: View {
             }
     }
 
-    @ViewBuilder func bottomView() -> some View {
+    @ViewBuilder func topRecommendationsView() -> some View {
+        if showRecommendations {
+            Text(.init(recommeddedComplexityText))
+                .makeToast(colorScheme: colorScheme) {
+                    withAnimation {
+                        showRecommendations.toggle()
+                    }
+                }
+                .transition(.move(edge: .top).combined(with: .opacity))
+        }
+    }
+
+    @ViewBuilder func bottomRecommendationsView() -> some View {
         VStack {
-            if showRecomendations {
-                recomendationsView()
+            if showRecommendations {
+                recommendationsView()
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             } else {
                 Text("Посмотреть рекомендации")
                     .multilineTextAlignment(.center)
             }
         }
-        .font(.headline)
-        .bold()
-        .multilineTextAlignment(.center)
-        .hCenter()
-        .padding(24)
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(colorScheme == .light ? .white : .black)
-                .shadow(
-                    color: (colorScheme == .light ? Color.black : .white).opacity(0.2),
-                    radius: 10,
-                    x: 0,
-                    y: 0
-                )
-        }
-        .padding(.horizontal, 24)
-        .padding(.bottom, 5)
-        .onTapGesture {
+        .makeToast(colorScheme: colorScheme) {
             withAnimation {
-                withAnimation {
-                    showRecomendations.toggle()
-                }
+                showRecommendations.toggle()
             }
         }
-        .ignoresSafeArea()
     }
 
     @ViewBuilder func chartView() -> some View {
@@ -194,15 +191,15 @@ struct StatisticsView: View {
         .padding(.horizontal)
     }
 
-    @ViewBuilder func recomendationsView() -> some View {
+    @ViewBuilder func recommendationsView() -> some View {
         VStack {
-            Text(Localizable.Statistics.recomendations)
+            Text(Localizable.Statistics.recommendations)
                 .fontWeight(.semibold)
                 .font(.title2)
                 .foregroundStyle(.primary)
 
             if #available(iOS 17, *) {
-                Chart(recomendationsChartData, id: \.id) { item in
+                Chart(recommendationsChartData, id: \.id) { item in
                     SectorMark(
                         angle: .value("key", item.count),
                         innerRadius: .ratio(0.5),
@@ -223,12 +220,13 @@ struct StatisticsView: View {
                 .padding(.horizontal, 35)
                 .background {
                     themeManager.selectedTheme.accentColor
+                        .opacity(colorScheme == .dark ? 0.7 : 1)
                         .cornerRadius(5)
                 }
             }
 
             (
-                Text(Localizable.Statistics.recomendedComplexity)
+                Text(Localizable.Statistics.recommendedComplexity)
                 +
                 Text(recommeddedComplexity.rawValue)
                     .bold()
@@ -248,7 +246,7 @@ struct StatisticsView: View {
             data.append(
                 .init(
                     number: currentNumber,
-                    title: (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted),
+                    title: (ride.rideDate.safeUnwrap()).formatted(date: .abbreviated, time: .omitted),
                     distance: Double(ride.realDistance),
                     complexity: ride.realComplexity
                 )
@@ -260,18 +258,18 @@ struct StatisticsView: View {
         self.last10RidesChartData = data
     }
 
-    private func getRecomendationsChartData() {
-        self.recomendationsChartData.append(
+    private func getRecommendationsChartData() {
+        self.recommendationsChartData.append(
             .init(title: "Простые",
                   count: getCountOfComplexity(for: .easy),
                   complexity: RideComplexity.easy.rawValue)
         )
-        self.recomendationsChartData.append(
+        self.recommendationsChartData.append(
             .init(title: "Средние",
                   count: getCountOfComplexity(for: .medium),
                   complexity: RideComplexity.medium.rawValue)
         )
-        self.recomendationsChartData.append(
+        self.recommendationsChartData.append(
             .init(title: "Сложные",
                   count: getCountOfComplexity(for: .hard),
                   complexity: RideComplexity.hard.rawValue)

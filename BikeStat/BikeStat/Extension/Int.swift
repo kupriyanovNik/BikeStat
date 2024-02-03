@@ -21,5 +21,10 @@ extension Int {
 
         return "\(hoursText)\(formattedMinutes):\(formattedSeconds)"
     }
+}
 
+extension Int? {
+    func safeUnwrap(with value: Int = 0) -> Int {
+        self ?? value
+    }
 }

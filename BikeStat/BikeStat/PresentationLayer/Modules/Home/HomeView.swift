@@ -57,7 +57,7 @@ struct HomeView: View {
         .overlay {
             if homeViewModel.shouldShowRidePlanningView {
                 Color.black
-                    .opacity(0.15)
+                    .opacity(0.3)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation {
@@ -246,10 +246,10 @@ struct HomeView: View {
     }
 
     @ViewBuilder func plannedRideInfoCard(ride: RideInfoModel) -> some View {
-        let rideDate = ride.rideDate ?? .now
+        let rideDate = ride.rideDate.safeUnwrap()
 
         HStack {
-            Text(ride.title ?? "Default Name")
+            Text(ride.title.safeUnwrap())
 
             Spacer()
 
