@@ -14,7 +14,7 @@ final class SessionDispatcher {
 
     func dispatch<ReturnType: Codable>(request: URLRequest) async throws -> ReturnType {
         let methodString = request.httpMethod.safeUnwrap()
-        print("[\(methodString.uppercased())(] \(request.url!)")
+        print("[\(methodString.uppercased())] \(request.url!)")
 
         let (data, responce) = try await urlSession.data(for: request)
         
