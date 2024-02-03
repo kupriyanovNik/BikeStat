@@ -41,7 +41,7 @@
 - Unit-тестирование: [XCTest](https://developer.apple.com/documentation/xctest)
 
 ### Установка
-###### Для запуска приложения на устройстве нужен компьютер с установленной MacOS и телефон работающий под управлением iOS
+###### Для запуска приложения на устройстве нужен компьютер с установленной MacOS и телефон работающий под управлением операционной системы iOS
 Для установки приложения необходимо выполнить следующие шаги:
 
 <details><summary>1. Скачивание репозитория на локальный компьютер</summary>
@@ -69,7 +69,7 @@
   - Поменять [BundleID](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids) на собственный
 </details>
 
-<details><summary><a href="https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device">3. Запуск проекта на физическом устройстве или в симуляторе</a></summary>
+<details><summary>3. <a href="https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device">Запуск проекта на физическом устройстве или в симуляторе</a></summary>
 
 
   
