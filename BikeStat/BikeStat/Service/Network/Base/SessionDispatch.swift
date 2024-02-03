@@ -13,8 +13,9 @@ final class SessionDispatcher {
     // MARK: - Internal Functions
 
     func dispatch<ReturnType: Codable>(request: URLRequest) async throws -> ReturnType {
-        print("[\(request.httpMethod?.uppercased() ?? "")] \(request.url!)")
-        
+        let methodString = request.httpMethod.safeUnwrap()
+        print("[\(methodString.uppercased())(] \(request.url!)")
+
         let (data, responce) = try await urlSession.data(for: request)
         
         if let httpResponce = responce as? HTTPURLResponse,

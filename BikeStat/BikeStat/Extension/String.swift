@@ -17,3 +17,9 @@ extension String {
         return size.height
     }
 }
+
+extension String? {
+    func safeUnwrap(with value: String = "") -> String {
+        self ?? value
+    }
+}

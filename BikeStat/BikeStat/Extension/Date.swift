@@ -35,3 +35,9 @@ extension Date {
         return dateComp
     }
 }
+
+extension Date? {
+    func safeUnwrap(with value: Date = .now) -> Date {
+        self ?? value
+    }
+}

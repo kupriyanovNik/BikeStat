@@ -23,7 +23,7 @@ enum Pallete {
                 Complexity.easy, 
                 Complexity.medium,
                 Complexity.hard
-            ].randomElement() ?? .clear
+            ].randomElement().safeUnwrap()
         }
     }
 
@@ -37,7 +37,7 @@ enum Pallete {
                 EstimatedComplexity.easy,
                 EstimatedComplexity.medium,
                 EstimatedComplexity.hard
-            ].randomElement() ?? .clear
+            ].randomElement().safeUnwrap()
         }
     }
 }

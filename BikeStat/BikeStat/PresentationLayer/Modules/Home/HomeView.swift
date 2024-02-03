@@ -246,10 +246,10 @@ struct HomeView: View {
     }
 
     @ViewBuilder func plannedRideInfoCard(ride: RideInfoModel) -> some View {
-        let rideDate = ride.rideDate ?? .now
+        let rideDate = ride.rideDate.safeUnwrap()
 
         HStack {
-            Text(ride.title ?? "Default Name")
+            Text(ride.title.safeUnwrap())
 
             Spacer()
 

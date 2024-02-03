@@ -43,9 +43,9 @@ struct RecommendationTextModel {
 
     static func getRecomendationsText(complexity: RideComplexity) -> String {
         switch complexity {
-        case .easy: easyRecommendations.randomElement() ?? ""
-        case .medium: mediumRecommendations.randomElement() ?? ""
-        case .hard: hardRecommendations.randomElement() ?? ""
+        case .easy: easyRecommendations.randomElement().safeUnwrap()
+        case .medium: mediumRecommendations.randomElement().safeUnwrap()
+        case .hard: hardRecommendations.randomElement().safeUnwrap()
         case .unowned: ""
         }
     }

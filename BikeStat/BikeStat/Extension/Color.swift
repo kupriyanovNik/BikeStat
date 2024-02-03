@@ -18,3 +18,9 @@ extension Color {
         )
     }
 }
+
+extension Color? {
+    func safeUnwrap(with value: Color = .clear) -> Color {
+        self ?? value
+    }
+}

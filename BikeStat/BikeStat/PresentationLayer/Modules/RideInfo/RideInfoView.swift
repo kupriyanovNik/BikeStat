@@ -30,7 +30,7 @@ struct RideInfoView: View {
             return title
         }
 
-        let rideDate = ride.rideDate ?? .now
+        let rideDate = ride.rideDate.safeUnwrap()
         let rideDateString = rideDate.formatted(date: .abbreviated, time: .omitted)
         return rideDateString
     }
@@ -68,8 +68,8 @@ struct RideInfoView: View {
                     max: Int(ride.maxPulse)
                 )
 
-                let rideEstimatedComplexity = ride.estimatedComplexity ?? "no info"
-                let rideRealComplexity = ride.realComplexity ?? "no info"
+                let rideEstimatedComplexity = ride.estimatedComplexity.safeUnwrap(with: "no info")
+                let rideRealComplexity = ride.realComplexity.safeUnwrap(with: "no info")
 
                 let avgSpeedKMPH = round(
                     100 * (3.6 * Double(speedInfo.avg))
@@ -85,7 +85,7 @@ struct RideInfoView: View {
                         title: localizable.mainInformation,
                         tag: 1,
                         texts: [
-                            (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .shortened),
+                            (ride.rideDate.safeUnwrap()).formatted(date: .abbreviated, time: .shortened),
                             "\(localizable.distance): \(rideDistance)",
                             "\(localizable.timeDuringRide): \(rideTime)",
                             "\(localizable.calories): \(rideCalories) ккал"

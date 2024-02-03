@@ -46,7 +46,7 @@ struct StatisticsView: View {
             let mediumCount = getCountOfComplexity(for: .medium)
             let hardCount = getCountOfComplexity(for: .hard)
 
-            let maxCount = [easyCount, mediumCount, hardCount].max() ?? 0
+            let maxCount: Int = [easyCount, mediumCount, hardCount].max().safeUnwrap()
 
             let majorComplexity: RideComplexity = easyCount == maxCount ? .easy : mediumCount == maxCount ? .medium : .hard
 
@@ -246,7 +246,7 @@ struct StatisticsView: View {
             data.append(
                 .init(
                     number: currentNumber,
-                    title: (ride.rideDate ?? .now).formatted(date: .abbreviated, time: .omitted),
+                    title: (ride.rideDate.safeUnwrap()).formatted(date: .abbreviated, time: .omitted),
                     distance: Double(ride.realDistance),
                     complexity: ride.realComplexity
                 )
