@@ -40,4 +40,13 @@ struct RecommendationTextModel {
         "Чаще учавствуте в соревнованиях!!",
         "Попробуйте методику [интервальных тренировок](https://my-fit.ru/fitness_guide/intervalnye-trenirovki---chto-eto-takoe-i-komu-podoidut/)"
     ]
+
+    static func getRecomendationsText(complexity: RideComplexity) -> String {
+        switch complexity {
+        case .easy: easyRecommendations.randomElement() ?? ""
+        case .medium: mediumRecommendations.randomElement() ?? ""
+        case .hard: hardRecommendations.randomElement() ?? ""
+        case .unowned: ""
+        }
+    }
 }

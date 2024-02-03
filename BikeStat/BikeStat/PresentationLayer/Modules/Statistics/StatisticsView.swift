@@ -69,6 +69,10 @@ struct StatisticsView: View {
         return .unowned
     }
 
+    private var recommeddedComplexityText: String {
+        RecommendationTextModel.getRecomendationsText(complexity: recommeddedComplexity)
+    }
+
     private var middleDistanceAnnotation: String {
         "\(round(round(100 * (middleDistance)) / 1000) / 100)"
     }
@@ -120,7 +124,7 @@ struct StatisticsView: View {
 
     @ViewBuilder func topRecommendationsView() -> some View {
         if showRecommendations {
-            Text("sdfsdfhsdafga fsdhgihreiuhguehwrihguiweiurhgiuerhwguiher wuighw ieurhgiuheriuhgerwuhghwerhiuhuiehriugheiurhgh ewirghiuwer fdg fdk gdsgs dgfdgdfdgsfg i")
+            Text(.init(recommeddedComplexityText))
                 .makeToast(colorScheme: colorScheme) {
                     withAnimation {
                         showRecommendations.toggle()
