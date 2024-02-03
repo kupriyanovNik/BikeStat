@@ -31,7 +31,8 @@
 - [Простой и понятный интерфейс](https://www.figma.com/file/9rCteZ4QIBH2Uw3MMreihN/the-true-bikestat?type=design&node-id=441%3A1121&mode=design&t=SWfG9qbFdvQHJvIh-1)
 - Использование [SwiftUI](https://developer.apple.com/xcode/swiftui/)
 - Поддержка [iOS 16](https://ru.wikipedia.org/wiki/IOS_16) и выше
-- Возможность выбрать цветовую гамму приложения и единицы измерения  
+- Возможность выбрать цветовую гамму приложения `#ffffff`
+- Возможность выбрать единицы измерения скорости и расстояния 
 
 ### Краткая техническая информация 
 - Архитектура: [MVVM](https://ru.wikipedia.org/wiki/Model-View-ViewModel)+S
@@ -53,7 +54,6 @@
   - Закрыть терминал (опционально)
 </details>
 
-
 <details><summary>2. Открытие проекта</summary>
   
  - Запустить [Xcode](https://developer.apple.com/xcode/)
@@ -71,14 +71,11 @@
 
 <details><summary>3. <a href="https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device">Запуск проекта на физическом устройстве или в симуляторе</a></summary>
 
-
-  
   - Одновременно нажать cmd + shift + 2
   - Выбрать симулятор или физическое устройство в качестве Run Destination
   - Закрыть окно выбора Run Destination (красная кнопка слева сверху / одновременно нажать cmd + w)
   - Запустить (в верхнем меню Product -> Run / одновременно нажать cmd + r)
 </details>
-
 
 ### Лицензия
 Проект лицензирован в соответствии с условиями лицензии [LICENSE.md](https://github.com/kupriyanovNik/BikeStat/blob/develop/LICENSE).
