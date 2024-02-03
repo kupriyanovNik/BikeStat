@@ -44,14 +44,19 @@
 ###### Для запуска приложения на устройстве нужен компьютер с установленной MacOS и телефон работающий под управлением iOS
 Для установки приложения необходимо выполнить следующие шаги:
 
-1. Скачивание репозитория на локальный компьютер
+<details><summary>1. Скачивание репозитория на локальный компьютер</summary>
+  
   - Открыть терминал
   - Ввести следующие команды
     + cd путь_к_папке_в_которую_нужно_скопировать
     + git clone https://github.com/kupriyanovNik/BikeStat.git
   - Закрыть терминал (опционально)
-2. Открытие проекта
-  - Запустить [Xcode](https://developer.apple.com/xcode/)
+</details>
+
+
+<details><summary>2. Открытие проекта</summary>
+  
+ - Запустить [Xcode](https://developer.apple.com/xcode/)
   - Одновременно нажать cmd + shift + 1
   - Нажать "Open Existing Project..."
   - Найти в файловой системе скопированную папку
@@ -62,11 +67,18 @@
   - Нажать на корневой элемент в файловой системе проекта (иконка Xcode, справа от которой будет написано BikeStat)
   - В появившемся окне выбрать вкладку "Signing & Capabilities"
   - Поменять [BundleID](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids) на собственный
-3. [Запуск проект на физическом устройстве или в симуляторе](https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device)
+</details>
+
+<details><summary><a href="https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device">3. Запуск проекта на физическом устройстве или в симуляторе</a></summary>
+
+
+  
   - Одновременно нажать cmd + shift + 2
   - Выбрать симулятор или физическое устройство в качестве Run Destination
   - Закрыть окно выбора Run Destination (красная кнопка слева сверху / одновременно нажать cmd + w)
   - Запустить (в верхнем меню Product -> Run / одновременно нажать cmd + r)
+</details>
+
 
 ### Лицензия
 Проект лицензирован в соответствии с условиями лицензии [LICENSE.md](https://github.com/kupriyanovNik/BikeStat/blob/develop/LICENSE).
