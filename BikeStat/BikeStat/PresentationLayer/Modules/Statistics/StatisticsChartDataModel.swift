@@ -18,3 +18,11 @@ struct RecomendationsChartDataModel: Identifiable, Equatable {
     var count: Int
     var complexity: String
 }
+
+struct StatisticsModel {
+    static let easyRecomendations = [String]()
+
+    static let mediumRecomendations = [String]()
+
+    static let hardRecomendations = [String]()
+}

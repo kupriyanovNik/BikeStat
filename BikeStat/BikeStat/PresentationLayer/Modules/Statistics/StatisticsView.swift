@@ -88,7 +88,7 @@ struct StatisticsView: View {
         .overlay {
             if showRecomendations {
                 Color.black
-                    .opacity(colorScheme == .light ? 0.15 : 0.5)
+                    .opacity(colorScheme == .light ? 0.3 : 0.5)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation {
@@ -97,10 +97,11 @@ struct StatisticsView: View {
                     }
             }
         }
+        .overlay(alignment: .top) {
+            topRecomendationsView()
+        }
         .overlay(alignment: .bottom) {
-            if shouldShowRecomendations {
-                bottomView()
-            }
+            bottomRecomendationsView()
         }
         .onAppear {
             getLast5RidesChartData()
@@ -117,7 +118,19 @@ struct StatisticsView: View {
             }
     }
 
-    @ViewBuilder func bottomView() -> some View {
+    @ViewBuilder func topRecomendationsView() -> some View {
+        if showRecomendations {
+            Text("sdfsdfhsdafga fsdhgihreiuhguehwrihguiweiurhgiuerhwguiher wuighw ieurhgiuheriuhgerwuhghwerhiuhuiehriugheiurhgh ewirghiuwer fdg fdk gdsgs dgfdgdfdgsfg i")
+                .makeToast(colorScheme: colorScheme) {
+                    withAnimation {
+                        showRecomendations.toggle()
+                    }
+                }
+                .transition(.move(edge: .top).combined(with: .opacity))
+        }
+    }
+
+    @ViewBuilder func bottomRecomendationsView() -> some View {
         VStack {
             if showRecomendations {
                 recomendationsView()
@@ -127,31 +140,11 @@ struct StatisticsView: View {
                     .multilineTextAlignment(.center)
             }
         }
-        .font(.headline)
-        .bold()
-        .multilineTextAlignment(.center)
-        .hCenter()
-        .padding(24)
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(colorScheme == .light ? .white : .black)
-                .shadow(
-                    color: (colorScheme == .light ? Color.black : .white).opacity(0.2),
-                    radius: 10,
-                    x: 0,
-                    y: 0
-                )
-        }
-        .padding(.horizontal, 24)
-        .padding(.bottom, 5)
-        .onTapGesture {
+        .makeToast(colorScheme: colorScheme) {
             withAnimation {
-                withAnimation {
-                    showRecomendations.toggle()
-                }
+                showRecomendations.toggle()
             }
         }
-        .ignoresSafeArea()
     }
 
     @ViewBuilder func chartView() -> some View {
@@ -223,6 +216,7 @@ struct StatisticsView: View {
                 .padding(.horizontal, 35)
                 .background {
                     themeManager.selectedTheme.accentColor
+                        .opacity(colorScheme == .dark ? 0.7 : 1)
                         .cornerRadius(5)
                 }
             }

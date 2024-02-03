@@ -57,7 +57,7 @@ struct HomeView: View {
         .overlay {
             if homeViewModel.shouldShowRidePlanningView {
                 Color.black
-                    .opacity(0.15)
+                    .opacity(0.3)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation {
