@@ -16,9 +16,9 @@ struct StatisticsView: View {
     @ObservedObject var themeManager: ThemeManager
 
     @State private var last10RidesChartData: [StatisticsChartDataModel] = []
-    @State private var recomendationsChartData: [RecomendationsChartDataModel] = []
+    @State private var recommendationsChartData: [RecommendationsChartDataModel] = []
 
-    @State private var showRecomendations: Bool = false
+    @State private var showRecommendations: Bool = false
 
     // MARK: - Private Properties
 
@@ -26,7 +26,7 @@ struct StatisticsView: View {
         coreDataManager.endedRides.suffix(10)
     }
 
-    private var shouldShowRecomendations: Bool {
+    private var shouldShowRecommendations: Bool {
         last10Rides.count >= 3
     }
 
@@ -86,26 +86,26 @@ struct StatisticsView: View {
         .scrollIndicators(.hidden)
         .safeAreaInset(edge: .top, content: headerView)
         .overlay {
-            if showRecomendations {
+            if showRecommendations {
                 Color.black
                     .opacity(colorScheme == .light ? 0.3 : 0.5)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation {
-                            showRecomendations = false
+                            showRecommendations = false
                         }
                     }
             }
         }
         .overlay(alignment: .top) {
-            topRecomendationsView()
+            topRecommendationsView()
         }
         .overlay(alignment: .bottom) {
-            bottomRecomendationsView()
+            bottomRecommendationsView()
         }
         .onAppear {
             getLast5RidesChartData()
-            getRecomendationsChartData()
+            getRecommendationsChartData()
         }
     }
 
@@ -118,22 +118,22 @@ struct StatisticsView: View {
             }
     }
 
-    @ViewBuilder func topRecomendationsView() -> some View {
-        if showRecomendations {
+    @ViewBuilder func topRecommendationsView() -> some View {
+        if showRecommendations {
             Text("sdfsdfhsdafga fsdhgihreiuhguehwrihguiweiurhgiuerhwguiher wuighw ieurhgiuheriuhgerwuhghwerhiuhuiehriugheiurhgh ewirghiuwer fdg fdk gdsgs dgfdgdfdgsfg i")
                 .makeToast(colorScheme: colorScheme) {
                     withAnimation {
-                        showRecomendations.toggle()
+                        showRecommendations.toggle()
                     }
                 }
                 .transition(.move(edge: .top).combined(with: .opacity))
         }
     }
 
-    @ViewBuilder func bottomRecomendationsView() -> some View {
+    @ViewBuilder func bottomRecommendationsView() -> some View {
         VStack {
-            if showRecomendations {
-                recomendationsView()
+            if showRecommendations {
+                recommendationsView()
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             } else {
                 Text("Посмотреть рекомендации")
@@ -142,7 +142,7 @@ struct StatisticsView: View {
         }
         .makeToast(colorScheme: colorScheme) {
             withAnimation {
-                showRecomendations.toggle()
+                showRecommendations.toggle()
             }
         }
     }
@@ -187,15 +187,15 @@ struct StatisticsView: View {
         .padding(.horizontal)
     }
 
-    @ViewBuilder func recomendationsView() -> some View {
+    @ViewBuilder func recommendationsView() -> some View {
         VStack {
-            Text(Localizable.Statistics.recomendations)
+            Text(Localizable.Statistics.recommendations)
                 .fontWeight(.semibold)
                 .font(.title2)
                 .foregroundStyle(.primary)
 
             if #available(iOS 17, *) {
-                Chart(recomendationsChartData, id: \.id) { item in
+                Chart(recommendationsChartData, id: \.id) { item in
                     SectorMark(
                         angle: .value("key", item.count),
                         innerRadius: .ratio(0.5),
@@ -222,7 +222,7 @@ struct StatisticsView: View {
             }
 
             (
-                Text(Localizable.Statistics.recomendedComplexity)
+                Text(Localizable.Statistics.recommendedComplexity)
                 +
                 Text(recommeddedComplexity.rawValue)
                     .bold()
@@ -254,18 +254,18 @@ struct StatisticsView: View {
         self.last10RidesChartData = data
     }
 
-    private func getRecomendationsChartData() {
-        self.recomendationsChartData.append(
+    private func getRecommendationsChartData() {
+        self.recommendationsChartData.append(
             .init(title: "Простые",
                   count: getCountOfComplexity(for: .easy),
                   complexity: RideComplexity.easy.rawValue)
         )
-        self.recomendationsChartData.append(
+        self.recommendationsChartData.append(
             .init(title: "Средние",
                   count: getCountOfComplexity(for: .medium),
                   complexity: RideComplexity.medium.rawValue)
         )
-        self.recomendationsChartData.append(
+        self.recommendationsChartData.append(
             .init(title: "Сложные",
                   count: getCountOfComplexity(for: .hard),
                   complexity: RideComplexity.hard.rawValue)

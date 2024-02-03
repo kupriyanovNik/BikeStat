@@ -12,7 +12,7 @@ struct StatisticsChartDataModel: Identifiable, Equatable {
     var complexity: String?
 }
 
-struct RecomendationsChartDataModel: Identifiable, Equatable {
+struct RecommendationsChartDataModel: Identifiable, Equatable {
     let id = UUID()
     var title: String
     var count: Int
@@ -20,9 +20,9 @@ struct RecomendationsChartDataModel: Identifiable, Equatable {
 }
 
 struct StatisticsModel {
-    static let easyRecomendations = [String]()
+    static let easyRecommendations = [String]()
 
-    static let mediumRecomendations = [String]()
+    static let mediumRecommendations = [String]()
 
-    static let hardRecomendations = [String]()
+    static let hardRecommendations = [String]()
 }
