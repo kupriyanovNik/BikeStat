@@ -133,12 +133,4 @@ struct MarqueeText: View {
         .onDisappear { self.animate = false }
 
     }
-
-    // MARK: - Internal Functions
-
-    func makeCompact(_ compact: Bool = true) -> Self {
-        var view = self
-        view.isCompact = compact
-        return view
-    }
 }

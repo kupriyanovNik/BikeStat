@@ -22,6 +22,7 @@ struct RoundedShape: Shape {
                 height: radius
             )
         )
+
         return Path(path.cgPath)
     }
 }
