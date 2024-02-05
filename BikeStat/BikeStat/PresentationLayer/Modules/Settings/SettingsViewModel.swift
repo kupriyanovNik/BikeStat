@@ -1,13 +1,22 @@
 //
 //  SettingsViewModel.swift
 //
-import Foundation
+
 import SwiftUI
 
 class SettingsViewModel: ObservableObject {
 
+    // MARK: - Embedded
+
+    private enum LocalConstants {
+        static let isMetricUnits = "SETTINGS_DistanceUnits"
+        static let userWeight = "SETTINGS_UserWeight"
+        static let shouldAutomaticlyEndRide = "SETTINGS_ShouldAutomaticlyEndRide"
+    }
+
     // MARK: - Property Wrappers
 
-    @AppStorage("SETTINGS_DistanceUnits") var isMetricUnits: Bool = true
-    @AppStorage("SETTINGS_UserWeight") var userWeight: Int = 75
+    @AppStorage(LocalConstants.isMetricUnits) var isMetricUnits: Bool = true
+    @AppStorage(LocalConstants.userWeight) var userWeight: Int = 75
+    @AppStorage(LocalConstants.shouldAutomaticlyEndRide) var shouldAutomaticlyEndRide: Bool = false
 }

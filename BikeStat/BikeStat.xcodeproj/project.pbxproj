@@ -62,6 +62,7 @@
 		B78426A12B66E20800B34906 /* ThemePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78426A02B66E20800B34906 /* ThemePickerCell.swift */; };
 		B78426A32B66E90A00B34906 /* ThemeManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78426A22B66E90A00B34906 /* ThemeManagerTests.swift */; };
 		B79DDF6E2B5C63C200EC9123 /* PlanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */; };
+		B7A251BB2B711069006CD7F3 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A251BA2B711069006CD7F3 /* RadioButton.swift */; };
 		B7AA14032B52F7E5009616CD /* RideInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AA14022B52F7E5009616CD /* RideInfoView.swift */; };
 		B7B48E172B65348100E5AE8F /* MarqueeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B48E162B65348100E5AE8F /* MarqueeText.swift */; };
 		B7B48E192B65378100E5AE8F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B48E182B65378100E5AE8F /* String.swift */; };
@@ -139,6 +140,7 @@
 		B78426A02B66E20800B34906 /* ThemePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerCell.swift; sourceTree = "<group>"; };
 		B78426A22B66E90A00B34906 /* ThemeManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManagerTests.swift; sourceTree = "<group>"; };
 		B79DDF6D2B5C63C100EC9123 /* PlanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningViewModel.swift; sourceTree = "<group>"; };
+		B7A251BA2B711069006CD7F3 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		B7AA14022B52F7E5009616CD /* RideInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideInfoView.swift; sourceTree = "<group>"; };
 		B7B48E162B65348100E5AE8F /* MarqueeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarqueeText.swift; sourceTree = "<group>"; };
 		B7B48E182B65378100E5AE8F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			children = (
 				B7B48E162B65348100E5AE8F /* MarqueeText.swift */,
 				B7E7263C2B59A4D800127692 /* RoundedShape.swift */,
+				B7A251BA2B711069006CD7F3 /* RadioButton.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				B7B48E192B65378100E5AE8F /* String.swift in Sources */,
 				B75CB6692B445EEC00CDF026 /* View.swift in Sources */,
 				B75CB6862B445EEC00CDF026 /* Images.swift in Sources */,
+				B7A251BB2B711069006CD7F3 /* RadioButton.swift in Sources */,
 				B75CB67A2B445EEC00CDF026 /* NavigationManager.swift in Sources */,
 				B72FD8172B6180590039F6B2 /* NavigationModel.swift in Sources */,
 				B77F82DF2B5D64160044EDB3 /* RideComplexity.swift in Sources */,

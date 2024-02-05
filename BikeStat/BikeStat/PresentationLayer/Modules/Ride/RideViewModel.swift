@@ -2,7 +2,7 @@
 //  RideViewModel.swift
 //
 
-import Foundation
+import SwiftUI
 
 class RideViewModel: ObservableObject {
 

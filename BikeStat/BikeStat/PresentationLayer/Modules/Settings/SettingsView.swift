@@ -18,6 +18,7 @@ struct SettingsView: View {
     @State private var isExpandedUnitsPicker: Bool = false
     @State private var isExpandedThemePicker: Bool = false
     @State private var isExpandedWeightPicker: Bool = false
+    @State private var isExpandedInternalSettingsView: Bool = false
 
     // MARK: - Private Properties
 
@@ -31,10 +32,19 @@ struct SettingsView: View {
                 metricPickerView()
                     .hLeading()
 
+                Divider()
+
                 themePickerView()
                     .hLeading()
 
+                Divider()
+
                 weightPickerView()
+                    .hLeading()
+
+                Divider()
+
+                internalSettingsView()
                     .hLeading()
             }
         }
@@ -53,31 +63,22 @@ struct SettingsView: View {
             }
     }
 
-    @ViewBuilder func metricPickerView() -> some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("Единицы измерения")
+    @ViewBuilder func expandableRow(
+        text: String,
+        value: Bool,
+        action: @escaping () -> ()
+    ) -> some View {
+        HStack {
+            Text(text)
 
-                Image(systemName: Images.back)
-                    .rotationEffect(.degrees(isExpandedUnitsPicker ? 270 : 180))
-            }
-            .bold()
-            .font(.title2)
-            .padding(.leading)
-            .onTapGesture {
-                withAnimation {
-                    isExpandedUnitsPicker.toggle()
-                }
-            }
-
-            Group {
-                if isExpandedUnitsPicker {
-                    metricPickerViewCell(value: true)
-
-                    metricPickerViewCell(value: false)
-                }
-            }
-            .padding(.leading)
+            Image(systemName: Images.back)
+                .rotationEffect(.degrees(value ? 270 : 180))
+        }
+        .bold()
+        .font(.title2)
+        .padding(.leading)
+        .onTapGesture {
+            action()
         }
     }
 
@@ -112,26 +113,22 @@ struct SettingsView: View {
         }
     }
 
-    @ViewBuilder func themePickerView() -> some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Text("Цветовая гамма")
-
-                Image(systemName: Images.back)
-                    .rotationEffect(.degrees(isExpandedThemePicker ? 270 : 180))
-            }
-            .bold()
-            .font(.title2)
-            .padding(.leading)
-            .onTapGesture {
+    @ViewBuilder func metricPickerView() -> some View {
+        VStack(alignment: .leading) {
+            expandableRow(text: "Единицы измерения", value: isExpandedUnitsPicker) {
                 withAnimation {
-                    isExpandedThemePicker.toggle()
+                    isExpandedUnitsPicker.toggle()
                 }
             }
 
-            if isExpandedThemePicker {
-                themesListView()
+            Group {
+                if isExpandedUnitsPicker {
+                    metricPickerViewCell(value: true)
+
+                    metricPickerViewCell(value: false)
+                }
             }
+            .padding(.leading)
         }
     }
 
@@ -157,17 +154,22 @@ struct SettingsView: View {
         .scrollIndicators(.hidden)
     }
 
-    @ViewBuilder func weightPickerView() -> some View {
-        HStack {
-            Text("Персональная информация")
+    @ViewBuilder func themePickerView() -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            expandableRow(text: "Цветовая гамма", value: isExpandedThemePicker) {
+                withAnimation {
+                    isExpandedThemePicker.toggle()
+                }
+            }
 
-            Image(systemName: Images.back)
-                .rotationEffect(.degrees(isExpandedWeightPicker ? 270 : 180))
+            if isExpandedThemePicker {
+                themesListView()
+            }
         }
-        .bold()
-        .font(.title2)
-        .padding(.leading)
-        .onTapGesture {
+    }
+
+    @ViewBuilder func weightPickerView() -> some View {
+        expandableRow(text: "Персональная информация", value: isExpandedWeightPicker) {
             withAnimation {
                 isExpandedWeightPicker.toggle()
             }
@@ -194,6 +196,35 @@ struct SettingsView: View {
             }
             .tint(.black)
             .labelsHidden()
+        }
+        .padding(.horizontal)
+    }
+
+    @ViewBuilder func internalSettingsView() -> some View {
+        expandableRow(text: "Основные настроки", value: isExpandedInternalSettingsView) {
+            withAnimation {
+                isExpandedInternalSettingsView.toggle()
+            }
+        }
+
+        if isExpandedInternalSettingsView {
+            internalSettingsRowView()
+        }
+    }
+
+    @ViewBuilder func internalSettingsRowView() -> some View {
+        HStack {
+            Text("Автоматически завершать\nпоездку по истечению\nзапланированного времени")
+                .font(.headline)
+                .multilineTextAlignment(.leading)
+
+            Spacer()
+
+            RadioButton(
+                isSelected: $settingsViewModel.shouldAutomaticlyEndRide,
+                accentColor: themeManager.selectedTheme.accentColor
+            )
+            .frame(width: 30, height: 30)
         }
         .padding(.horizontal)
     }

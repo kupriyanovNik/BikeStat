@@ -71,7 +71,7 @@ struct PlanningView: View {
                     selection: $planningViewModel.estimatedTime
                 ) {
                     ForEach(
-                        Array(stride(from: 5, to: 300, by: 5)),
+                        Array(stride(from: 1, to: 300, by: 1)),
                         id: \.self
                     ) { number in
                         Text("\(number) мин")
