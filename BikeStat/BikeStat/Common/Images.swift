@@ -5,6 +5,7 @@
 import Foundation
 
 enum Images {
+    static let checkmark = "checkmark"
     static let plus = "plus"
     static let minus = "minus"
     static let gearshape = "gearshape"
