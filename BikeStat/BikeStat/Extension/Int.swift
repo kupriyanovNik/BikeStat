@@ -10,9 +10,9 @@ extension Int {
         let minutes = (self % 3600) / 60
         let remainingSeconds = self % 60
 
-        let formattedHours = String(format: .timeFormat, hours)
-        let formattedMinutes = String(format: .timeFormat, minutes)
-        let formattedSeconds = String(format: .timeFormat, remainingSeconds)
+        let formattedHours = String(format: .partOfTimeFormat, hours)
+        let formattedMinutes = String(format: .partOfTimeFormat, minutes)
+        let formattedSeconds = String(format: .partOfTimeFormat, remainingSeconds)
 
         let shouldShowHours = formattedHours != "00"
 

@@ -42,13 +42,13 @@ extension View {
 }
 
 extension View {
-    func makeHeader(backButtonAction: @escaping () -> ()) -> some View {
+    func makeHeader(action: @escaping () -> ()) -> some View {
         self
             .bold()
             .hCenter()
             .overlay(alignment: .leading) {
                 Button {
-                    backButtonAction()
+                    action()
                 } label: {
                     Image(systemName: Images.back)
                         .bold()
