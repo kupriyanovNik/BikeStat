@@ -54,6 +54,8 @@ struct HistoryView: View {
                 if coreDataManager.endedRides.isEmpty {
                     dismiss()
                 }
+
+                ImpactManager.shared.generateFeedback(style: .heavy)
             }
             .presentationDetents([.fraction(0.45)])
         }
