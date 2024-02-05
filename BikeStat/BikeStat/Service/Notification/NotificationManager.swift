@@ -20,12 +20,16 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     // MARK: - Internal Functions
 
     func requestAuthorization() {
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .badge, .sound, .criticalAlert]) { success, error in
+        UNUserNotificationCenter
+            .current()
+            .requestAuthorization(
+                options: [.alert, .badge, .sound, .criticalAlert]
+            ) { success, error in
                 if let error {
                     print("DEBUG: \(error.localizedDescription)")
                 }
             }
+
         UNUserNotificationCenter.current().delegate = self
     }
 
@@ -43,7 +47,10 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         content.title = title
         content.subtitle = subtitle
 
-        let trigger = UNCalendarNotificationTrigger(dateMatching: date.makeDateComponents(), repeats: false)
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: date.makeDateComponents(),
+            repeats: false
+        )
 
         let request = makeRequest(id: id, trigger: trigger, content: content)
 
@@ -71,7 +78,8 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     // MARK: - Debug
 
     func removeAllNotifications() {
-        UNUserNotificationCenter.current()
+        UNUserNotificationCenter
+            .current()
             .removeAllPendingNotificationRequests()
     }
 
@@ -81,7 +89,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         id: String,
         trigger: UNCalendarNotificationTrigger,
         content: UNMutableNotificationContent
-    ) -> UNNotificationRequest{
+    ) -> UNNotificationRequest {
         .init(identifier: id, content: content, trigger: trigger)
     }
 
