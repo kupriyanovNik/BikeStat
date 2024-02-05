@@ -49,10 +49,10 @@ struct RideInfoView: View {
 
             VStack(spacing: 25) {
                 let rideDistance = String(
-                    format: Strings.NumberFormats.forDistance,
+                    format: .distanceFormat,
                     Double(ride.realDistance) / 1000.0
                 ) + " / " + String(
-                    format: Strings.NumberFormats.forDistance,
+                    format: .distanceFormat,
                     Double(ride.estimatedDistance) / 1000.0
                 ) + " км"
 

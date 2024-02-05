@@ -12,13 +12,13 @@ extension TimeInterval {
 
         if hours != 0 {
             return String(
-                format: Strings.Time.withHours,
+                format: .timeFormat,
                 hours, minutes, seconds
             )
         }
 
         return String(
-            format: Strings.Time.withoutHours,
+            format: .shortTimeFormat,
             minutes, seconds
         )
     }
