@@ -18,6 +18,7 @@ struct SettingsView: View {
     @State private var isExpandedUnitsPicker: Bool = false
     @State private var isExpandedThemePicker: Bool = false
     @State private var isExpandedWeightPicker: Bool = false
+    @State private var isExpandedInternalSettingsView: Bool = false
 
     // MARK: - Private Properties
 
@@ -200,7 +201,32 @@ struct SettingsView: View {
     }
 
     @ViewBuilder func internalSettingsView() -> some View {
-        Spacer()
+        expandableRow(text: "Основные настроки", value: isExpandedInternalSettingsView) {
+            withAnimation {
+                isExpandedInternalSettingsView.toggle()
+            }
+        }
+
+        if isExpandedInternalSettingsView {
+            internalSettingsRowView()
+        }
+    }
+
+    @ViewBuilder func internalSettingsRowView() -> some View {
+        HStack {
+            Text("Автоматически завершать\nпоездку по истечению\nзапланированного времени")
+                .font(.headline)
+                .multilineTextAlignment(.leading)
+
+            Spacer()
+
+            RadioButton(
+                isSelected: $settingsViewModel.shouldAutomaticlyEndRide,
+                accentColor: themeManager.selectedTheme.accentColor
+            )
+            .frame(width: 30, height: 30)
+        }
+        .padding(.horizontal)
     }
 }
 

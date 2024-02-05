@@ -41,6 +41,7 @@ struct RadioButton: View {
 
             isSelected.toggle()
         }
+        .scaleEffect(isSelected ? 1.1 : 1)
         .animation(animation, value: isSelected)
     }
 }
