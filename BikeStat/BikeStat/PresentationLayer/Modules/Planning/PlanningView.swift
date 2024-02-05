@@ -98,7 +98,7 @@ struct PlanningView: View {
                     ) { number in
                         Text(
                             String(
-                                format: Strings.NumberFormats.forDistanceShort,
+                                format: .shortDistanceFormat,
                                 Double(number) / 1000.0
                             ) + " км"
                         )
@@ -199,7 +199,7 @@ struct PlanningView: View {
         let rideTitle = planningViewModel.rideTitle
         let rideDate = planningViewModel.rideDate
         let rideDistance = planningViewModel.estimatedDistance
-        let parsedDistance = String(format: Strings.NumberFormats.forDistanceShort, Double(rideDistance) / 1000)
+        let parsedDistance = String(format: .shortDistanceFormat, Double(rideDistance) / 1000)
 
         let notificationTitleWithDistance = rideTitle + " (\(parsedDistance) км)"
         NotificationManager.shared.sendNotification(subtitle: notificationTitleWithDistance, date: rideDate)

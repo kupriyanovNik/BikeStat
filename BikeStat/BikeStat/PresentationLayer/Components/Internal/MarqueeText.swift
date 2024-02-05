@@ -8,7 +8,7 @@ struct MarqueeText: View {
 
     // MARK: - Property Wrappers
 
-    @State private var animate = false
+    @State private var animate: Bool = false
 
     // MARK: - Internal Properties
 
@@ -19,11 +19,11 @@ struct MarqueeText: View {
     var startDelay: Double = 2
     var alignment: Alignment = .center
 
-    var isCompact = false
+    var isCompact: Bool = false
 
     // MARK: - Body 
 
-    var body : some View {
+    var body: some View {
         let stringWidth = text.widthOfString(usingFont: font)
         let stringHeight = text.heightOfString(usingFont: font)
 
@@ -132,13 +132,5 @@ struct MarqueeText: View {
         .frame(maxWidth: isCompact ? stringWidth : nil)
         .onDisappear { self.animate = false }
 
-    }
-
-    // MARK: - Internal Functions
-
-    func makeCompact(_ compact: Bool = true) -> Self {
-        var view = self
-        view.isCompact = compact
-        return view
     }
 }

@@ -11,15 +11,9 @@ extension TimeInterval {
         let seconds = Int(self) % 60
 
         if hours != 0 {
-            return String(
-                format: Strings.Time.withHours,
-                hours, minutes, seconds
-            )
+            return String(format: .timeFormat, hours, minutes, seconds)
         }
 
-        return String(
-            format: Strings.Time.withoutHours,
-            minutes, seconds
-        )
+        return String(format: .shortTimeFormat, minutes, seconds)
     }
 }

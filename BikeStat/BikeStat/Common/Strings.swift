@@ -4,20 +4,11 @@
 
 import Foundation
 
-enum Strings {
-    enum Network {
-        static let apiUrl = "https://dt.miet.ru/ppo_it"
-        static let apiKey = "az4fvf7nzi1XPIsYiMEu"
-    }
+extension String {
+    static let distanceFormat = "%.2f"
+    static let shortDistanceFormat = "%.1f"
 
-    enum Time {
-        static let withHours = "%02i:%02i:%02i"
-        static let withoutHours = "%02i:%02i"
-    }
-
-    enum NumberFormats {
-        static let forTime = "%02d"
-        static let forDistance = "%.2f"
-        static let forDistanceShort = "%.1f"
-    }
+    static let partOfTimeFormat = "%02i"
+    static let shortTimeFormat = "%02i:%02i"
+    static let timeFormat = "%02i:%02i:%02i"
 }

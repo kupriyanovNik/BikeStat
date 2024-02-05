@@ -137,9 +137,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    withAnimation {
-                        homeViewModel.shouldShowRidePlanningView = true
-                    }
+                    planRideAction()
                 } label: {
                     Text(Localizable.HomeView.start)
                         .font(.title3)
@@ -183,7 +181,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
 
                 Button {
-                    navigationManager.showHistoryView()
+                    historyCardAction()
                 } label: {
                     Text(Localizable.HomeView.goto)
                         .font(.title3)
@@ -301,6 +299,22 @@ struct HomeView: View {
                     rideViewModel.currentRide = ride
                 }
         }
+    }
+
+    // MARK: - Private Functions
+
+    private func planRideAction() {
+        ImpactManager.shared.generateFeedback(style: .soft)
+
+        withAnimation {
+            homeViewModel.shouldShowRidePlanningView = true
+        }
+    }
+
+    private func historyCardAction() {
+        ImpactManager.shared.generateFeedback(style: .soft)
+
+        navigationManager.showHistoryView()
     }
 }
 

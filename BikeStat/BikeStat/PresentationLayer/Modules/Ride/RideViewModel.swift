@@ -15,7 +15,7 @@ class RideViewModel: ObservableObject {
 
     // MARK: - Private Properties
 
-    private weak var timer: Timer? = nil
+    private weak var timer: Timer?
 
     private var previouslyAccumulatedTime: TimeInterval = 0
 

@@ -94,16 +94,14 @@ final class CoreDataManager: ObservableObject {
         fetchEndedRides()
     }
 
-    func removeRide(
-        ride: RideInfoModel
-    ) {
+    func removeRide(ride: RideInfoModel) {
         viewContext.delete(ride)
         saveContext()
         fetchEndedRides()
         fetchPlannedRides()
     }
 
-    // MARK: - Debug
+    // MARK: - Debug Functions 
 
     func removeAllPlannedRides() {
         for ride in plannedRides {

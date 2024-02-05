@@ -10,7 +10,7 @@ final class NavigationManager: ObservableObject {
 
     @Published var path: [NavigationModel] = []
 
-    // MARK: - Internal Properties
+    // MARK: - Internal Functions 
 
     func showRideView() {
         path.append(.newRide)

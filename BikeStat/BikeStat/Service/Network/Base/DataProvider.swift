@@ -13,7 +13,7 @@ final class DataProvider {
     // MARK: - Static Functions
 
     static func fetchData<R: Request>(_ request: R) async throws -> R.ReturnType {
-        guard let urlRequest = request.asURLRequest(Strings.Network.apiUrl) else {
+        guard let urlRequest = request.asURLRequest(NetworkConstants.apiUrl) else {
             throw APIError.badRequest
         }
         

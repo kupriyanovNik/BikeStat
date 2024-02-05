@@ -45,7 +45,7 @@ struct RideView: View {
             100 * locationManager.cyclingTotalDistance / 1000
         ) / 100
 
-        let currentDistanceString = String(format: Strings.NumberFormats.forDistance, currentDistance)
+        let currentDistanceString = String(format: .distanceFormat, currentDistance)
 
         return "\(localizable.distance): \(currentDistanceString)/\(estimatedDistance) км"
     }
