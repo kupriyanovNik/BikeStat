@@ -45,6 +45,7 @@ struct MainNavigationView: View {
             case .newRide:
                 RideView(
                     rideViewModel: rideViewModel,
+                    settingsViewModel: settingsViewModel,
                     navigationManager: navigationManager,
                     coreDataManager: coreDataManager,
                     networkManager: networkManager,

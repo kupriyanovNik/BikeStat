@@ -11,6 +11,7 @@ struct RideView: View {
     @Environment(\.dismiss) var dismiss
 
     @ObservedObject var rideViewModel: RideViewModel
+    @ObservedObject var settingsViewModel: SettingsViewModel
     @ObservedObject var navigationManager: NavigationManager
     @ObservedObject var coreDataManager: CoreDataManager
     @ObservedObject var networkManager: NetworkManager
@@ -72,8 +73,16 @@ struct RideView: View {
             rideViewModel.currentRide = nil 
         }
         .onAppear {
-            // TODO: - getWatchData() when ride was ended
             networkManager.getWatchData()
+        }
+        .onChange(of: rideViewModel.totalAccumulatedTime) { newValue in
+            if settingsViewModel.shouldAutomaticlyEndRide {
+                if let currentRide = rideViewModel.currentRide {
+                    if rideViewModel.totalAccumulatedTime >= Double(currentRide.estimatedTime) {
+                        toggleRideButtonAction()
+                    }
+                }
+            }
         }
     }
 
@@ -321,6 +330,7 @@ struct RideView: View {
 #Preview {
     RideView(
         rideViewModel: .init(),
+        settingsViewModel: .init(),
         navigationManager: .init(),
         coreDataManager: .init(),
         networkManager: .init(),
