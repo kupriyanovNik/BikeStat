@@ -9,6 +9,9 @@
 
 ## Добро пожаловать в репозиторий!
 
+### Видео-демонстрация работоспособности 
+[Rutube](https://rutube.ru/video/ce33ff3d1f01ee3422ef5ccf2b53beee/)
+
 ### Разработчики 
 1. [Никита Куприянов](https://github.com/kupriyanovNik)
 2. [Анфиса Опарина](https://github.com/Anfisok)
